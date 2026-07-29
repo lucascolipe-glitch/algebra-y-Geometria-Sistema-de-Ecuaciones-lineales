@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unidad 3 interactiva de Sistemas de Ecuaciones Lineales para Álgebra y Geometría I.">
+  <meta name="theme-color" content="#173d7a">
+  <title>Unidad 3 · Sistemas de Ecuaciones Lineales</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        packages: {'[+]': ['ams']}
+      },
+      svg: {fontCache: 'global'},
+      options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="topbar">
+    <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <div>
+        <p class="eyebrow">Álgebra y Geometría I · Ingeniería en Petróleo</p>
+        <h1>Unidad 3 · Sistemas de Ecuaciones Lineales</h1>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="button ghost compact" id="printButton" type="button">Imprimir recorrido</button>
+      <button class="button ghost compact" id="resetProgressButton" type="button">Reiniciar progreso</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación de la unidad">
+      <div class="progress-card">
+        <div class="progress-label"><span>Progreso</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+        <p id="progressDetail">Completá actividades y ejemplos para registrar tu avance.</p>
+      </div>
+
+      <nav class="module-nav" id="moduleNav">
+        <button class="nav-item active" data-target="inicio" type="button"><span>0</span> Inicio</button>
+        <button class="nav-item" data-target="ecuaciones" type="button"><span>1</span> Ecuaciones lineales</button>
+        <button class="nav-item" data-target="grafica" type="button"><span>2</span> Interpretación gráfica</button>
+        <button class="nav-item" data-target="matricial" type="button"><span>3</span> Forma matricial</button>
+        <button class="nav-item" data-target="gauss" type="button"><span>4</span> Método de Gauss</button>
+        <button class="nav-item" data-target="gauss-jordan" type="button"><span>5</span> Gauss-Jordan</button>
+        <button class="nav-item" data-target="compatibilidad" type="button"><span>6</span> Rango y compatibilidad</button>
+        <button class="nav-item" data-target="homogeneos" type="button"><span>7</span> Homogéneos e inversa</button>
+        <button class="nav-item" data-target="parametros" type="button"><span>8</span> Sistemas con parámetros</button>
+        <button class="nav-item" data-target="aplicaciones" type="button"><span>9</span> Aplicaciones</button>
+        <button class="nav-item" data-target="practica" type="button"><span>10</span> Práctica guiada</button>
+        <button class="nav-item" data-target="autoevaluacion" type="button"><span>11</span> Autoevaluación</button>
+        <button class="nav-item" data-target="materiales" type="button"><span>i</span> Videos y archivos</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <strong>Regla de estudio</strong>
+        <p>Antes de habilitar un paso de Gauss, anotá qué operación elemental elegirías y qué entrada querés transformar en cero.</p>
+      </div>
+    </aside>
+
+    <main id="contenido" class="content">
+      <section class="module active" id="inicio" data-module="inicio">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="kicker">Teoría + práctica + visualización</p>
+            <h2>Resolver sistemas es decidir qué información puede cumplirse simultáneamente</h2>
+            <p>Esta unidad transforma la teoría, el Trabajo Práctico 3, la resolución, el resumen y las clases de la cátedra en una ruta interactiva. Vas a interpretar soluciones, representar sistemas con matrices, aplicar Gauss y Gauss-Jordan, clasificar con Rouché-Fröbenius y modelizar problemas de Ingeniería en Petróleo.</p>
+            <div class="hero-actions">
+              <button class="button primary" data-go="ecuaciones" type="button">Comenzar la unidad</button>
+              <button class="button secondary" data-go="gauss" type="button">Ir al laboratorio de Gauss</button>
+            </div>
+          </div>
+          <div class="hero-system" aria-label="Sistema de ecuaciones decorativo">
+            <div class="system-brace">
+              <span>2x + 3y - z = 4</span>
+              <span>x - 2y + z = -7</span>
+              <span>-3x + 2y + 2z = 14</span>
+            </div>
+            <div class="hero-result">\(S=\{(-2,3,1)\}\)</div>
+          </div>
+        </div>
+
+        <div class="section-heading"><div><p class="kicker">Ruta de trabajo</p><h3>Cuatro movimientos para estudiar la unidad</h3></div></div>
+        <div class="study-grid">
+          <article class="study-card"><span>1</span><h4>Interpretar</h4><p>Reconocer qué significa una solución y cómo se escribe una solución general.</p></article>
+          <article class="study-card"><span>2</span><h4>Representar</h4><p>Pasar del sistema a \(AX=B\), construir la matriz ampliada y leer órdenes.</p></article>
+          <article class="study-card"><span>3</span><h4>Transformar</h4><p>Usar operaciones elementales para obtener sistemas equivalentes más sencillos.</p></article>
+          <article class="study-card"><span>4</span><h4>Clasificar</h4><p>Decidir si el sistema es C.D., C.I. o incompatible mediante rangos.</p></article>
+        </div>
+
+        <article class="route-board">
+          <h3>Correspondencia con el TP 3</h3>
+          <div class="route-columns">
+            <div><strong>Ejercicios 1–2</strong><p>Solución general, soluciones particulares e interpretación gráfica.</p></div>
+            <div><strong>Ejercicios 3–6</strong><p>Gauss, Gauss-Jordan, matriz inversa y lectura de matrices reducidas.</p></div>
+            <div><strong>Ejercicios 7–8</strong><p>Rouché-Fröbenius, parámetros y sistemas homogéneos.</p></div>
+            <div><strong>Anexo</strong><p>Punto de equilibrio, mezclas, flujos, minería y presión en tuberías.</p></div>
+          </div>
+        </article>
+
+        <article class="callout warning source-review">
+          <strong>Lectura crítica de los materiales</strong>
+          <p>La página mantiene la terminología y el recorrido de la cátedra. También señala algunas inconsistencias de escritura detectadas en la resolución: una etiqueta gráfica, un par ordenado copiado de forma distinta y una variable dependiente nombrada como si fuera libre. En cada caso se conserva el planteo correcto y se explica la corrección.</p>
+        </article>
+      </section>
+
+      <section class="module" id="ecuaciones" data-module="ecuaciones" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 1</p><h2>Ecuaciones lineales y conjuntos solución</h2></div>
+          <button class="complete-button" data-complete="ecuaciones" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <div class="two-column">
+          <article class="theory-card">
+            <h3>Forma general</h3>
+            <p>Una ecuación lineal con \(n\) incógnitas tiene la forma:</p>
+            <div class="formula-panel">\[a_1x_1+a_2x_2+\cdots+a_nx_n=b.\]</div>
+            <p>Una solución es una \(n\)-upla que, al reemplazarse ordenadamente, verifica la igualdad.</p>
+          </article>
+          <article class="theory-card">
+            <h3>Solución general</h3>
+            <p>Una ecuación con varias incógnitas suele tener variables libres. Para</p>
+            <div class="formula-panel">\[2x-4y=-6\]</div>
+            <p>se obtiene \(y=\frac12x+\frac32\), por lo que:</p>
+            <div class="formula-panel">\[S=\left\{\left(t,\frac12t+\frac32\right):t\in\mathbb R\right\}.\]</div>
+          </article>
+        </div>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Explorador de parámetros</p><h3>Generá soluciones de una ecuación</h3></div><span class="status-pill">Ejercicio 1.a</span></div>
+          <p>Mové el parámetro \(t\). La página construye una solución particular de \(2x-4y=-6\).</p>
+          <label class="range-control">\(t=x\): <strong id="linearParamValue">0</strong><input id="linearParam" type="range" min="-8" max="8" step="1" value="0"></label>
+          <div class="solution-generator" id="linearSolutionOutput"></div>
+          <button class="button secondary" id="verifyGeneratedSolution" type="button">Verificar en la ecuación</button>
+          <div class="feedback" id="generatedSolutionFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Comprobación</p><h3>¿La terna satisface la ecuación?</h3></div><span class="status-pill">\(3x-y+2z=5\)</span></div>
+          <div class="input-inline">
+            <label>\(x\)<input id="tupleX" type="number" value="1"></label>
+            <label>\(y\)<input id="tupleY" type="number" value="2"></label>
+            <label>\(z\)<input id="tupleZ" type="number" value="2"></label>
+          </div>
+          <div class="activity-actions"><button class="button primary" id="checkTuple" type="button">Comprobar terna</button><button class="button ghost" id="randomTuple" type="button">Probar otra</button></div>
+          <div class="feedback" id="tupleFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="guided-card" data-stepper="generalSolution"></article>
+      </section>
+
+      <section class="module" id="grafica" data-module="grafica" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 2</p><h2>Compatibilidad e interpretación gráfica</h2></div>
+          <button class="complete-button" data-complete="grafica" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <div class="concept-strip">
+          <div><strong>C.D.</strong><p>Las rectas tienen un único punto común.</p></div>
+          <div><strong>C.I.</strong><p>Las ecuaciones representan la misma recta.</p></div>
+          <div><strong>Incompatible</strong><p>No existe un punto que satisfaga todas las ecuaciones.</p></div>
+        </div>
+
+        <article class="activity-card graph-lab">
+          <div class="activity-header"><div><p class="tag">Laboratorio gráfico</p><h3>Observá las rectas y clasificá el sistema</h3></div><span class="status-pill" id="graphCaseLabel">Caso 1</span></div>
+          <div class="graph-layout">
+            <div class="graph-wrap"><svg id="systemGraph" viewBox="0 0 560 440" role="img" aria-label="Gráfico cartesiano de un sistema de ecuaciones"></svg></div>
+            <div class="graph-panel">
+              <div id="graphEquations" class="formula-panel"></div>
+              <fieldset class="choice-fieldset" id="graphChoices">
+                <legend>¿Cómo se clasifica?</legend>
+                <label><input type="radio" name="graphClass" value="CD"> Compatible determinado</label>
+                <label><input type="radio" name="graphClass" value="CI"> Compatible indeterminado</label>
+                <label><input type="radio" name="graphClass" value="I"> Incompatible</label>
+              </fieldset>
+              <div class="activity-actions"><button class="button primary" id="checkGraphClass" type="button">Comprobar</button><button class="button ghost" id="nextGraphCase" type="button">Otro caso</button></div>
+              <div class="feedback" id="graphFeedback" aria-live="polite"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Punto común</p><h3>Comprobá una solución en todas las ecuaciones</h3></div></div>
+          <p>En el sistema del TP donde cuatro rectas pasan por \((2,1)\), una solución debe verificar simultáneamente las cuatro igualdades.</p>
+          <div class="formula-panel">\[y=2x-3,\qquad x+4y=6,\qquad 3x-7=-y,\qquad -\tfrac12x-\tfrac12y+\tfrac32=0.\]</div>
+          <button class="button primary" id="revealCommonPointCheck" type="button">Verificar \((2,1)\)</button>
+          <div class="feedback" id="commonPointFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="callout warning">
+          <strong>Revisión de una etiqueta gráfica</strong>
+          <p>De \(3x-7=-y\) se obtiene \(y=-3x+7\). En una de las figuras de la resolución aparece una etiqueta con \(\tfrac72\), pero el cálculo y el punto común \((2,1)\) corresponden a \(+7\).</p>
+        </article>
+
+        <article class="video-card" data-video-id="Zb6hWqRKVow">
+          <div class="video-copy"><p class="tag">Video de apoyo</p><h3>Resolución gráfica de sistemas</h3><p>Revisá cómo la posición relativa de las rectas determina la cantidad de soluciones.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="matricial" data-module="matricial" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 3</p><h2>Representación matricial y matriz ampliada</h2></div>
+          <button class="complete-button" data-complete="matricial" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="theory-card wide">
+          <h3>Todo sistema puede escribirse como \(AX=B\)</h3>
+          <div class="matrix-equation-visual">
+            <div><strong>Matriz de coeficientes</strong><div class="formula-panel">\[A_{m\times n}\]</div></div>
+            <div class="operator-symbol">·</div>
+            <div><strong>Matriz incógnita</strong><div class="formula-panel">\[X_{n\times1}\]</div></div>
+            <div class="operator-symbol">=</div>
+            <div><strong>Términos independientes</strong><div class="formula-panel">\[B_{m\times1}\]</div></div>
+          </div>
+          <p>La matriz ampliada \(A'=[A\mid B]\) reúne los coeficientes y los términos independientes. Las operaciones elementales por filas sobre \(A'\) producen sistemas equivalentes.</p>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Constructor</p><h3>Pasá del sistema a la matriz ampliada</h3></div><span class="status-pill">3 ecuaciones · 3 incógnitas</span></div>
+          <div class="formula-panel">\[
+          \begin{cases}
+          2x-y+3z=4\\
+          x-2z=-1\\
+          -3x+4y+z=7
+          \end{cases}
+          \]</div>
+          <p>Completá \([A\mid B]\). Recordá escribir un cero cuando una incógnita no aparece.</p>
+          <div class="augmented-input" id="matrixBuilderInputs"></div>
+          <div class="activity-actions"><button class="button primary" id="checkMatrixBuilder" type="button">Comprobar matriz</button><button class="button ghost" id="resetMatrixBuilder" type="button">Vaciar</button></div>
+          <div class="feedback" id="matrixBuilderFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Clasificación visual</p><h3>¿Escalonada, reducida o ninguna?</h3></div></div>
+          <div id="echelonMatrix" class="formula-panel"></div>
+          <div id="echelonChoices" class="option-grid"></div>
+          <div class="activity-actions"><button class="button ghost" id="nextEchelon" type="button">Otra matriz</button></div>
+          <div class="feedback" id="echelonFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="video-card" data-video-id="qYa-iLBlZ6A">
+          <div class="video-copy"><p class="tag">Video de apoyo</p><h3>Reducción de matrices</h3><p>Introducción a las operaciones elementales y a las formas escalonadas.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="gauss" data-module="gauss" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 4</p><h2>Método de eliminación de Gauss</h2></div>
+          <button class="complete-button" data-complete="gauss" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <div class="three-steps">
+          <article><span>1</span><h3>Matriz ampliada</h3><p>Ordená las incógnitas y copiá todos los coeficientes.</p></article>
+          <article><span>2</span><h3>Eliminación</h3><p>Aplicá operaciones elementales hasta obtener forma escalonada.</p></article>
+          <article><span>3</span><h3>Sustitución hacia atrás</h3><p>Resolvé desde la última ecuación no nula hacia la primera.</p></article>
+        </div>
+
+        <article class="guided-card" data-stepper="gaussTP"></article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Elegí la operación</p><h3>¿Qué harías para anular la primera entrada de \(F_2\)?</h3></div></div>
+          <div class="formula-panel">\[\left[\begin{array}{ccc|c}1&-2&1&-7\\2&3&-1&4\\-3&2&2&14\end{array}\right]\]</div>
+          <div class="option-grid" id="rowOperationChoices"></div>
+          <div class="feedback" id="rowOperationFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="callout warning">
+          <strong>No se elimina la fila nula del registro matricial</strong>
+          <p>Al trabajar con la matriz ampliada se conserva el tamaño de la matriz durante el proceso. Una fila nula puede quedar al final y aporta información para calcular el rango.</p>
+        </article>
+
+        <article class="video-card" data-video-id="V93Nm_-q5LA">
+          <div class="video-copy"><p class="tag">Video universitario de apoyo</p><h3>Resolución de sistemas por Gauss</h3><p>Material de la Universitat Politècnica de València sobre resolución de sistemas lineales.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="gauss-jordan" data-module="gauss-jordan" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 5</p><h2>Gauss-Jordan: hasta la forma escalonada reducida</h2></div>
+          <button class="complete-button" data-complete="gauss-jordan" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="theory-card wide">
+          <h3>Diferencia entre los dos métodos</h3>
+          <div class="comparison-table">
+            <div><strong>Gauss</strong><p>Se detiene en una matriz escalonada y requiere sustitución hacia atrás.</p></div>
+            <div><strong>Gauss-Jordan</strong><p>Continúa hasta una matriz escalonada reducida, donde las variables pivote se leen directamente.</p></div>
+          </div>
+        </article>
+
+        <article class="guided-card" data-stepper="gaussJordan"></article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Lectura directa</p><h3>Interpretá una matriz reducida</h3></div><span class="status-pill">TP 3 · ejercicio 6</span></div>
+          <div id="reducedMatrixCase" class="formula-panel"></div>
+          <div id="reducedMatrixQuestion"></div>
+          <div class="activity-actions"><button class="button primary" id="checkReducedMatrix" type="button">Comprobar</button><button class="button ghost" id="nextReducedMatrix" type="button">Otro caso</button></div>
+          <div class="feedback" id="reducedMatrixFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="callout warning">
+          <strong>Corrección de variable dependiente</strong>
+          <p>En el inciso 6.e de la resolución, de \(x_1+x_2+x_3=1\) se obtiene \(x_1=1-x_2-x_3\). Una línea del documento nombra por error a \(x_2\) en el miembro izquierdo.</p>
+        </article>
+
+        <article class="video-card" data-video-id="dFmGzr1j6eY">
+          <div class="video-copy"><p class="tag">Video de apoyo</p><h3>Gauss-Jordan paso a paso</h3><p>Ejemplo completo de un sistema de tres ecuaciones con tres incógnitas.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="compatibilidad" data-module="compatibilidad" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 6</p><h2>Rango y Teorema de Rouché-Fröbenius</h2></div>
+          <button class="complete-button" data-complete="compatibilidad" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="theory-card wide theorem-card">
+          <h3>Teorema de Rouché-Fröbenius</h3>
+          <p>Un sistema es compatible si y solo si el rango de la matriz de coeficientes coincide con el rango de la matriz ampliada:</p>
+          <div class="formula-panel">\[\operatorname{Rg}(A)=\operatorname{Rg}(A').\]</div>
+          <div class="rank-rules">
+            <div><strong>\(\operatorname{Rg}(A)=\operatorname{Rg}(A')=n\)</strong><span>C.D.</span></div>
+            <div><strong>\(\operatorname{Rg}(A)=\operatorname{Rg}(A')&lt;n\)</strong><span>C.I.</span></div>
+            <div><strong>\(\operatorname{Rg}(A)&lt;\operatorname{Rg}(A')\)</strong><span>Incompatible</span></div>
+          </div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Clasificador de rangos</p><h3>Decidí la compatibilidad</h3></div><span class="status-pill" id="rankCaseCounter">Caso 1</span></div>
+          <div id="rankCase" class="rank-case"></div>
+          <div id="rankOptions" class="option-grid"></div>
+          <div class="activity-actions"><button class="button ghost" id="nextRankCase" type="button">Otro caso</button></div>
+          <div class="feedback" id="rankFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Detectá el absurdo</p><h3>¿Qué informa esta fila?</h3></div></div>
+          <div class="formula-panel">\[\left[\begin{array}{ccc|c}0&0&0&-2\end{array}\right]\]</div>
+          <div class="option-grid" id="absurdRowChoices"></div>
+          <div class="feedback" id="absurdRowFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="video-card" data-video-id="JnutYsGpKIE">
+          <div class="video-copy"><p class="tag">Video de apoyo</p><h3>Teorema de Rouché-Frobenius</h3><p>Explicación conceptual de la clasificación mediante rangos.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="homogeneos" data-module="homogeneos" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 7</p><h2>Sistemas homogéneos y método de la matriz inversa</h2></div>
+          <button class="complete-button" data-complete="homogeneos" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <div class="two-column">
+          <article class="theory-card">
+            <h3>Sistemas homogéneos</h3>
+            <p>En \(AX=O\), la solución trivial \((0,\dots,0)\) siempre verifica el sistema.</p>
+            <div class="callout success"><strong>Nunca son incompatibles.</strong> Pueden ser C.D. o C.I.</div>
+          </article>
+          <article class="theory-card">
+            <h3>Método de la inversa</h3>
+            <p>Si \(A\) es cuadrada e inversible, entonces:</p>
+            <div class="formula-panel">\[AX=B\quad\Longrightarrow\quad X=A^{-1}B.\]</div>
+            <p>Si \(\det(A)=0\), el método no decide entre C.I. e incompatibilidad: hay que usar Gauss.</p>
+          </article>
+        </div>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Familia de soluciones</p><h3>Explorá un sistema homogéneo C.I.</h3></div></div>
+          <div class="formula-panel">\[S=\{(-3t,t,-2t):t\in\mathbb R\}.\]</div>
+          <label class="range-control">Parámetro \(t\): <strong id="homogeneousParamValue">1</strong><input id="homogeneousParam" type="range" min="-6" max="6" step="1" value="1"></label>
+          <div id="homogeneousOutput" class="solution-generator"></div>
+          <button class="button secondary" id="verifyHomogeneous" type="button">Verificar en \(AX=O\)</button>
+          <div class="feedback" id="homogeneousFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Elegí el método</p><h3>¿Cuándo puede aplicarse la matriz inversa?</h3></div></div>
+          <div id="inverseDecisionCase" class="decision-case"></div>
+          <div id="inverseDecisionOptions" class="option-grid"></div>
+          <div class="activity-actions"><button class="button ghost" id="nextInverseDecision" type="button">Otro caso</button></div>
+          <div class="feedback" id="inverseDecisionFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="guided-card" data-stepper="inverseMethod"></article>
+      </section>
+
+      <section class="module" id="parametros" data-module="parametros" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 8</p><h2>Sistemas con parámetros</h2></div>
+          <button class="complete-button" data-complete="parametros" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="theory-card wide">
+          <h3>Analizar antes de resolver</h3>
+          <p>En una matriz casi escalonada, los valores del parámetro que anulan un posible pivote son los casos especiales. Luego se compara la parte de coeficientes con el término independiente.</p>
+          <div class="formula-panel">\[\left[\begin{array}{ccc|c}5&3&4&3\\0&5&2&4\\0&0&k^2-9&k+3\end{array}\right].\]</div>
+        </article>
+
+        <article class="activity-card parameter-lab">
+          <div class="activity-header"><div><p class="tag">Laboratorio de parámetro</p><h3>Estudiá la última fila</h3></div><span class="status-pill">TP 3 · ejercicio 7.a</span></div>
+          <label class="range-control">Valor de \(k\): <strong id="parameterValue">0</strong><input id="parameterSlider" type="range" min="-6" max="6" step="1" value="0"></label>
+          <div id="parameterRow" class="formula-panel"></div>
+          <fieldset class="choice-fieldset" id="parameterChoices">
+            <legend>Clasificación para este valor</legend>
+            <label><input type="radio" name="parameterClass" value="CD"> Compatible determinado</label>
+            <label><input type="radio" name="parameterClass" value="CI"> Compatible indeterminado</label>
+            <label><input type="radio" name="parameterClass" value="I"> Incompatible</label>
+          </fieldset>
+          <div class="activity-actions"><button class="button primary" id="checkParameterClass" type="button">Comprobar</button></div>
+          <div class="feedback" id="parameterFeedback" aria-live="polite"></div>
+          <div class="parameter-number-line" aria-label="Clasificación de los valores de k">
+            <div class="line-segment"><span>\(\mathbb R\setminus\{-3,3\}\)</span><strong>C.D.</strong></div>
+            <div class="special-point"><span>\(-3\)</span><strong>C.I.</strong></div>
+            <div class="special-point danger"><span>\(3\)</span><strong>I.</strong></div>
+          </div>
+        </article>
+
+        <article class="guided-card" data-stepper="parameterAnalysis"></article>
+
+        <article class="video-card" data-video-id="RMk9SntYs-A">
+          <div class="video-copy"><p class="tag">Video de apoyo</p><h3>Discusión de sistemas con un parámetro</h3><p>Ejemplos de cómo separar los valores regulares de los casos especiales.</p><button class="button secondary load-video" type="button">Cargar video</button></div>
+          <div class="video-placeholder"><span>▶</span><p>El video se carga cuando lo solicitás.</p></div>
+        </article>
+      </section>
+
+      <section class="module" id="aplicaciones" data-module="aplicaciones" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 9</p><h2>Aplicaciones en contextos productivos</h2></div>
+          <button class="complete-button" data-complete="aplicaciones" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="activity-card break-even-lab">
+          <div class="activity-header"><div><p class="tag">Punto de equilibrio</p><h3>Ingresos y costos de un pozo</h3></div><span class="status-pill">Anexo · problema 1</span></div>
+          <p>Ingresos: \(I(q)=50q-10000\). Costos: \(C(q)=20q+5000\), donde \(q\) es la producción en barriles.</p>
+          <label class="range-control">Producción \(q\): <strong id="barrelsValue">500</strong> barriles<input id="barrelsSlider" type="range" min="0" max="1000" step="10" value="500"></label>
+          <div class="metric-grid">
+            <div><span>Ingresos</span><strong id="incomeValue">USD 15.000</strong></div>
+            <div><span>Costos</span><strong id="costValue">USD 15.000</strong></div>
+            <div><span>Diferencia</span><strong id="differenceValue">USD 0</strong></div>
+          </div>
+          <div class="feedback success" id="breakEvenMessage">En \(q=500\), los ingresos y los costos coinciden.</div>
+        </article>
+
+        <div class="two-column">
+          <article class="guided-card" data-stepper="refineryBlend"></article>
+          <article class="guided-card" data-stepper="pipelinePressure"></article>
+        </div>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Modelización crítica</p><h3>Mezcla de combustibles y cantidad de condiciones</h3></div><span class="status-pill">Anexo · problema 4</span></div>
+          <p>Con tres cantidades desconocidas \(A,B,C\), el enunciado aporta solo dos ecuaciones:</p>
+          <div class="formula-panel">\[A+B+C=1000,\qquad 85A+90B+95C=92000.\]</div>
+          <button class="button primary" id="showOctaneFamily" type="button">Analizar el sistema</button>
+          <div class="feedback" id="octaneFeedback" aria-live="polite"></div>
+          <div id="octaneFamily" class="parameter-family" hidden>
+            <p>La familia de mezclas no negativas puede escribirse como:</p>
+            <div class="formula-panel">\[(A,B,C)=(t,600-2t,t+400),\qquad 0\le t\le300.\]</div>
+            <label class="range-control">Elegí \(t=A\): <strong id="octaneParamValue">100</strong> L<input id="octaneParam" type="range" min="0" max="300" step="10" value="100"></label>
+            <div id="octaneMixOutput" class="metric-grid"></div>
+          </div>
+        </article>
+
+        <article class="callout warning">
+          <strong>El problema de octanaje está subdeterminado tal como está escrito</strong>
+          <p>Para obtener una única mezcla hace falta una tercera condición independiente, por ejemplo fijar la cantidad de uno de los combustibles o imponer otra propiedad de la mezcla.</p>
+        </article>
+      </section>
+
+      <section class="module" id="practica" data-module="practica" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 10</p><h2>Práctica guiada y detectá el error</h2></div>
+          <button class="complete-button" data-complete="practica" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="guided-card" data-stepper="tpSetVerification"></article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Detectá el error</p><h3>Analizá una afirmación incorrecta</h3></div><span class="status-pill" id="errorCaseCounter">Caso 1</span></div>
+          <div id="errorStatement" class="error-statement"></div>
+          <div id="errorOptions" class="option-grid"></div>
+          <div class="activity-actions"><button class="button ghost" id="nextErrorCase" type="button">Otro error</button></div>
+          <div class="feedback" id="errorFeedback" aria-live="polite"></div>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-header"><div><p class="tag">Plan de resolución</p><h3>Ordená las decisiones antes de usar Gauss</h3></div></div>
+          <ol class="sortable-plan" id="resolutionPlan"></ol>
+          <div class="activity-actions"><button class="button primary" id="checkResolutionPlan" type="button">Comprobar orden</button><button class="button ghost" id="shuffleResolutionPlan" type="button">Mezclar</button></div>
+          <div class="feedback" id="resolutionPlanFeedback" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="module" id="autoevaluacion" data-module="autoevaluacion" hidden>
+        <div class="module-title">
+          <div><p class="kicker">Módulo 11</p><h2>Autoevaluación aleatoria</h2></div>
+          <button class="complete-button" data-complete="autoevaluacion" type="button">Marcar módulo como revisado</button>
+        </div>
+
+        <article class="quiz-card">
+          <div class="quiz-intro">
+            <div><p class="tag">10 preguntas</p><h3>Comprobá qué temas necesitan otra vuelta</h3><p>Cada intento toma preguntas distintas del banco de la unidad.</p></div>
+            <button class="button primary" id="startQuiz" type="button">Generar evaluación</button>
+          </div>
+          <form id="quizForm"></form>
+          <div class="activity-actions" id="quizActions" hidden><button class="button primary" id="submitQuiz" type="submit" form="quizForm">Corregir</button><button class="button ghost" id="newQuiz" type="button">Nueva evaluación</button></div>
+          <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="module" id="materiales" data-module="materiales" hidden>
+        <div class="module-title"><div><p class="kicker">Biblioteca</p><h2>Videos, teoría y archivos de la unidad</h2></div></div>
+
+        <h3 class="subsection-title">Videos de la cátedra enlazados en el resumen</h3>
+        <div class="resource-grid">
+          <a class="resource-card" href="https://drive.google.com/file/d/1HhYHdddOLV9xtB7mwdlCZdNdORJtp1nc/view?usp=sharing" target="_blank" rel="noopener"><span>▶</span><div><strong>Ejemplo de Gauss A</strong><p>Resolución y clasificación de un sistema.</p></div></a>
+          <a class="resource-card" href="https://drive.google.com/file/d/12QnrZi9Z5EnqltJzsHx-MZVhgxnpwzfn/view?usp=sharing" target="_blank" rel="noopener"><span>▶</span><div><strong>Ejemplo de Gauss B</strong><p>Resolución y conjunto solución.</p></div></a>
+          <a class="resource-card" href="https://drive.google.com/file/d/1jxpalRefZiN5FtZQKOOSA2l317T5Fzoc/view?usp=sharing" target="_blank" rel="noopener"><span>▶</span><div><strong>Ejemplo de Gauss C</strong><p>Clasificación de otro caso.</p></div></a>
+          <a class="resource-card" href="https://drive.google.com/file/d/1TkiOh2z1AOjWBJeZAPDQrpLug8qxBLe-/view?usp=sharing" target="_blank" rel="noopener"><span>▶</span><div><strong>Sistema con parámetro</strong><p>Aplicación de Rouché-Fröbenius.</p></div></a>
+        </div>
+
+        <h3 class="subsection-title">Videos externos de apoyo</h3>
+        <div class="video-list">
+          <a href="https://www.youtube.com/watch?v=Zb6hWqRKVow" target="_blank" rel="noopener"><strong>Interpretación gráfica</strong><span>Rectas secantes, coincidentes y paralelas.</span></a>
+          <a href="https://www.youtube.com/watch?v=V93Nm_-q5LA" target="_blank" rel="noopener"><strong>Gauss · UPV</strong><span>Resolución de sistemas lineales.</span></a>
+          <a href="https://www.youtube.com/watch?v=dFmGzr1j6eY" target="_blank" rel="noopener"><strong>Gauss-Jordan</strong><span>Ejemplo 3×3 paso a paso.</span></a>
+          <a href="https://www.youtube.com/watch?v=JnutYsGpKIE" target="_blank" rel="noopener"><strong>Rouché-Fröbenius</strong><span>Clasificación mediante rangos.</span></a>
+          <a href="https://www.youtube.com/watch?v=RMk9SntYs-A" target="_blank" rel="noopener"><strong>Sistemas con parámetro</strong><span>Discusión de casos especiales.</span></a>
+        </div>
+
+        <h3 class="subsection-title">Materiales originales</h3>
+        <div class="resource-grid">
+          <a class="resource-card" href="materiales/teoria-sel-2026.pdf" target="_blank"><span>PDF</span><div><strong>Teoría SEL 2026</strong><p>Desarrollo completo de la unidad.</p></div></a>
+          <a class="resource-card" href="materiales/tp-3-sistemas-lineales.pdf" target="_blank"><span>PDF</span><div><strong>Trabajo Práctico 3</strong><p>Ejercicios y problemas de aplicación.</p></div></a>
+          <a class="resource-card" href="materiales/resolucion-tp-3.pdf" target="_blank"><span>PDF</span><div><strong>Resolución del TP 3</strong><p>Procedimientos desarrollados.</p></div></a>
+          <a class="resource-card" href="materiales/resumen-y-ejemplos.pdf" target="_blank"><span>PDF</span><div><strong>Resumen y ejemplos</strong><p>Gauss y Rouché-Fröbenius.</p></div></a>
+          <a class="resource-card" href="materiales/tp-3-sistemas-lineales.tex" target="_blank"><span>TEX</span><div><strong>Fuente del TP</strong><p>Archivo LaTeX original.</p></div></a>
+          <a class="resource-card" href="materiales/resolucion-tp-3.tex" target="_blank"><span>TEX</span><div><strong>Fuente de la resolución</strong><p>Archivo LaTeX original.</p></div></a>
+          <a class="resource-card" href="materiales/resumen-y-ejemplos.tex" target="_blank"><span>TEX</span><div><strong>Fuente del resumen</strong><p>Archivo LaTeX original.</p></div></a>
+          <a class="resource-card" href="presentaciones/01-clase-sel-parte-1.ppsx"><span>PPSX</span><div><strong>Clase SEL · Parte 1</strong><p>Presentación de la cátedra.</p></div></a>
+          <a class="resource-card" href="presentaciones/02-clase-sel-parte-2.ppsx"><span>PPSX</span><div><strong>Clase SEL · Parte 2</strong><p>Presentación de la cátedra.</p></div></a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay" hidden></div>
+</body>
+</html>

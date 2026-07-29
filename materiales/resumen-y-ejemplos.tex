@@ -1,0 +1,1032 @@
+\documentclass[11pt]{article}
+
+\usepackage[inline]{asymptote}
+\usepackage{asypictureB}
+
+\usepackage{qrcode}
+\usepackage[a4paper,text={18.5cm,25cm},centering,top=2.5cm]{geometry} 
+\usepackage{amsfonts}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+\usepackage{multicol}
+%\usepackage{amsmath}
+\usepackage{amsmath,stackrel,wasysym}
+\usepackage{pdflscape}% girar una pagina, hay que usar \begin{landscape}En este punto inicia la hoja en vertical \end{landscape}
+%\usepackage[mathcal]{euscript}
+\usepackage{amssymb}
+\usepackage{esvect}%para la flecha de vector 
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands]{babel}
+%\usepackage[latin1,ansinew]{inputenc}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{etex}
+\usepackage{pgf,tikz,pgfplots}
+\usetikzlibrary{patterns,patterns.meta}%%%%%%%%%%%para  pintar de forma rrallada un rectangulo
+\usepackage{tkz-graph}%paquete (di)grafos
+\usepackage{tkz-euclide}% Para realizar diagramas que coloreen conjuntos
+\usetikzlibrary[decorations.text]% Decorar curvas
+%\usetikzlibrary{matrix}
+\usetikzlibrary{arrows,matrix}
+%\usetkzobj{all}
+
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{verbatim} 
+\usetikzlibrary{babel}%para no general error al usar babel y tikz simultaneamente.
+%\usetikzlibrary{patterns}%%%%%%%%%%%para  pintar de forma rrallada un rectangulo
+
+\usepackage{pictex}
+\usepackage{verbatim}%me sirve para usar comentarios con mucha lineas 
+\usepackage{amstext}
+\usepackage{enumerate}
+%\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{mathdots}% para tener mas opciones de puntos suspensivos
+
+%\usepackage{pgf,tikz}%,pgfplots
+%\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+%\usetikzlibrary{arrows}
+%\usepackage{etex,tkz-euclide} 
+%\usetkzobj{all}
+\usepackage{color}
+\graphicspath{ {imagen/} }
+\usepackage{cancel}
+\newcommand{\Cancelar}[2][black]{{\color{#1}\cancel{\color{black}#2}}}%%% para cancelar con colores recordar usar mayusculas
+\usepackage{lscape}%paquete para girar hojas
+
+
+%%%Marca de agua
+
+%\usepackage{draftwatermark} % Paquete para agregar marca de agua
+% Configuración de la marca de agua
+%\SetWatermarkText{Preprint}
+%\SetWatermarkScale{1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\author{Colipe }
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%       encabezado y pie de pagina
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\fancypagestyle{miestilo}{
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{pág \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\renewcommand{\footrulewidth}{1pt}
+\pagestyle{fancy}\markboth{}{}
+\renewcommand{\headrulewidth}{.05pt}
+\renewcommand{\headrule}{{\color{gray}%
+\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+\renewcommand{\footrule}{{\color{gray}%
+\vskip-\footruleskip\vskip-\footrulewidth
+\hrule width\headwidth height\footrulewidth\vskip\footruleskip}}
+\renewcommand{\footrulewidth}{.50pt}
+\fancyhead[L]{\color{gray}{\sc\footnotesize \sc Álgebra y Geometría I} }
+\fancyhead[C]{\color{gray}{\sc \footnotesize Ingenieria en petroleo}}
+\fancyhead[R]{\color{gray}{\sc \footnotesize  Universidad Nacional Del Comahue}}
+\fancyfoot[R]{pág. \thepage}
+\fancyfoot[C]{}
+\setlength{\headheight}{15pt}
+\fancyfoot[L]{\vspace*{-3.5mm}\color{gray}{\small T. P. 3: Sistema de Ecuaciones lineales}}
+\thispagestyle{miestilo} 
+%\usepackage{wrapfig}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\re}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\K}{\mathbb{K}} 
+\newcommand{\Exp}{\mbox{Exp}}  
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\can}{\mathcal{C}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\Pol}{\mathcal{P}}
+\newcommand{\moduloprop}{\hookrightarrow_{\hspace{-2.5mm}\mbox{\tiny$^{_\neq}$}}}
+
+
+\newcommand{\cof}{ \mbox{cof}} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\newcommand{\materia}{\sc ALGEBRA Y GEOMETRIA I}%separadas con '&'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage[framemethod=TikZ]{mdframed}%Paquete para estilos de los bordes de los ambientes Importante este paquete (mdframed) define un entorno  que trata automáticamente los saltos de página en el texto enmarcado.
+            \mdfsetup{skipabove=2\baselineskip,skipbelow=2\baselineskip,frametitlefont=\sffamily\bfseries, needspace=4\baselineskip, splittopskip=1.5\baselineskip} 
+            \mdfsetup{apptotikzsetting={\tikzset{mdfbackground/.append style={draw=none}}}}  
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para teoremas
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mdfdefinestyle{teoSty}{backgroundcolor=blue!01!,
+linecolor=blue, linewidth=3pt,
+skipabove=4pt,
+skipbelow=-3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={0.1\textheight},roundcorner=10pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para observación
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{ObsSty}{backgroundcolor=red!03, linecolor=red, linewidth=2pt,
+skipabove=4pt,
+skipbelow=-3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={2\baselineskip},roundcorner=10pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para ejemplo
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{EjemSty}{backgroundcolor=blue!5!green!5!, linecolor=blue!50!green!50!, linewidth=2pt,
+skipabove=4pt,
+skipbelow=-3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={2\baselineskip},roundcorner=10pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para ejercicio
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{ejerSty}{ linecolor=red!50!blue!50!green!75!, linewidth=3pt,
+skipabove=4pt,
+skipbelow=3pt,
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={0.1\textheight},roundcorner=10pt}
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%definición teoremas
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{teo}%[section] %contador de los teoremas
+%\renewcommand*\theteo{\arabic{chapter}.\arabic{section}.\arabic{teo}}%contador de los teoremas
+\newenvironment{teo}[1][]{%
+\refstepcounter{teo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!60]
+{\strut Teorema~ \theteo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Teorema~\theteo:~#1};}}%
+}%
+\mdfsetup{style=teoSty,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%definición corolario
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%mismo contador que teorema
+\newenvironment{coro}[1][]{%
+\stepcounter{teo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!60]
+{\strut Corolario~ \theteo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Corolario~\theteo:~#1};}}%
+}%
+\mdfsetup{style=teoSty,linewidth=1pt,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%definición Lema
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%mismo contador que lema
+\newenvironment{lema}[1][]{%
+\stepcounter{teo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!60]
+{\strut Lema~ \theteo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Lema~\theteo:~#1};}}%
+}%
+\mdfsetup{style=teoSty,linewidth=1pt,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%definición propo
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%mismo contador que lema
+\newenvironment{prop}[1][]{%
+\stepcounter{teo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!60]
+{\strut Proposición~ \theteo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Proposición~\theteo:~#1};}}%
+}%
+\mdfsetup{style=teoSty,linewidth=1pt,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newtheorem{corol}{\bf Corolario}
+\newmdtheoremenv[style=EjemSty]{ejemplo}[corol]{Ejemplo}%\newtheorem{ejemplo}[corol]{Ejemplo}
+\newtheorem{ejer}{Ejercicio}[]
+\newmdtheoremenv[style=ejerSty]{ej}{\underline{Ejercicio}}%\newtheorem{ej}{\underline{Ejercicio}}
+%\newtheorem{teo}{Teorema}%[section]
+%\newtheorem{lema}[teo]{Lema}
+%\newtheorem{propo}[teo]{Proposición}
+\newmdtheoremenv[style=teoSty]{defi}[teo]{Definición}%\newtheorem{defi}[teo]{Definición} 
+\newmdtheoremenv[style=ObsSty]{obs}{Observación}%\newtheorem{obs}[teo]{Observación}%[section]
+\newtheorem{acla}{Aclaración}%[section]
+\newtheorem{act}{Actividad}%%%%%%%%%%%%%%%%
+\newtheorem*{defsinn}{{\bf Definición}:}
+\newtheorem*{ejemplosinn}{{\bf Ejemplo}:}
+\newtheorem*{proposinn}{{\bf\sc Proposición}}
+\newtheorem*{obssinn}{Observación:}
+\newtheorem*{corosinn}{Corolario}
+\newmdtheoremenv[style=teoSty]{propiedades}[teo]{Propiedades:}%\newtheorem*{propsinn}{Propiedades:}
+%\newenvironment{proof} { \noindent {\bf Demostración: }\rm}{$\quad \hfill \blacksquare $}
+\usepackage{setspace} % (es una alternativa a 
+\renewcommand{\baselinestretch}{1.3}%) usando \doublespacing \onehalfspace \singlespace \spacing{1.5}  se va cambiando segun uno quiera
+
+%\newenvironment{proof}[Demostración:]
+\newenvironment{sol}{ \noindent {\bf Solución:} \rm}{%\hfill \protect\tikz[overlay,yshift=-4pt]\protect\node[xshift=8mm, yshift=13mm, blue]() {\huge $\checkmark$ };
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\renewcommand{\baselinestretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo para Cuentas auxiliares
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{Cuentaauxi}{%skipabove=10pt, skipbelow=0,
+userdefinedwidth=1.02\textwidth,align=center,
+  everyline=true,
+  ignorelastdescenders=true,
+  middlelinewidth=1pt,
+  linecolor=black!20,
+  outerlinewidth=1pt,
+  %leftline=false,topline=false
+  %rightline=false,bottomline=false,
+  %backgroundcolor=black!20,
+  innerleftmargin=2mm, innerrightmargin=2mm,
+  innerbottommargin=3mm,
+  innertopmargin=1mm,
+  frametitleaboveskip=2mm,
+  frametitlebelowskip=2mm,
+  %frametitlerule=false,
+  %repeatframetitle=false,
+ % outerlinewidth=6pt,outerlinecolor=blue!20,
+ pstricksappsetting={\addtopsstyle{mdfouterlinestyle}{linestyle=dashed}},
+ %firstextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, 
+ %minimum size=15mm, fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}
+ %  \endtikzpicture
+ %}; },
+ %singleextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, minimum size=15mm,
+  %fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}    
+ %  \endtikzpicture
+ %}; }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo para Citar
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{citar}{
+userdefinedwidth=.83\textwidth ,align=center,
+skipabove=5pt, skipbelow=5pt,
+  everyline=true,
+  ignorelastdescenders=true,
+  middlelinewidth=1pt,
+  linecolor=blue!60,
+  outerlinewidth=2pt,
+  %leftline=false,
+  topline=false,
+  rightline=false,
+  bottomline=false,
+  %backgroundcolor=black!20,
+  innerleftmargin=5mm, innerrightmargin=5mm,
+  innerbottommargin=3mm,
+  innertopmargin=1mm,
+  leftmargin= 14mm,
+  %frametitleaboveskip=2mm,
+  %frametitlebelowskip=2mm,
+  %frametitlerule=false,
+  %repeatframetitle=false,
+ % outerlinewidth=6pt,outerlinecolor=blue!20,
+ pstricksappsetting={\addtopsstyle{mdfouterlinestyle}{linestyle=dashed}},
+ %firstextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, 
+ %minimum size=15mm, fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}
+ %  \endtikzpicture
+ %}; },
+ %singleextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, minimum size=15mm,
+  %fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}    
+ %  \endtikzpicture
+ %}; }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Dem}{\protect\tikz[overlay,yshift=-4pt]\protect\draw[line width=1.5pt,line cap=round,color=gray] (0,0)[out=14,in=180] to node [shift=(90:6.pt),color=black] {\large\bf Dem:} (7:1); \qquad \quad }
+\DeclareRobustCommand{\michi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[1]{\raisebox{\depth}{\large$#1\chi$}} % inner command, used by \rchi
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando aclaraciones  
+
+\newcommand{\aclaracion}[2]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#2}) [color=black,above right] {\bf #1};
+\foreach \y in {1,2,...,#2}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando respuesta 
+
+\newcommand{\res}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf respuesta:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando ejemplo para completar 
+
+\newcommand{\ejparacompletar}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf Ejemplo:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando conclusión 
+
+\newcommand{\conclus}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf Conclusión:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% boton calculadora 
+
+\newcommand{\boton}[2]{
+\tikzpicture{  \node[draw,color=#1,fill=#1,text=white,,rounded corners=3mm,text width=9mm,text height =3mm,align=center,midway]  at (0,0) { \large \bf #2 };
+}
+\endtikzpicture
+}
+
+
+
+\newcommand{\botonSup}[3]{
+\tikzpicture{  \node[draw,color=#1,fill=#1,text=white,rounded corners=3mm,text width=9mm,text height =3mm,align=center,midway]  at (0,0) {  \bf #2 };
+\node[text=yellow!50!red!80!]  at (0,5.9mm) {  \small \bf #3 };
+}
+\endtikzpicture
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+            
+            
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para lineas de relleno (interbalos) usando el paquete patterns y la libreria  patterns.meta
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzdeclarepattern{
+  name=mylines,
+  parameters={
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      \pgfkeysvalueof{/pgf/pattern keys/angle},
+      \pgfkeysvalueof{/pgf/pattern keys/line width},
+  },
+  bounding box={
+    (0,-0.5*\pgfkeysvalueof{/pgf/pattern keys/line width}) and
+    (\pgfkeysvalueof{/pgf/pattern keys/size},
+0.5*\pgfkeysvalueof{/pgf/pattern keys/line width})},
+  tile size={(\pgfkeysvalueof{/pgf/pattern keys/size},
+\pgfkeysvalueof{/pgf/pattern keys/size})},
+  tile transformation={rotate=\pgfkeysvalueof{/pgf/pattern keys/angle}},
+  defaults={
+    size/.initial=5pt,
+    angle/.initial=45,
+    line width/.initial=.4pt,
+  },
+  code={
+      \draw [line width=\pgfkeysvalueof{/pgf/pattern keys/line width}]
+        (0,0) -- (\pgfkeysvalueof{/pgf/pattern keys/size},0);
+  },
+}
+
+
+
+\newcommand{\paralela}{\rotatebox[origin=c]{-10}{\Large$\parallel$}}
+
+
+
+\newcommand{\indicador}[4]{
+{\tikz[remember picture,overlay]\coordinate (#1) at #2;}{\tikz[remember picture,overlay]\coordinate (#3) at #4;} 
+}
+
+\newcommand{\marka}[2]{
+{\tikz[remember picture,overlay]\coordinate (#1) at #2;}
+}
+
+
+
+\setlength{\footskip}{-10mm}%cambia la distancia entre el cuerpo y el pie de pagina
+
+
+
+
+
+\newcommand{\OptipoUno}[1]{\stackrel[#1]{}{=}}
+
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{miestilo}
+%\vspace*{-3.5cm}
+%--------------------------------------
+
+
+
+\setlength{\headheight}{15pt}
+
+\vspace*{-2cm}
+%--------------------logodpto------------------
+\begin{figure}[htbp]
+  \begin{minipage}[r][][t]{0.15\textwidth}
+\begin{center} 
+ % Universidad Nacional del Comahue.  
+ \includegraphics[width=2.2cm, height=2.2cm]{imagen/inglogo.jpg}
+\vspace{1.8cm}
+\end{center}  
+\end{minipage}\quad
+% texto central
+\begin{minipage}[r][][t]{0.32\textwidth}
+\begin{center}
+\vspace*{-25mm}
+{\bf \materia }\\[2mm]
+{\bf modulo 4} 
+\end{center}
+\end{minipage}\quad\begin{minipage}[r][][t]{0.31\textwidth}
+\begin{center}
+\vspace*{-25mm}
+Ingeniería en Petróleo \\[2mm]
+Primer Cuatrimestre 2025
+\end{center}
+\end{minipage}\quad
+%----------------------logouni-------------------------
+\begin{minipage}[r][][t]{0.15\textwidth}
+  \begin{center} 
+     \includegraphics[width=2.2cm, height=2.2cm]{imagen/Logo_UNco.jpg}
+     \vspace{1.8cm}
+  \end{center}  
+\end{minipage}
+%-----------------------------------------------------
+\end{figure}
+\vspace*{-32mm}
+
+\begin{center}
+{\bf \Large{ Resumen y Ejemplos - Sistema de ecuaciones lineales }}
+\end{center}
+
+\hrule
+\section{Sistema de ecuaciones, Definiciones:}
+
+\begin{mdframed}[style= teoSty,frametitle={Definición: }]
+
+
+
+\begin{enumerate}[1) ]
+\item Se dice que un {\bf sistema es compatible} si tiene al menos una solución.
+\begin{enumerate}[i) ]
+\item Cuando un sistema compatible admite más de una solución se denomina {\bf compatible indeterminado}.
+\item Y si tiene sólo una solución será {\bf compatible determinado}.
+\end{enumerate}
+\item Se dice que un {\bf sistema es incompatible} si no admite solución .
+\end{enumerate}
+
+
+
+\end{mdframed} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{mdframed}[style= teoSty,frametitle={Definición:  {\it Dado un sistema de ecuaciones de $m$ ecuaciones y $n$ incógnita.
+} }]
+
+\vspace{-3mm}$$\left\lbrace 
+\begin{matrix}
+      a_{11}\, x_1 & +\quad a_{12}\, x_2 & + \dots & +\quad a_{1n}\, x_n & = b_1 \\
+      a_{21}\, x_1 & +\quad a_{22}\, x_2 & + \dots & +\quad a_{2n}\, x_n & = b_2 \\
+      \vdots     & \dots       & \dots   & \dots       & \vdots \\
+      a_{m1}\, x_1 & +\quad a_{m2}\, x_2 & + \dots & +\quad a_{mn}\, x_n & = b_m
+   \end{matrix} \right. 
+$$
+\vspace{-3mm}
+\begin{itemize}
+    
+\begin{minipage}{.4\textwidth}
+\item  La  siguiente matriz es denominada  {\bf matriz de los coeficientes}:\\
+\[\mathbf{A}= \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix} .
+\]
+\end{minipage}\qquad\qquad\begin{minipage}{.4\textwidth}
+\item  La siguiente es la {\bf matriz de las incógnita}:\\ 
+\vspace{-6mm}
+\[\mathbf{X}= \begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}.
+\]
+\end{minipage}
+
+
+\begin{minipage}{.4\textwidth}
+\item  La siguiente matriz es conocida como la matriz de los {\bf términos independientes}:  \[ \mathbf{B} = \begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{bmatrix}. \]
+
+\end{minipage}\qquad\qquad\begin{minipage}{.4\textwidth}
+\item  Y finalmente la {\bf matriz ampliada}: 
+\[\mathbf{A'}= \left[\begin{array}{cccc  @{\ \, \brokenvert \ \, }  c}
+a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} & b_n
+\end{array} \right]. \]
+\ \, \\[3mm] \,
+\end{minipage}  
+
+
+\end{itemize}
+
+
+\end{mdframed}
+
+
+
+
+
+
+
+
+
+
+
+
+{ \bf El Método de Eliminación de Gauss},  aquí hay una breve explicación de los pasos a seguir para aplicar este método:
+\begin{enumerate}[$1^\circ$]
+    \item Matriz Aumentada: Escribe el sistema de ecuaciones en forma de matriz ampliada [A|B], donde A representa los coeficientes de las incógnitas y B es la matriz de términos constantes.
+
+\item  Eliminación: Aplica operaciones elementales para convertir la matriz ampliada en una matriz escalonada
+
+\item  Sustitución hacia atrás: Resuelve el sistema resultante de ecuaciones usando sustitución hacia arriba. Hay que despejar las incógnitas asociadas a los pivote de la matriz escalonada.  
+
+\end{enumerate} 
+
+\subsection{Ejemplos y ejercicios}
+Cada uno de los siguientes ejemplos serán resueltos en los  vídeos que encontraran en los códigos qr: 
+
+
+\begin{itemize}
+    \item[Ejemplo:] Resolver el siguiente sistema, clasificarlo  como compatible determinado, compatible indeterminado e incompatible. Escribir el conjunto solución y en caso de ser compatible indeterminado dar dos soluciones particulares. 
+\begin{enumerate}[a)]
+\begin{multicols}{3}
+  \item   \ \vspace{-9mm}
+\[\left\{ 
+    \begin{array}{rl}
+    x + 2y + 4z  & = 3  \\
+    2x + 4y + z    & = -1 \\
+    x + 2 y + 3 z  &= 2  
+    \end{array}
+    \right.
+\] 
+
+ \item  \ \vspace{-9mm}
+\[\left\{ 
+    \begin{array}{rl}
+    x + 2y + z  & = 1 \\
+    y - 2z    & = 1 \\
+    x +3 y - z  &= 3  
+    \end{array}
+    \right.
+\]  
+
+
+ \item   \ \vspace{-9mm}
+\[\left\{ 
+    \begin{array}{rl}
+    x + y - z  & = 2 \\
+    y + z      & = 1 \\
+    2x + y     &= 3  
+    \end{array}
+    \right.
+\]
+ \end{multicols}  
+\end{enumerate}
+
+
+
+\begin{enumerate}[a)]
+\begin{multicols}{3}
+    \item  \begin{center}
+    
+\qrcode[height=2.5cm]{ https://drive.google.com/file/d/1HhYHdddOLV9xtB7mwdlCZdNdORJtp1nc/view?usp=sharing} 
+
+\end{center}
+\item  \begin{center}
+ 
+\qrcode[height=2.5cm]{https://drive.google.com/file/d/12QnrZi9Z5EnqltJzsHx-MZVhgxnpwzfn/view?usp=sharing } 
+
+\end{center}  
+
+
+\item  \begin{center}
+ 
+\qrcode[height=2.5cm]{https://drive.google.com/file/d/1jxpalRefZiN5FtZQKOOSA2l317T5Fzoc/view?usp=sharing } 
+
+\end{center}
+
+\end{multicols}
+\end{enumerate}
+
+
+
+Después de ver los videos resolver los siguientes ejercicios:  
+
+
+
+
+
+
+\item[Ejercicio:]  Resolver el siguiente sistema, clasificarlo  como compatible determinado, compatible indeterminado e incompatible. Escribir el conjunto solución y en caso de ser compatible indeterminado dar dos soluciones particulares. 
+\begin{enumerate}[a)]
+\begin{multicols}{3}
+  \item    \ \vspace{-9mm}
+\[\left\{ \begin{matrix}
+3 x + 2 y + z &= 1
+\\ 
+x + y  &= 0
+\\
+ y + 2 z  &= 1 
+\end{matrix}\right. 
+\] 
+
+ \item    \ \vspace{-9mm}
+\[\left\{ 
+    \begin{array}{rl}
+    x + y + z &= 2
+\\ 
+3x + 2y  &= 3
+\\
+x- 2 z  &= -1 
+    \end{array}
+    \right.
+\]  
+
+
+ \item    \ \vspace{-9mm}
+\[\left\{ 
+    \begin{array}{rl}
+     2 x + y - z &= 1
+\\ 
+x + y + z  &= 2 
+\\
+3 x + 2y  &= 1  
+    \end{array}
+    \right.
+\]
+ \end{multicols}  
+\end{enumerate}
+
+\end{itemize}
+
+
+
+
+\section{{Teorema de Rouché-Fröbenius: }}
+
+\begin{mdframed}[style= teoSty,frametitle={Teorema de Rouché-Fröbenius: }] 
+
+Un sistema de ecuaciones lineales es compatible si y solo si el rango de la matriz de coeficientes es igual al rango de la
+matriz ampliada, es decir: $Rg (A) = Rg ([A|B])$
+
+\end{mdframed}
+
+\subsection{Recordemos:}
+
+
+\begin{multicols}{2}
+    
+\begin{mdframed}[style=teoSty,frametitle={ Definición: }]
+Se llama rango de A y se nota Rg(A) al número de filas no nulas de su
+correspondiente matriz escalonada.
+\end{mdframed} 
+
+\bigskip   
+
+
+\begin{mdframed}[style=teoSty,frametitle={ Definición alternativa: }]
+Se llama rango de A y se nota Rg(A) a la cantidad de pivote de su correspondiente matriz escalonada.
+\end{mdframed} 
+
+\end{multicols}
+
+
+
+\subsection{Consecuencias del Teorema de Rouché-Fröbenius}
+    
+\begin{mdframed}[style= teoSty,frametitle={Consecuencias: }] 
+ Sea $A$ la matriz de coeficientes de un sistema de \ ``$m$'' \ ecuaciones con \ ``$n$'' \ incógnitas y $A'= [A|B]$ la matriz ampliada del sistema. Entonces:
+ \begin{enumerate}[1) ]
+\item  Si $Rg (A) = Rg (A') = n$ el sistema es Compatible Determinado (CD).
+
+\item  Si $Rg (A) = Rg (A') < n$ el sistema es Compatible Indeterminado (CI).
+
+
+
+\item Si $Rg (A) < Rg (A') $ el sistema es Incompatible (I)
+ \end{enumerate}
+
+\end{mdframed}
+
+
+
+
+
+
+\subsection{Ejemplo y ejercicio}
+El siguiente ejemplo serán resuelto en un  vídeos, para verlo hacer clic en el código qr: 
+
+
+\begin{itemize}
+    \item[Ejemplo:]  Determinar para que valores de $k$ el  sistema indicado a continuación, tienen una única solución, infinitas soluciones o ninguna solución.
+
+\[
+\left\{
+\begin{array}{rcl}
+ x+ 2y -&\!\! z    & = k\\
+ y +&\!\!  5z    & = 4 \\
+ x + 2 y +&\!\! (k^2 -2) z & = -1
+\end{array}
+\right.
+\] 
+
+
+
+  \begin{center}
+    
+\qrcode[height=3cm]{ https://drive.google.com/file/d/1TkiOh2z1AOjWBJeZAPDQrpLug8qxBLe-/view?usp=sharing} 
+
+\end{center}
+
+
+Después de ver el video resolver el siguientes ejercicios:  
+
+
+
+
+
+
+\item[Ejercicio:]Determinar para que valores de $a$ el  sistema indicado a continuación, tienen una única solución, infinitas soluciones o ninguna solución.
+
+\[
+\left\{
+\begin{array}{rl}
+ -x + 6y -5 z & = 10\\
+ y +-3 z    & = -5 \\
+ (a^2+a-2) z & =a+2
+\end{array}
+\right.
+\] 
+
+
+\end{itemize} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

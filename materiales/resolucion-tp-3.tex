@@ -1,0 +1,7171 @@
+\documentclass[11pt]{article}
+
+
+\usepackage[inline]{asymptote}
+\usepackage{asypictureB}
+
+\usepackage{qrcode}
+%\usepackage[default]{frcursive}
+\usepackage[a4paper,text={17.5cm,25cm},centering,top=2.5cm]{geometry} 
+\usepackage{amsfonts}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+%\usepackage{amsmath}
+\usepackage{amssymb,amsmath,stackrel,wasysym,mathrsfs}
+\usepackage{multicol}
+\usepackage{pdflscape}% girar una pagina, hay que usar \begin{landscape}En este punto inicia la hoja en vertical \end{landscape}
+%\usepackage[mathcal]{euscript}
+%\usepackage{amssymb}
+\usepackage{esvect}%para la flecha de vector 
+
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands]{babel}
+%\usepackage[latin1,ansinew]{inputenc}\usepackage{calligra}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{etex}
+\usepackage{calligra}
+\usepackage{array}
+ \usepackage{booktabs}
+ \usepackage{ifsym}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{tkz-graph}%paquete (di)grafos
+\usepackage{tkz-euclide}% Para realizar diagramas que coloreen conjuntos
+\usetikzlibrary[decorations.text]% Decorar curvas
+%\usetikzlibrary{matrix}
+\usetikzlibrary{arrows,matrix}
+%\usetkzobj{all}
+
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{makecell} %Paquete para controlar altura de celdas
+\usepackage{verbatim} 
+\usetikzlibrary{babel}%para no general error al usar babel y tikz simultaneamente.
+\usetikzlibrary{patterns,patterns.meta}%%%%%%%%%%%para  pintar de forma rrallada un rectangulo
+
+\usepackage{pictex}
+\usepackage{verbatim}%me sirve para usar comentarios con mucha lineas 
+\usepackage{amstext}
+\usepackage{enumerate}
+%\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{mathdots}% para tener mas opciones de puntos suspensivos
+
+%\usepackage{pgf,tikz}%,pgfplots
+%\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+%\usetikzlibrary{arrows}
+%\usepackage{etex,tkz-euclide} 
+%\usetkzobj{all}
+\usepackage{color}
+
+\usepackage{cancel}
+\newcommand{\Cancelar}[2][black]{{\color{#1}\cancel{\color{black}#2}}}%%% para cancelar con colores recordar usar mayusculas
+\usepackage{lscape}%paquete para girar hojas
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\re}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\K}{\mathbb{K}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\can}{\mathcal{C}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\Pol}{\mathcal{P}}
+\newcommand{\moduloprop}{\hookrightarrow_{\hspace{-2.5mm}\mbox{\tiny$^{_\neq}$}}}
+
+\newcommand{\dis}{\displaystyle}
+
+
+
+\newtheorem{ejer}{Ejercicio}[]
+
+\newtheorem{teo}{Teorema}%[section]
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{propo}[teo]{Proposición}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{ejem}[teo]{}
+\newtheorem*{ejemsinn}{}
+\newtheorem{obs}[teo]{Observación}%[section]
+\newtheorem{acla}{Aclaración}%[section]
+\newtheorem{act}{Actividad}%%%%%%%%%%%%%%%%
+\newtheorem*{defsinn}{{\bf Definición}:}
+\newtheorem*{ejemplosinn}{{\bf Ejemplo}:}
+\newtheorem*{proposinn}{{\bf\sc Proposición}}
+\newtheorem*{obssinn}{Observación:}
+\newtheorem*{corosinn}{Corolario}
+\newtheorem*{propsinn}{Propiedades:}
+%\newenvironment{proof} { \noindent {\bf Demostración: }\rm}{$\quad \hfill \blacksquare $}
+\usepackage{setspace} % (es una alternativa a \renewcommand{\baselinestretch}{1.3}) usando \doublespacing \onehalfspace \singlespace \spacing{1.5}  se va cambiando segun uno quiera
+
+%\newenvironment{proof}[Demostración:]
+\newenvironment{sol}{ \noindent {\bf Solución:} \rm}{%\hfill \protect\tikz[overlay,yshift=-4pt]\protect\node[xshift=8mm, yshift=13mm, blue]() {\huge $\checkmark$ };
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\renewcommand{\baselinestretch}{1.3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[framemethod=TikZ]{mdframed}%Paquete para estilos de los bordes de los ambientes Importante este paquete (mdframed) define un entorno  que trata automáticamente los saltos de página en el texto enmarcado.
+            \mdfsetup{skipabove=1\baselineskip, skipbelow=1.5\baselineskip ,             frametitlefont= \sffamily\bfseries , needspace=4\baselineskip , splittopskip=1.5\baselineskip} %
+            \mdfsetup{apptotikzsetting={\tikzset{mdfbackground/.append style={draw=none}}}} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo para Cuentas auxiliares
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{Cuentaauxi}{%skipabove=10pt, skipbelow=0,
+userdefinedwidth=1.02\textwidth,align=center,
+  everyline=true,
+  ignorelastdescenders=true,
+  middlelinewidth=1pt,
+  linecolor=black!20,
+  outerlinewidth=1pt,
+  %leftline=false,topline=false
+  %rightline=false,bottomline=false,
+  %backgroundcolor=black!20,
+  innerleftmargin=2mm, innerrightmargin=2mm,
+  innerbottommargin=3mm,
+  innertopmargin=1mm,
+  frametitleaboveskip=2mm,
+  frametitlebelowskip=2mm,
+  %frametitlerule=false,
+  %repeatframetitle=false,
+ % outerlinewidth=6pt,outerlinecolor=blue!20,
+ pstricksappsetting={\addtopsstyle{mdfouterlinestyle}{linestyle=dashed}},
+ %firstextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, 
+ %minimum size=15mm, fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}
+ %  \endtikzpicture
+ %}; },
+ %singleextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, minimum size=15mm,
+  %fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}    
+ %  \endtikzpicture
+ %}; }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo para Citar
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{citar}{
+userdefinedwidth=.83\textwidth ,align=center,
+skipabove=5pt, skipbelow=5pt,
+  everyline=true,
+  ignorelastdescenders=true,
+  middlelinewidth=1pt,
+  linecolor=blue!60,
+  outerlinewidth=2pt,
+  %leftline=false,
+  topline=false,
+  rightline=false,
+  bottomline=false,
+  %backgroundcolor=black!20,
+  innerleftmargin=5mm, innerrightmargin=5mm,
+  innerbottommargin=3mm,
+  innertopmargin=1mm,
+  leftmargin= 14mm,
+  %frametitleaboveskip=2mm,
+  %frametitlebelowskip=2mm,
+  %frametitlerule=false,
+  %repeatframetitle=false,
+ % outerlinewidth=6pt,outerlinecolor=blue!20,
+ pstricksappsetting={\addtopsstyle{mdfouterlinestyle}{linestyle=dashed}},
+ %firstextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, 
+ %minimum size=15mm, fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}
+ %  \endtikzpicture
+ %}; },
+ %singleextra={\node[xshift=5cm,right,draw=White, line width=1.5pt,%star,star points=10,star point ratio=1.2, minimum size=15mm,
+  %fill=white] at (P-|O) {\tikzpicture\draw[draw=black!20,decoration=snake, fill=white] (0,0) --(2.5,0) decorate{--(2.5,1)}--(0,1)decorate{--cycle};%\includegraphics[width=10mm]{.pdf}    
+ %  \endtikzpicture
+ %}; }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Dem}{\protect\tikz[overlay,yshift=-4pt]\protect\draw[line width=1.5pt,line cap=round,color=gray] (0,0)[out=14,in=180] to node [shift=(90:6.pt),color=black] {\large\bf Dem:} (7:1); \qquad \quad }
+\DeclareRobustCommand{\michi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[1]{\raisebox{\depth}{\large$#1\chi$}} % inner command, used by \rchi
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando aclaraciones  
+
+\newcommand{\aclaracion}[2]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#2}) [color=black,above right] {\bf #1};
+\foreach \y in {1,2,...,#2}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando respuesta 
+
+\newcommand{\res}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf respuesta:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando ejemplo para completar 
+
+\newcommand{\ejparacompletar}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf Ejemplo:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comando conclusión 
+
+\newcommand{\conclus}[1]{
+
+\begin{center}
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,scale=1]
+%\draw [color=gris,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (0.1,0.1) grid (6.3,6.3);
+%\draw[color=black] (0.,0.) -- (\linewidth,0.);
+\node at (.23,{.9*#1}) [color=black,above right] {\bf Conclusión:};
+\foreach \y in {1,2,...,#1}
+\draw[shift={(0,{.9*\y})},color=gris,opacity=.5] (0.,0.) -- ({.99*\linewidth},0.);
+\end{tikzpicture} 
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% boton calculadora 
+
+\newcommand{\boton}[2]{
+\tikzpicture{  \node[draw,color=#1,fill=#1,text=white,,rounded corners=3mm,text width=7mm,text height =3mm,align=center,midway]  at (0,0) { \large \bf #2 };
+}
+\endtikzpicture
+}
+
+\usepackage[framemethod=TikZ]{mdframed}%Paquete para estilos de los bordes de los ambientes Importante este paquete (mdframed) define un entorno  que trata automáticamente los saltos de página en el texto enmarcado.
+            \mdfsetup{skipabove=2\baselineskip,skipbelow=2\baselineskip,frametitlefont=\sffamily\bfseries, needspace=4\baselineskip, splittopskip=1.5\baselineskip} 
+            \mdfsetup{apptotikzsetting={\tikzset{mdfbackground/.append style={draw=none}}}} 
+            
+            
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para cajas
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mdfdefinestyle{teoSty}{backgroundcolor=blue!10, linecolor=blue, linewidth=3pt,
+skipabove=4pt,
+skipbelow=3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=15pt, outermargin=-15pt, needspace={0.2\textheight},roundcorner=10pt}
+
+\mdfdefinestyle{ObsSty}{backgroundcolor=red!10, linecolor=red, linewidth=2pt,
+skipabove=4pt,
+skipbelow=3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={0.2\textheight},roundcorner=10pt}
+
+\mdfdefinestyle{EjerSty}{backgroundcolor=blue!5!green!5!, linecolor=blue!50!green!50!, linewidth=2pt,
+skipabove=4pt,
+skipbelow=3pt, 
+innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=3mm, innerbottommargin=3mm, innermargin=5pt, outermargin=-5pt, needspace={0.2\textheight},roundcorner=10pt}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Estilo  para lineas de relleno usando el paquete patterns y la libreria  patterns.meta
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzdeclarepattern{
+  name=mylines,
+  parameters={
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      \pgfkeysvalueof{/pgf/pattern keys/angle},
+      \pgfkeysvalueof{/pgf/pattern keys/line width},
+  },
+  bounding box={
+    (0,-0.5*\pgfkeysvalueof{/pgf/pattern keys/line width}) and
+    (\pgfkeysvalueof{/pgf/pattern keys/size},
+0.5*\pgfkeysvalueof{/pgf/pattern keys/line width})},
+  tile size={(\pgfkeysvalueof{/pgf/pattern keys/size},
+\pgfkeysvalueof{/pgf/pattern keys/size})},
+  tile transformation={rotate=\pgfkeysvalueof{/pgf/pattern keys/angle}},
+  defaults={
+    size/.initial=5pt,
+    angle/.initial=45,
+    line width/.initial=.4pt,
+  },
+  code={
+      \draw [line width=\pgfkeysvalueof{/pgf/pattern keys/line width}]
+        (0,0) -- (\pgfkeysvalueof{/pgf/pattern keys/size},0);
+  },
+}
+
+
+
+
+
+\newcommand{\semejante}[1]{\stackrel[#1]{}{\text{\huge$\sim$}}}% \thicksim para decir la Semejanza de matrices la variable #1  indica la operacion elemental 
+\newcommand{\OptipoUno}[1]{\stackrel[#1]{}{=}}
+
+
+
+\newcommand{\indicador}[4]{
+{\tikz[remember picture,overlay]\coordinate (#1) at #2;}{\tikz[remember picture,overlay]\coordinate (#3) at #4;} 
+}
+
+\newcommand{\marka}[2]{
+{\tikz[remember picture,overlay]\coordinate (#1) at #2;}
+}
+
+
+
+
+\newcommand{\cof}{ \mbox{cof}}
+
+\newcommand{\paralela}{\rotatebox[origin=c]{-10}{\Large$\parallel$}}
+
+\usepackage{fancyhdr}
+\fancypagestyle{miestilo}{
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{pag \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\renewcommand{\footrulewidth}{1pt}
+\pagestyle{fancy}\markboth{}{}
+\renewcommand{\headrulewidth}{.05pt}
+\renewcommand{\headrule}{{\color{gray}%
+\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+\renewcommand{\footrule}{{\color{gray}%
+\vskip-\footruleskip\vskip-\footrulewidth
+\hrule width\headwidth height\footrulewidth\vskip\footruleskip}}
+\renewcommand{\footrulewidth}{.50pt}
+\fancyhead[L]{\color{gray}{\footnotesize \sc ALGEBRA Y GEOMETRIA I} }
+\fancyhead[C]{\color{gray}{\sc \footnotesize Primer cuatrimestre 2025}}
+\fancyhead[R]{\color{gray}{\sc \footnotesize  Universidad Nacional Del Comahue}}
+\fancyfoot[R]{pag. \thepage}
+\fancyfoot[C]{\color{gray}{\sc \footnotesize Ingenieria en petroleo}}
+\setlength{\headheight}{15pt}
+
+%\usepackage{wrapfig}
+
+\newcommand{\co}{\mathbb{C}}
+%\newcommand{\re}{\mathbb{R}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\ve}{\mathbb{V}}
+\newcommand{\w}{\mathbb{W}}
+\newcommand{\be}{{\cal B}}
+\newcommand{\ca}{{\cal C}}
+\newcommand{\pqx}{\mathbb{Q}[x]}
+\newcommand{\prx}{\mathbb{R}[x]}
+\newcommand{\pcx}{\mathbb{C}[x]}
+%\newcommand{\izg}{\big\langle}
+%\newcommand{\rangle}{\big\rangle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\newcommand{\materias}{\sc ALGEBRA Y GEOMETRIA I}%separadas con '&'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% se define el encabezado, 
+% el parametro es el texto que va despues de: trabajo practico $N^\circ$... (agregar numero y titulo)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\newcommand{\encabezado}[1]{%
+\fancyfoot[L]{\vspace*{-3.5mm}\color{gray}{\small T. P. 3: Sistemas de ecuaciones lineales.}}
+\thispagestyle{miestilo} 
+\newcommand{\encabezado}[1]{%
+\fancyfoot[L]{\vspace*{-3.5mm}\color{gray}{\small T. P. #1}}
+%\thispagestyle{miestilo}%
+%--------------------logodpto //texto // logouni------------------
+%--------------------logodpto------------------
+
+\vspace*{-18mm}\hspace*{-11mm} \begin{minipage}{2.7cm}
+\begin{center} 
+     \includegraphics[width=2.7cm, height=2.7cm]{logodpto}
+\end{center}  
+\end{minipage}\hspace*{-15mm} \begin{minipage}{15.9cm}
+\begin{center}
+\begin{tabular}{c @{ - } c}
+ \materias \\
+\carreras
+\end{tabular}
+
+\cuatri
+
+\medskip
+
+TRABAJO PRÁCTICO N$^\circ$#1 
+
+\end{center}
+
+\end{minipage}\hspace{-14mm} \begin{minipage}{2.5cm}
+  \begin{center} 
+    \includegraphics[width=2.5cm, height=2.5cm]{logouni}
+  \end{center}  
+\end{minipage}
+%-----------------------------------------------------
+
+%----------------------------------------------------------------
+\hrule
+%---------------------------------------------------------------
+}%%
+
+
+
+\pagestyle{fancy}
+\def\identacion{-2.5mm}%mueve la identacion de la enumeracion de los ejercicios.
+
+
+\usepackage{asypictureB}
+\begin{asyheader}
+settings.outformat="png";
+settings.render=8;
+import graph3;
+import smoothcontour3;
+
+pen bpen = rgb(0.75, 0.07, 0.01);
+//material m = material(diffusepen=0.7bpen, ambientpen=bpen+opacity(0.8), emissivepen=0.3*bpen,specularpen=0.999white, shininess=1.0);      
+\end{asyheader}
+
+
+\usepackage{multicol}
+\setlength{\columnsep}{7mm}
+
+
+
+
+
+\newcommand{\Or}{%
+    \tikz[scale=.17%baseline=-0.75ex, 
+    ]{ % Cambia "scale" para ajustar el tamaño
+        \draw[thick] plot[smooth cycle, tension=1.2] coordinates {(-0.4, 0) (0, -0.6) (0.4, 0) (0, 0.6)};
+        \draw[thick,domain=pi:2*pi,samples=200] 
+        plot ({0.1*\x * cos(\x r)}, {0.07*\x * sin(\x r)+0.45});
+        %\draw[thick,domain=1.5*pi:2*pi,samples=200] plot ({0.08*\x * cos(\x r)-0.9}, {0.09*\x * sin(\x r)-0.1});
+    }%
+    \,\, 
+}
+
+
+\newcommand{\Noo}{%Es una cruz de que esa solución se descarta
+ \tikz[overlay,remember picture] { 
+  %%%% cruz en (-, 0)
+\draw[red,thick,yshift=2mm] (-.15,-.25) -- (+.15,+.25); % Línea diagonal ascendente
+\draw[red,thick,yshift=2mm] (-.15,+.25) -- (+.15,-.25); % Línea diagonal descendente
+}
+}
+
+\begin{document}
+
+
+\setlength{\headheight}{15pt}
+
+\vspace*{-2.5cm}
+%--------------------logodpto------------------
+\begin{figure}[htbp]
+  \begin{minipage}[r][][t]{0.15\textwidth}
+\begin{center} 
+ % Universidad Nacional del Comahue.  
+ \includegraphics[width=2.2cm, height=2.2cm]{imagen/inglogo.jpg}
+\vspace{1.8cm}
+\end{center}  
+\end{minipage}\quad
+% texto central
+\begin{minipage}[r][][t]{0.31\textwidth}
+\begin{center}
+\vspace*{-19mm}
+{\bf Universidad Nacional
+del Comahue} \\
+Facultad de Ingeniería
+\end{center}
+\end{minipage}\quad\begin{minipage}[r][][t]{0.31\textwidth}
+\begin{center}
+\vspace*{-20mm}
+{\bf  Álgebra y Geometría I}
+Ingeniería en Petróleo
+Primer Cuatrimestre 2025
+\end{center}
+\end{minipage}\quad
+%----------------------logouni-------------------------
+\begin{minipage}[r][][t]{0.15\textwidth}
+  \begin{center} 
+     \includegraphics[width=2.2cm, height=2.2cm]{imagen/Logo_UNco.jpg}
+     \vspace{1.8cm}
+  \end{center}  
+\end{minipage}
+%-----------------------------------------------------
+\end{figure}
+\vspace*{-22mm}
+
+\begin{center}
+{\bf \Large{Resolución Trabajo Práctico 3: Sistema de Ecuaciones Lineales}}
+\end{center}
+
+\smallskip
+\hrule
+\medskip
+
+\begin{enumerate}[\hspace{-5mm} 1) ]
+
+\item  Para cada una de las siguientes ecuaciones, dar la solución general y dos soluciones particulares.
+
+\begin{enumerate}
+\begin{multicols}{3}
+    \item $2x - 4y = -6$
+    \item $3x - y + 2z = 5$
+    \item $-x_1+3x_2 - \tfrac{1}{4}x_3-2x_4+x_5=2$
+\end{multicols}
+\end{enumerate}
+
+\textbf{Resolución del ejercicio}
+
+\begin{enumerate} 
+    \item $2x - 4y = -6$
+    \begin{itemize}
+        \item \textbf{Solución general:} despejamos $y$ : \vspace{-7mm}
+        \begin{align*}
+          \qquad  2x - 4y &= -6 \\
+            -4y &= -6 - 2x \\
+            y &= \tfrac{1}{2}x + \tfrac{3}{2}.
+        \end{align*}
+        Entonces la solución general es: \quad $
+           S = \left\{(x, y) /\, y = \tfrac{1}{2}x + \tfrac{3}{2}, \ x \in \mathbb{R}\right\}. 
+           \quad \text{ o  } \quad 
+           \left\{ \left(x, \tfrac{1}{2}x + \tfrac{3}{2} \right) /\,  \ x \in \mathbb{R}\right\} $
+
+\medskip 
+           
+        \item \textbf{Dos soluciones particulares:}
+        \begin{align*}
+            \text{Si } x = 0, & \text{ entonces } y = \frac{1}{2}(0) + \frac{3}{2} = \frac{3}{2}, \quad \text{y  la solución particular es }  \left( 0, \tfrac{3}{2}\right). \\
+            \text{Si } x = 2, &\text{ entonces }  y = \frac{1}{2}(2) + \frac{3}{2} = 1 + \frac{3}{2} = \frac{5}{2}, \quad \text{y  la solución particular es } \left( 2, \tfrac{5}{2}\right).
+        \end{align*}
+    \end{itemize}
+
+
+
+
+
+
+    
+
+    \item $3x - y + 2z = 5$
+    \begin{itemize}
+        \item \textbf{Solución general:} despejamos  $y$ en la ecuación y nos queda:
+        \begin{align*}
+            3x - y + 2z &= 5 \\
+            3x + 2z - 5 &= y .
+        \end{align*}
+        La solución general es: \qquad$S 
+            \big\{(x, y, z) /\, y =  3x + 2z - 5, \ x, z \in \mathbb{R}\big\}. $  
+
+
+\medskip 
+
+        \item \textbf{Dos soluciones particulares:}
+        \begin{align*}
+            \text{Si } x = 0, z = 0, & \quad y = -5 + 3(0) + 2(0) = -5, \quad \text{entonces } (0, -5, 0). \\
+            \text{Si } x = 1, z = 2, & \quad y = -5 + 3(1) + 2(2) = -5 + 3 + 4 = 2, \quad \text{entonces } (1, 2, 2).
+        \end{align*}
+    \end{itemize} 
+
+\item $-x_1 + 3x_2 - \tfrac{1}{4}x_3 - 2x_4 + x_5 = 2$
+    \begin{itemize}
+        \item \textbf{Solución general:} 
+        Es una ecuación lineal con cinco incógnitas, por lo tanto, hay cuatro variables libres. 
+        Vamos a despejar \( x_1 \) en función de las demás:
+        \begin{align*}
+            -x_1 + 3x_2 - \tfrac{1}{4}x_3 - 2x_4 + x_5 &= 2 \\
+            -x_1 &= 2 - 3x_2 + \tfrac{1}{4}x_3 + 2x_4 - x_5 \\
+            x_1 &= -2 + 3x_2 - \tfrac{1}{4}x_3 - 2x_4 + x_5
+        \end{align*}
+        La solución general es:
+        \[
+            S = \left\{ (x_1, x_2, x_3, x_4, x_5) \in \mathbb{R}^5 \,\big/\, x_1 = -2 + 3x_2 - \tfrac{1}{4}x_3 - 2x_4 + x_5 \right\}
+        \]
+        o bien:
+        \[
+            \left\{ \left( -2 + 3x_2 - \tfrac{1}{4}x_3 - 2x_4 + x_5,\ x_2,\ x_3,\ x_4,\ x_5 \right) \,\big/\, x_2, x_3, x_4, x_5 \in \mathbb{R} \right\}
+        \]
+
+
+\medskip 
+        
+        \item \textbf{Dos soluciones particulares:}
+        \begin{align*}
+            \text{Si } x_2 = 0,\ x_3 = 0,\ x_4 = 0,\ x_5 = 0 \qquad \Longrightarrow\quad x_1 &= -2 \quad \Longrightarrow\quad (-2, 0, 0, 0, 0) \\%%%%%
+            \text{Si } x_2 = 1,\ x_3 = 4,\ x_4 = -1,\ x_5 = 2\, \quad \Longrightarrow\quad x_1 &= -2 + 3(1) - \tfrac{1}{4}(4) - 2(-1) + 2 = \\%%%%%%%%
+            &= -2 + 3 - 1 + 2 + 2 = 4 \quad \Longrightarrow\quad (4, 1, 4, -1, 2)
+        \end{align*}
+    \end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage 
+
+
+
+
+
+
+\item Dados los siguientes sistemas de ecuaciones lineales, 
+
+%\vspace{-8mm}
+{%\singlespace
+    \begin{enumerate}[i)]
+    \begin{multicols}{2}
+        \item  $\left\{\begin{array}{l}       y = 2x - 3 \\ 
+        x + 4y = 6 \\ 
+        3x - 7 = -y \\
+        -\tfrac{1}{2}x - \tfrac{1}{2}y + \tfrac{3}{2} = 0
+        \end{array}\right.$
+
+\medskip 
+        
+        \item $\begin{bmatrix} -2 & 1 \\ 2 & 3 \\ 2 & -1 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} -3 \\ 2 \\ -4 \end{bmatrix}$
+
+
+\columnbreak %Cambio de columna 
+
+        
+        \item  $\begin{bmatrix} -1 \\ \tfrac{1}{2} \end{bmatrix}x 
+        +
+        \begin{bmatrix}3 \\ -\tfrac{3}{2} \end{bmatrix} y
+        = \begin{bmatrix} -24 \\ 12 \end{bmatrix}$
+
+\bigskip  
+        
+        \item $\left\{ \begin{array}{rl}
+        y &= -2x \\
+        x + 3y &= 0 \\
+        2y - 2x &= 1
+        \end{array}\right.$   
+        
+        \end{multicols}
+    \end{enumerate} 
+ }   
+    
+    \begin{enumerate}[a)]
+    \item Resolver analíticamente y gráficamente. Relacionar la compatibilidad del sistema con la posición relativa de las rectas en el plano.
+
+    
+    \item  Determinar si los pares ordenados siguientes son soluciones de los sistemas indicados:
+    \begin{itemize}
+    \begin{multicols}{3}
+        \item $(-1, -1)$ para el sistema (I).
+        \item $(6, -6)$ para el sistema (III).
+        \item $(0, 0)$ para el sistema (IV).
+        
+    \end{multicols} 
+    \end{itemize}
+
+
+
+\textbf{Solución:}
+
+
+\begin{enumerate}[a)]
+    \item \, \vspace{-6mm}
+    
+    \begin{enumerate}[i)] 
+        \item  $\left\{\begin{array}{l}         
+        y = 2x -3  \indicador{x}{(.1,.15)}{y}{(1.5,-.3)}\marka{z}{(2.5,-.3)}
+        \\[3mm]
+        x +4 y = 6\marka{a}{(.1,.15)}
+        \\[3mm]
+        3x-7 = -y
+        \\[3mm]
+       -\tfrac{1}{2}x - \tfrac{1}{2}y + \tfrac{3}{2} = 0
+        \end{array}\right.$
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)++(0,-.1)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+x +4 (2x-3)
+&=%%%%%%%%%%%%%%%%%%%%%%
+ 6
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ x +8x-12
+  &=%%%%%%%%%%%%%%%%%%%%%%
+6
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 9x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  6 +12
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  \frac{18}{9}
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  x
+  &%%%%%%%%%%%%%%%%%%%%%%
+  = 2 \marka{x2}{(.1,.45)}  \indicador{X}{(.1,.15)}{Y}{(2.8,2.4)}\marka{Z}{(3.5,2.4)}
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](X)-|(Y)--(Z);
+\draw [overlay,very thick,blue,opacity=.5] (x)++(2.9,.3)to[out=180,in=15](x);
+\draw [overlay,very thick,blue,opacity=.5] (x)++(2.9,.3)-|(Y);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node  at (Z)  [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+y
+&=%%%%%%%%%%%%%%%%%%%%%%
+2\cdot 2  - 3
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  y
+  &%%%%%%%%%%%%%%%%%%%%%%
+  = 1 \marka{x2}{(.1,.45)}  \indicador{X}{(.1,.15)}{Y}{(2.5,1.3)}\marka{Z}{(3.5,1.3)}
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+
+\vspace{15mm}
+
+De las dos primeras ecuaciones obtuvimos: $x= 2$ e $y=1$, veamos si verifican las otras dos ecuaciones: 
+
+\begin{itemize}
+    \item $\left( 2, \, 1 \right)$ es solución de la ecuación $3x-7 = -y  $ ecuación pues  $3 \cdot 2 - 7 = -1 $ se verifica
+
+    \medskip
+    
+    \item $\left(  2, \, 1  \right)$ es solución de la ecuación $-\tfrac{1}{2}x - \tfrac{1}{2}y + \tfrac{3}{2} = 0$ ecuación pues  $ -\tfrac{1}{2} \cdot 2 - \tfrac{1}{2}\cdot 1 + \tfrac{3}{2} = 0$
+\end{itemize}
+
+
+Por lo tanto, la solución es $\left(2, \, 1\right)$ (verrifica las cuatro ecuaciones) \hfill  $\boxed{\rule{0mm}{7mm}  Rta:   x=2, \ y= 1}$
+
+
+\bigskip 
+
+{\bf Solución geométrica:}
+
+
+
+Por cada ecuación  encontraremos la recta asociada:
+\bigskip
+
+        
+\hspace{-4mm}
+$\left \{ \begin{array}{ lccclccl}
+\boxed{y = 2x - 3}\\[4mm]
+  x + 4y = 6 &\longrightarrow&   4y = 6 -x &\longrightarrow&   y = (6 -x):4 &\longrightarrow&  \boxed{ y = \tfrac{3}{2} - \tfrac{1}{4}x}
+\\[4mm]%%%%%%%%%%%%%
+  3x - 7 = -y  &\longrightarrow&   -1\cdot (3x - 7 ) = y & \longrightarrow &\boxed{ y = -3x +7 }&  
+\\[4mm]%%%%%%%%%%%%%
+-\tfrac{1}{2}x - \tfrac{1}{2}y + \tfrac{3}{2} = 0   &\longrightarrow&    -x - y + 3 = 0 & \longrightarrow & x+3 = y & \longrightarrow & \boxed{y = -x+3 }
+\end{array}\right. $
+
+
+
+Ahora graficamos cada una de las rectas:
+
+
+
+\begin{minipage}{.5\textwidth}
+\begin{center}
+    
+
+
+
+\definecolor{rojo}{rgb}{0.7,0.4,0.4}
+\definecolor{azul}{rgb}{.4,.4,0.9}
+ 
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.8]
+
+\xdef\ext{4}
+\draw [color=gris!30!,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (-2.3,-3-.4) grid (\ext+.3,7.5);
+% extremos para los ejes
+
+\draw[->] (-2-.3,0) -- (4+.3,0) ;
+
+\draw[->] (0,-3-.4) -- (0,7.5) ;
+
+\foreach \x in {-2,-1,1,2,...,\ext}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+
+\foreach \y in {-3,1,2,...,7}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+
+
+
+
+
+  % primer grafico 
+  \xdef\b{-3}
+  % la pendiente m = n/k
+  \xdef\n{2}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[blue,dashed] (B) --(E)--(F) ;
+
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=blue]plot [domain={-.3}:{4.3},smooth,variable=\t] (\t,\b +\n*\t/\k) node[right]{ $ y= 2x-3$};
+
+%%%%%Grafico de los puntos
+\draw[color=blue,fill=blue] (B) circle (1.5pt);
+
+\draw[color=blue,fill=blue] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% segundo grafico 
+  \xdef\b{3/2}
+  % la pendiente m = n/k
+  \xdef\n{-1}
+  \xdef\k{4}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[red,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=red]plot [domain={-2.3}:{\ext+.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= \tfrac{3}{2} - \tfrac{1}{4} x$};
+
+%%%%%Grafico de los puntos
+\draw[color=red,fill=red] (B) circle (1.5pt);
+
+\draw[color=red,fill=red] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tercer grafico 
+  \xdef\b{7}
+  % la pendiente m = n/k
+  \xdef\n{-3}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[cyan,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=cyan]plot [domain={-.1}:{3.5},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -3 x+\tfrac{7}{2}$};
+
+%%%%%Grafico de los puntos
+\draw[color=green,fill=cyan] (B) circle (1.5pt);
+
+\draw[color=green,fill=cyan] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cuarto grafico 
+  \xdef\b{3}
+  % la pendiente m = n/k
+  \xdef\n{-1}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[teal,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=teal]plot [domain={-2.3}:{4.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -x+3$};
+
+%%%%%Grafico de los puntos
+\draw[color=green,fill=teal] (B) circle (1.5pt);
+
+\draw[color=green,fill=teal] (F) circle (1.5pt) ;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  grafico de la solució
+\coordinate (X) at (2,1);
+%%%%%Grafico de los puntos
+\draw[fill=black] (X) circle (2pt) node[right]{$\left(2,\, 1 \right)$};
+\end{tikzpicture}
+
+  \end{center}
+
+\end{minipage}\quad\begin{minipage}{.4\textwidth}
+{\bf Y gráficamente nos queda: } las cuatro rectas asociadas al sistema de ecuaciones pasan por el punto de coordenadas: $\left(2,1\right)$. 
+Con lo cual, la solución es:
+
+\medskip 
+
+\hfill  $\boxed{\rule{0mm}{7mm} Sol= \left\{ \rule{0mm}{4mm} \left(2,\, 1 \right) \right\} }$
+
+
+\end{minipage}
+
+
+\medskip 
+
+
+
+        \item $\begin{bmatrix} -2 & 1 \\ 2 & 3 \\ 2 & -1 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} -3 \\ 2 \\ -4 \end{bmatrix}
+        \quad
+        \Longleftrightarrow
+        \quad
+        \begin{bmatrix} -2x + y \\ 2x +3y \\ 2x-y\end{bmatrix} 
+        = \begin{bmatrix} -3 \\ 2 \\ -4 \end{bmatrix} 
+        \quad
+        \Longleftrightarrow
+        \quad
+        \left\{\begin{array}{l}         
+        -2x+y = -3  
+        \\[2mm]
+        2x+3y = 2  
+        \\[2mm]
+        2x-y = -4
+        \end{array}\right.
+        $
+
+ Aplicando la definición de igualdad de matrices, obtenemos un sistema de ecuaciones que resolvemos utilizando el método de sustitución, como se detalla a continuación:
+
+\medskip
+
+$\left\{\begin{array}{l}         
+        -2x+y = -3  \indicador{x}{(.1,.15)}{y}{(1.3,.15)}
+        \\[5mm]
+        2x+3y = 2 \marka{a}{(.1,.15)}
+        \\[5mm]
+        2x-y = -4
+        \end{array}\right.$
+
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$y
+= \marka{XX}{(-.25,-.15)}%%%%%
+-3 + 2 x
+$ \indicador{x}{(.1,.15)}{y}{(1.5,-.25)}\marka{z}{(2.3,-.25)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+2x+ 3 (-3+2x)
+&=%%%%%%%%%%%%%%%%%%%%%%
+2
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 2x-9+6x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+ 2
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+8x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  11
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  x
+  &= \indicador{YY}{(-.25,-.2)}{ZZ}{(-5,-.4)}\marka{TT}{(-3.5,-1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  \frac{11}{8} \marka{x2}{(.1,.45)}  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);
+\draw [overlay,very thick,blue,opacity=.5](XX)|-(ZZ);
+\node  at (TT) [text width=33mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+ y   
+ &=%%%%%%%%%%%%%%%%%%%%%%
+  -3 + 2 \cdot \frac{11}{8}
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.1,-.2)} 
+   y
+  &=\indicador{YY}{(-.15,-.15)}{ZZ}{(-3,-.4)}\marka{TT}{(-2.5,-.9)}%%%%%%%%%%%%%%%%%%%%%%
+  -\frac{1}{4} \marka{a2}{(.1,.45)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+ \vspace{27mm}
+
+\medskip 
+
+
+De las dos primeras ecuaciones obtuvimos: $x= \tfrac{11}{8}$ e $y=-\tfrac{1}{4}$, veamos si verifican las tercer ecuaciones:
+\bigskip  
+
+\begin{itemize}
+    \item $\left( \tfrac{3}{4}, \, \tfrac{17}{4} \right)$ {\bf no  es } solución de la ecuación $ 2x-y = -4 $ ecuación pues  $2 \cdot \tfrac{11}{8} - \left(  -\tfrac{1}{4} \right)  = 3 \neq -4 $
+
+\end{itemize}
+
+
+
+Como no se verifica la tercera ecuación, tenemos que el conjunto de solución es vacío. \hfill   $\boxed{\rule{0mm}{7mm}  Rta:   Sol=\emptyset }$
+
+ 
+\bigskip 
+
+ 
+
+
+
+{\bf Solución Gráfica: }
+
+
+Por cada ecuación  encontraremos la recta:
+\bigskip
+
+\hspace{-4mm}
+$\left\{ \begin{array}{lccclccl} 
+-2x+y = -3 &\longrightarrow&   \boxed{y = -3 +2x } 
+\\[4mm]%%%%%%%%%%%%%
+2x+3y = 2  &\longrightarrow&    3y = 2-2x & \longrightarrow & y = (2-2x): 3 & \longrightarrow & \boxed{y = \tfrac{2}{3}- \tfrac{2}{3} x }
+\\[4mm]%%%%%%%%%%%%%
+ 2x-y = -4 &\longrightarrow&   2x +4= y & \longrightarrow & \boxed{y = 2x+4 }
+\end{array}\right. $
+ 
+
+
+
+\bigskip 
+
+Ahora graficamos cada una de las rectas:
+
+
+
+
+\begin{minipage}{.5\textwidth}
+\begin{center}
+    
+
+
+
+\definecolor{rojo}{rgb}{0.7,0.4,0.4}
+\definecolor{azul}{rgb}{.4,.4,0.9}
+ 
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.7]
+
+\xdef\ext{4}
+\draw [color=gris!30!,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (-2.3,-4-.3) grid (\ext+.3,7.5);
+% extremos para los ejes
+
+\draw[->] (-2-.3,0) -- (4+.3,0) ;
+
+\draw[->] (0,-4-.3) -- (0,7.5) ;
+
+\foreach \x in {-2,-1,1,2,...,\ext}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+
+\foreach \y in {-4,-1,1,2,...,7}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % primer grafico 
+  \xdef\b{-3}
+  % la pendiente m = n/k
+  \xdef\n{2}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[blue,dashed] (B) --(E)--(F) ;
+
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=blue]plot [domain={-.6}:{4.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -3 + 2x$};
+
+%%%%%Grafico de los puntos
+\draw[color=blue,fill=blue] (B) circle (1.5pt);
+
+\draw[color=blue,fill=blue] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% segundo grafico 
+  \xdef\b{2/3}
+  % la pendiente m = n/k
+  \xdef\n{-2}
+  \xdef\k{3}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[red,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=red]plot [domain={-2.3}:{\ext+.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= \frac{2}{3}-\frac{2}{3} x$};
+
+%%%%%Grafico de los puntos
+\draw[color=red,fill=red] (B) circle (1.5pt);
+
+\draw[color=red,fill=red] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tercer grafico 
+  \xdef\b{4}
+  % la pendiente m = n/k
+  \xdef\n{2}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[teal,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=teal]plot [domain={-2.3}:{1.8},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= 2x+4$};
+
+%%%%%Grafico de los puntos
+\draw[color=green,fill=teal] (B) circle (1.5pt);
+
+\draw[color=green,fill=teal] (F) circle (1.5pt) ;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  grafico de la solució  es vacío
+\end{tikzpicture}
+
+  \end{center}
+
+\end{minipage}\quad\begin{minipage}{.4\textwidth}
+
+
+{\bf Gráficamente Tenemos: } las tres rectas asociadas a las ecuaciones del sistema no se intersectan en un único punto común. En este caso la solución es el conjunto vacío.
+
+
+
+\hfill   $\boxed{\rule{0mm}{7mm}  Rta:   Sol=\emptyset }$
+\end{minipage}
+
+
+
+
+
+\bigskip
+        
+        \item  $\begin{bmatrix} -1 \\ \tfrac{1}{2} \end{bmatrix}x 
+        +
+        \begin{bmatrix}3 \\ -\tfrac{3}{2} \end{bmatrix} y
+        = \begin{bmatrix} -24 \\ 12 \end{bmatrix}  
+        \quad
+        \Longleftrightarrow
+        \quad
+        \begin{bmatrix}-x + 3y \\ \tfrac{1}{2} x -\tfrac{3}{2} y\end{bmatrix} 
+        = \begin{bmatrix} -24 \\ 12 \end{bmatrix}
+        $
+
+\medskip
+
+ Aplicando la definición de igualdad de matrices, obtenemos un sistema de ecuaciones que resolvemos utilizando el método de sustitución, como se detalla a continuación:
+
+\medskip
+
+$\left\{\begin{array}{l}         
+        -x+3y= -24 \indicador{x}{(.1,.15)}{y}{(1.3,.15)}
+        \\[5mm]
+        \tfrac{1}{2}x -  \tfrac{3}{2} y = 12 \marka{a}{(.1,.15)} 
+        \end{array}\right.$
+
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$ 3y +24
+= \marka{XX}{(-.25,-.15)}%%%%%
+ x
+$ \indicador{x}{(.1,.15)}{y}{(1.5,-.25)}\marka{z}{(2.3,-.25)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+\tfrac{1}{2}(3y +24) -  \tfrac{3}{2} y
+&=%%%%%%%%%%%%%%%%%%%%%%
+12
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tfrac{3}{2} y +12 -\tfrac{3}{2} y
+  &=%%%%%%%%%%%%%%%%%%%%%%
+ 12
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.3,.35)} 
+ \indicador{a3}{(-.3,-.05)}{a4}{(-2.4,-.35)} 
+  12
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  12  \quad \mbox{  vale siempre!} \marka{a2}{(.15,-.15)} 
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  y
+  &%%%%%%%%%%%%%%%%%%%%%%
+  \in \R 
+\end{array}
+\]
+}; 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+\, \\
+\, \\
+
+\begin{tikzpicture}[overlay,remember picture]
+\fill[rounded corners=1.5mm,color=yellow, opacity=.2] (a1) rectangle (a2);
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=2mm,yshift=-2mm] at (a4) [
+text width=99mm, 
+left]{\scriptsize 
+Cuando al despejar una variable (en este caso la variable $x$) obtenemos  algo que vale siempre puedo concluir que esa variable (en este caso $x$)  toma cualquier valor real y decimos que es una variable libre. 
+};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a3) -- (a4);
+\end{tikzpicture}
+
+
+
+
+\ \\ 
+
+
+$\therefore  \qquad  \marka{a1}{(-.1,.39)}   Sol= \{ (3y+24, y) /\,\ y\in \R \} \marka{a2}{(.1,-.13)} \indicador{a3}{(.051,.05)}{a4}{(.9,-.05)} 
+$
+\medskip
+%%
+%%
+%%
+%%
+\begin{tikzpicture}[overlay,remember picture]
+\fill[rounded corners=1.5mm,color=yellow, opacity=.3] (a1) rectangle (a2);
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm,yshift=1mm] at (a4) [
+text width=75mm, 
+right]{\scriptsize 
+Cuando una variable (o mas de una variable) puede ser cualquier número real, el conjunto solución nos queda de esta forma.};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a3) -- (a4);
+\end{tikzpicture}
+
+
+
+
+
+
+\, \\
+
+
+{\bf Solución geométrica}
+
+
+Por cada ecuación  encontraremos la recta asociada:
+\bigskip
+
+\hspace{-4mm}
+$\left \{ \begin{array}{ lcccrlccl}
+  -x+3y= -24  &\longrightarrow&   3 y = -24+x  &\longrightarrow& y & = (-24+x ):3  &\longrightarrow& \boxed{y =  -8 + \tfrac{1}{3} x} 
+\\[4mm]%%%%%%%%%%%%%
+\tfrac{1}{2} x - \tfrac{3}{2} y = 12 &\longrightarrow&  - \tfrac{3}{2} y = 12 -\tfrac{1}{2} x  & \longrightarrow & y &= (12 -\tfrac{1}{2} x ): \left(-\frac{3}{2} \right) & \longrightarrow &\boxed{ y =  -8 + \tfrac{1}{3} x .}
+\end{array}\right. $
+
+
+
+
+
+
+
+
+
+\bigskip
+\textbf{Observación:} la recta asociada a la primera ecuación coincide con la que esta asociada a la segunda ecuación. Son rectas coincidentes.
+
+Ahora graficamos la recta:
+
+
+
+\begin{minipage}{.5\textwidth}
+\begin{center}
+    
+
+\definecolor{rojo}{rgb}{0.7,0.4,0.4}
+\definecolor{azul}{rgb}{.4,.4,0.9}
+ 
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.6]
+
+\xdef\ext{8}
+\draw [color=gris!30!,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (-2.3,-9-.3) grid (\ext+.3,2.7);
+% extremos para los ejes
+
+\draw[->] (-2-.3,0) -- (\ext+.7,0) ;
+
+\draw[->] (0,-9-.3) -- (0,2.5) ;
+
+\foreach \x in {-2,-1,1,2,...,\ext}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+
+\foreach \y in {-9,...,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % primer grafico 
+  \xdef\b{-8}
+  % la pendiente m = n/k
+  \xdef\n{1}
+  \xdef\k{3}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[blue,dashed] (B) --(E)--(F) ;
+
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=blue]plot [domain={-.6}:{8.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -8 +\frac{1}{3} x$};
+
+%%%%%Grafico de los puntos
+\draw[color=blue,fill=blue] (B) circle (1.5pt);
+
+\draw[color=blue,fill=blue] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% segundo grafico 
+  \xdef\b{-8}
+  % la pendiente m = n/k
+  \xdef\n{1}
+  \xdef\k{3}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+
+\draw[line width=.8pt,color=red,yshift=.3mm]plot [domain={-.6}:{8.3},smooth,variable=\t] (\t,\b +\n*\t/\k) node[right]{ $ y= -8 +\frac{1}{3} x$};
+\draw[red,dashed,,yshift=.3mm] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+%%%%%Grafico de los puntos
+\draw[color=red,fill=red,yshift=.3mm] (B) circle (1.5pt);
+
+\draw[color=red,fill=red,,yshift=.3mm] (F) circle (1.5pt) ;
+
+
+\end{tikzpicture}
+  \end{center}
+
+
+\end{minipage}\quad\begin{minipage}{.4\textwidth}
+
+
+
+{\bf Y gráficamente nos queda: } Las dos rectas asociadas al sistema son iguales. En este caso el conjunto solución es:
+
+
+
+\hfill   $\boxed{\rule{0mm}{7mm}  Rta:  
+Sol
+= \indicador{a3}{(-.1,-.05)}{a4}{(.1,-.95)}  
+\left\{ \rule{0mm}{4mm}  \left( x, y \right) \big/\,  y = -8 +\tfrac{1}{3} x, \ x\in \R \right\}  
+}
+$
+\medskip
+%%
+%%
+%%
+%%
+\begin{tikzpicture}[overlay,remember picture] 
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm,yshift=1mm,xshift=15mm] at (a4) [
+text width=75mm,
+below]{\scriptsize 
+Cuando todas las ecuaciones de un sistema de ecuación coinciden, el conjunto solución queda así.
+
+
+ Dado que todas las ecuaciones son equivalentes, cualquier punto sobre esta línea recta satisface todas las ecuaciones del sistema.Entonces el {\bf conjunto solución} es, por lo tanto, {\bf la recta completa}, que se puede expresar como:
+     \[
+     S = \left\{(x, y) \big/ y = mx + b,\ x\in \R \right\}
+     \]
+     Donde \(y = mx + b\) es la ecuación de la recta.
+
+};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a3) -- (a4);
+\end{tikzpicture} 
+
+\vspace{36mm}
+\end{minipage}
+
+
+\medskip 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        \item  $\left\{\begin{array}{rl}         
+        y 
+        &= \marka{XX}{(-.15,-.15)}%%%%%
+        -2 x   \indicador{x}{(.1,.15)}{y}{(2.5,-.25)}\marka{z}{(3.3,-.25)}
+        \\[5mm]
+        x + 3y &= 0 \marka{a}{(.1,.15)}
+        \\[5mm]
+        2y - 2x &= 1
+        \end{array}\right.$
+
+\tikz[overlay,remember picture] {
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+x+ 3 (-2x)
+&=%%%%%%%%%%%%%%%%%%%%%%
+0
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ -5 x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+ 0
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  x
+  &= \indicador{YY}{(-.25,-.2)}{ZZ}{(-3.5,-.4)}\indicador{ZZz}{(-4,-.4)}{TT}{(-2.5,-1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  0 \marka{x2}{(.1,.45)}  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);
+\draw [overlay,very thick,blue,opacity=.5](XX)--(ZZz)--(ZZ);
+\node  at (TT) [text width=33mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+ y   
+ &=%%%%%%%%%%%%%%%%%%%%%%
+  - 2 \cdot 0
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.1,-.2)} 
+   y
+  &=\indicador{YY}{(-.15,-.15)}{ZZ}{(-3,-.4)}\marka{TT}{(-2.5,-.9)}%%%%%%%%%%%%%%%%%%%%%%
+  0 \marka{a2}{(.1,.45)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+ \vspace{24mm}
+
+\medskip 
+
+
+De las dos primeras ecuaciones obtuvimos: $x= 0$ e $y=0$, veamos si verifica la tercera ecuación:
+\bigskip  
+
+\begin{itemize}
+    \item $\left( 0,\, 0 \right)$ {\bf no  es }  solución de la ecuación $ 2y -2x= 1 $ ecuación pues  $2 \cdot 0 -2 \cdot 0  = 0 \neq 1 $
+
+\end{itemize}
+
+
+
+Como no se verifica la tercera ecuación, tenemos que el conjunto de solución es vacío. \hfill   $\boxed{\rule{0mm}{7mm}  Rta:   Sol=\emptyset }$
+
+
+\bigskip 
+
+{\bf Solución gráfica:}
+
+
+Por cada ecuación  encontraremos la recta:
+\bigskip
+
+\hspace{-4mm}
+$\left\{ \begin{array}{lcccrlccl} 
+\boxed{ y= -2x }&   
+\\[4mm]%%%%%%%%%%%%%
+x + 3y = 0   &\longrightarrow&    3y = -x & \longrightarrow & y &= (-x): 3 & \longrightarrow & \boxed{y =  - \tfrac{1}{3} x }
+\\[4mm]%%%%%%%%%%%%%
+ 2y - 2x = 1 &\longrightarrow&   2y = 1 +2x & \longrightarrow & y &= (1 +2x):2 & \longrightarrow &\boxed{ y = \frac{1}{2}+x}
+\end{array}\right. $
+ 
+
+
+         
+       
+
+\bigskip 
+
+Ahora graficamos cada una de las rectas:
+
+
+
+\begin{minipage}{.45\textwidth}
+
+
+\begin{center}
+    
+
+
+
+\definecolor{rojo}{rgb}{0.7,0.4,0.4}
+\definecolor{azul}{rgb}{.4,.4,0.9}
+ 
+\definecolor{gris}{rgb}{0.5,0.5,0.5}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=1]
+
+\xdef\ext{4}
+\draw [color=gris!30!,dash pattern=on 1pt off 1pt, xstep=1cm,ystep=1cm] (-2.3,-4-.3) grid (\ext+.3,4.8);
+% extremos para los ejes
+
+\draw[->] (-2-.3,0) -- (4+.3,0) ;
+
+\draw[->] (0,-4-.3) -- (0,4.8) ;
+
+\foreach \x in {-2,-1,1,2,...,\ext}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+
+\foreach \y in {-4,-1,1,2,...,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % primer grafico 
+  \xdef\b{0}
+  % la pendiente m = n/k
+  \xdef\n{-2}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[blue,dashed] (B) --(E)--(F) ;
+
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=blue]plot [domain={-2.3}:{2.1},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -2 x$};
+
+%%%%%Grafico de los puntos
+\draw[color=blue,fill=blue] (B) circle (1.5pt);
+
+\draw[color=blue,fill=blue] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% segundo grafico 
+  \xdef\b{0}
+  % la pendiente m = n/k
+  \xdef\n{-1}
+  \xdef\k{3}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[red,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=red]plot [domain={-2.3}:{\ext+.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= -\frac{1}{3} x$};
+
+%%%%%Grafico de los puntos
+\draw[color=red,fill=red] (B) circle (1.5pt);
+
+\draw[color=red,fill=red] (F) circle (1.5pt) ;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tercer grafico 
+  \xdef\b{1/2}
+  % la pendiente m = n/k
+  \xdef\n{1}
+  \xdef\k{1}
+   
+  \coordinate (B) at (0,\b);
+  \coordinate (C) at (\k,\n);
+
+  \coordinate (F) at ($(B)+(C)$);
+  % Dibujar los trazos:
+  
+  \coordinate (E) at ($(B)+(\k,0)$);  
+  \draw[teal,dashed] (B) --(E)--(F) ;
+
+  
+
+
+  \coordinate (E) at ($(B)+(\k,0)+.5*(0,\n)$);  
+
+
+
+\draw[line width=.8pt,color=teal]plot [domain={-2.3}:{4.3},smooth,variable=\t] (\t,\b +\n*\t/\k)node[right]{ $ y= \frac{1}{2}+ x$};
+
+%%%%%Grafico de los puntos
+\draw[color=teal,fill=green] (B) circle (1.5pt);
+
+\draw[color=teal,fill=green] (F) circle (1.5pt) ;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  grafico de la solució  es vacío
+\end{tikzpicture}
+
+  \end{center}
+
+
+
+
+
+
+
+    
+    
+\end{minipage}\quad\begin{minipage}{.45\textwidth}
+
+{\bf Gráficamente Tenemos: } las tres rectas asociadas a las ecuaciones del sistema no se intersectan en un único punto común. Con lo cual el conjunto solución es vacío.
+
+
+ \hfill   $\boxed{\rule{0mm}{7mm}  Rta:   Sol=\emptyset }$
+
+\end{minipage}
+
+
+        
+         
+    \end{enumerate} 
+
+    
+    \item  Determinar si los pares ordenados siguientes son soluciones de los sistemas indicados:
+    \begin{itemize}
+    \begin{multicols}{3}
+        \item $(-1, -1)$ para el sistema (i).
+        \item $(-6, 6)$ para el sistema (iii).
+        \item $(0, 0)$ para el sistema (iv).
+        
+    \end{multicols}
+    \end{itemize}
+
+
+
+    {\bf Solución:} 
+
+    \begin{itemize}
+\item \textbf{Para el sistema (i):} la solución es $\left(2,\, 1\right)$. Por lo tanto, el punto $(-1, -1)$ no satisface todas las ecuaciones del sistema. De hecho, no verifica la primer ecuación, $y = 2x-3$, \linebreak
+ ya que $-1 \neq 2\cdot (-1) -3 = -5$.
+
+
+
+
+
+\item \textbf{Para el sistema (iii):}  Veamos si el punto $(6, -6)$  satisface  la ecuación: 
+
+\begin{itemize}
+    \item  $\begin{bmatrix} -1 \\ \tfrac{1}{2} \end{bmatrix} \cdot 6
+        +
+        \begin{bmatrix}3 \\ -\tfrac{3}{2} \end{bmatrix} \cdot (-6)
+        = 
+        \begin{bmatrix} -6 \\ 3 \end{bmatrix}  
+        +
+        \begin{bmatrix} -18 \\  9\end{bmatrix} 
+        = 
+        \begin{bmatrix} -24 \\ 12 \end{bmatrix}  \ \ \checkmark$   
+\end{itemize}
+
+$\therefore \ (6,-6)$ es solución.
+\vspace{9mm}
+
+ 
+\item \textbf{Para el sistema (iv):}  $(0, 0)$ no es solución del sistema de ecuaciones, no verifica la tercer ecuación:  $ 2y -2x= 1 $ ecuación pues  $2 \cdot 0 -2 \cdot 0  = 0 \neq 1 $. De hecho el conjunto solución para este sistema de ecuaciones es vacío.
+\end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Resolver mediante el método de Gauss o de Gauss-Jordan y clasificar los siguientes sistemas de ecuaciones. Escribir en cada caso el conjunto solución. Si el sistema es compatible indeterminado, dar además de la solución general, dos soluciones particulares.
+
+\begin{enumerate}[i)]
+\begin{multicols}{2}
+    \item $\left\{\begin{array}{rl}
+    2x + 3y - z &= 4 \\
+    x - 2y + z &= -7 \\
+    -3x + 2y + 2z &= 14 \\
+    3x + y &= -3
+    \end{array} \right.$
+
+    
+    \item $\begin{bmatrix} 1 & 1 & -1 \\ 2 & 4 & -1 \\ -1 & 1 & 2 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} $
+
+    \columnbreak % Forzar cambio de columna si es necesario
+
+
+    \item  $
+    \begin{bmatrix} 1 \\ -2 \end{bmatrix} x + \begin{bmatrix} -2 \\ 4 \end{bmatrix} y + \begin{bmatrix} 7 \\ -14 \end{bmatrix} z = \begin{bmatrix} -1 \\ -2 \end{bmatrix}
+    $
+
+    
+    \medskip
+    
+    
+    \item $\left\{ \begin{array}{rl}   x + y - z &= 0 \\
+    4y + 2x - z &= 0 \\
+    2z - x + y &= 0
+    \end{array} \right.$
+
+
+
+
+    \medskip
+
+
+    
+    
+    \item $\begin{bmatrix} 1 \\ 3 \end{bmatrix} x + \begin{bmatrix} 2 \\ -1 \end{bmatrix} y + \begin{bmatrix} 3 \\ -5 \end{bmatrix} z  + \begin{bmatrix} -4 \\ -5 \end{bmatrix} w= \begin{bmatrix} 5 \\ 1  \end{bmatrix}
+    $
+
+\end{multicols}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{Resolución del ejercicio:}
+
+
+
+\begin{enumerate}[i)]
+    \item Para resolver el sistema de ecuaciones utilizaremos el método de Gauss.
+
+\medskip
+
+$
+\left\{
+    \begin{array}{rl}
+    2x + 3y - z &= 4 \\
+    x - 2y + z &= -7 \\
+    -3x + 2y + 2z &= 14 \\
+    3x + y &= -3
+    \end{array}
+\right.
+\quad \text{\huge $\sim$} \quad
+\left[
+\begin{array}{ccc|c}
+2 & 3 & -1 & 4 \\
+1 & -2 & 1 & -7 \\
+-3 & 2 & 2 & 14 \\
+3 & 1 & 0 & -3
+\end{array}
+\right]
+\quad \semejante{ F_1 \leftrightarrow F_2
+}
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 1 & -7 \\
+2 & 3 & -1 & 4 \\
+-3 & 2 & 2 & 14 \\
+3 & 1 & 0 & -3
+\end{array}
+\right]
+$
+
+\bigskip
+
+$
+\semejante{\substack{
+F_2\leftarrow F_2 - 2 \cdot F_1    \\
+F_3\leftarrow F_3 + 3 \cdot F_1 \\
+ F_4\leftarrow  - 3 \cdot F_1 
+}}
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 1 & -7 \\
+0 & 7 & -3 & 18 \\
+0 & -4 & 5 & -7 \\
+0 & 7 & -3 & 18
+\end{array}
+\right]
+\quad
+\semejante{\substack{
+F_4 \leftarrow F_4 - F_2 \\
+ F_3  \leftarrow F_3 + \frac{4}{7} \cdot F_2 \\
+F_2\leftarrow F_2 / 7 
+}}
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 1 & -7\\
+0 & 1 & -\frac{3}{7} & \frac{18}{7}\\
+0 & 0 & \frac{23}{7} & \frac{23}{7}\\
+0 & 0 & 0 & 0
+\end{array}
+\right]
+\semejante{
+F_3 \leftarrow \frac{7}{23} \cdot F_3  }
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 1 & -7 \\
+0 & 1 & -\frac{3}{7} & \frac{18}{7} \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{array}
+\right]
+\indicador{a1}{(-1.1,-1.1)}{a2}{(-1.9,-1.5)} 
+$
+
+
+
+
+\begin{tikzpicture}[overlay,remember picture] 
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm] at (a2) [
+text width=72mm, 
+below, xshift=-18mm]{\scriptsize En este caso: $Rg(A) = Rg(A') = 3$ \ \ (3 es el número de incógnita).
+
+
+{\normalsize
+$\therefore$  el sistema es compatible determinado.}
+ };
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a1) |- (a2);
+\end{tikzpicture}
+
+\vspace{18mm}
+
+De esa última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+
+$
+\left\{
+\begin{array}{rl}
+x-2y +z  &= -7\marka{aa}{(.1,.15)}
+\\[3mm]   
+y -\tfrac{3}{7} z &= \frac{18}{7} \marka{a}{(.1,.15)}
+\\[3mm]  
+\marka{a1}{(-.1,-.2)}  
+z 
+= \marka{xx}{(-.25,-.2)}
+1 \marka{a2}{(.1,.45)} \indicador{b}{(.1,.15)}{c}{(1.9,.65)} \marka{d}{(2.6,.65)}
+\end{array}
+\right.
+$ 
+%%
+%%
+%%
+%%
+%%%%%55
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](b)-|(c)--(d);  
+\draw [overlay,very thick,red,opacity=.5](a)-|(c);
+\node  at (d) [text width=30mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+y -\tfrac{3}{7} \cdot 1 
+&=%%%%%%%%%%%%%%%%%%%%%% 
+\frac{18}{7}
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  y  
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  \frac{21}{7}
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{b1}{(-.1,-.2)} 
+   y
+  &=\indicador{YY}{(-.25,-.2)}{ZZ}{(1.5,-.6)}\marka{TT}{(2.5,1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  3 \marka{b2}{(.1,.45)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+\draw[color=black!50!,rounded corners=1mm] (b1) rectangle (b2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);  
+\draw [overlay,very thick,blue,opacity=.5](xx)|-(ZZ);
+\draw [overlay,very thick,blue,opacity=.5](aa)-|(ZZ);
+\node  at (TT) [text width=40mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+x - 2 \cdot 3 + 1
+&=%%%%%%%%%%%%%%%%%%%%%% 
+-7
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x - 6 + 1
+&=%%%%%%%%%%%%%%%%%%%%%% 
+-7
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  x  
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  -7 - 1 +6
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{b1}{(-.1,-.2)} 
+   x
+  &=\indicador{YY}{(-.25,-.2)}{ZZ}{(1.5,-.6)}\marka{TT}{(2.5,1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  -2
+  \marka{b2}{(.1,.45)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (b1) rectangle (b2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+
+
+
+\vspace{24mm}
+
+
+    
+\hfill   $\therefore  \quad Sol =\left\{ \left( -2,3,1\right)\right\}$
+
+\bigskip
+
+ \item Para resolver el sistema de ecuaciones utilizaremos el método de Gauss.
+
+\medskip
+
+$\begin{bmatrix} 1 & 1 & -1 \\ 2 & 4 & -1 \\ -1 & 1 & 2 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} 
+\text{\huge$\sim$}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & -1 & 0 \\
+2 & 4 & -1 & 0 \\
+-1 & 1 & 2 & 0
+\end{array}
+\right]
+\quad
+\semejante{\substack{
+F_2\leftarrow F_2 - 2 \cdot F_1   \\
+F_3\leftarrow F_3 + F_1  
+}}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & -1 & 0 \\
+0 & 2 & 1 & 0 \\
+0 & 2 & 1 & 0
+\end{array}
+\right]
+\quad
+\semejante{F_3\leftarrow F_3 - F_2  }
+$
+
+\medskip 
+
+
+$
+\left[
+\begin{array}{ccc|c}
+1 & 1 & -1 & 0 \\
+0 & 2 & 1 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right]
+\indicador{a1}{(.1,-.19)}{a2}{(.5,-.19)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[overlay,remember picture] 
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm,yshift=1mm] at (a2) [
+text width=88mm, 
+right]{\scriptsize  $Rg(A) = Rg(A') = 2 < 3$ (hay 3 incógnita).
+
+{\normalsize
+$\therefore$ el sistema es {\bf compatible indeterminado} \quad  C.I.}};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a1) -- (a2);
+\end{tikzpicture}  
+    
+
+
+\bigskip
+
+De la última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+$
+\left\{
+\begin{array}{rl}
+x + y - z 
+&=%%%%%%%%%%%%%%%%%%%%%%%%%
+0 
+\marka{a}{(.1,.15)} 
+\\[3mm] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2y + z 
+&=%%%%%%%%%%%%%%%%%%%%%%%%%
+0  \indicador{c}{(.1,.15)}{d}{(1.1,.15)}
+\end{array}
+\right.
+$
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](c)--(d);
+\node  at (d) [ right ]{
+$\marka{a1}{(-.1,-.2)} 
+z
+=  %%%%%
+-2y  \marka{a2}{(.1,.45)}
+$ \indicador{x}{(.1,.15)}{y}{(1.1,.55)}\marka{z}{(2.3,.55)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+  x+ y - (-2y)
+ &=%%%%%%%%%%%%%%%%%%%%%%
+ 0
+ \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  x+ y + 2y
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  0
+  \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  x  +3y\quad 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  0
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.1,-.2)} 
+   x
+  &= %%%%%%%%%%%%%%%%%%%%%%
+  -3y \marka{a2}{(.1,.45)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2)
+}
+\bigskip    
+    
+    
+   \vspace{13mm}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+ 
+    \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad Sol =\left\{ \rule{0mm}{4mm}\left( -3y, y , -2y \right), \ y\in \R\right\} }$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{\bf Soluciones particulares:}
+
+\medskip 
+\begin{itemize}
+\begin{minipage}{.45\textwidth}
+    \item Para \(y = 0\):
+
+    Sustituyendo \(y = 0\): 
+    $x = -3(0) = 0,$ \\    $z = -2(0) = 0.$ 
+
+    Otra solución particular es: \quad 
+    $(0, 0, 0).$ 
+\end{minipage}
+\qquad
+\begin{minipage}{.45\textwidth}
+    \item Para \(y = 1\):
+
+    Sustituyendo \(y = 1\):
+    \[
+    x = -3\cdot 1 = -3;  \quad z = -2 \cdot 1 = -2.
+    \]
+
+    Una solución particular es:  \quad 
+    $(-3, 1, -2).$ 
+\end{minipage}
+
+\end{itemize}
+
+
+
+
+
+
+\bigskip 
+
+\item Para resolver el sistema de ecuaciones utilizaremos el método de Gauss.
+
+\medskip
+
+$
+    \begin{bmatrix} 1 \\ -2 \end{bmatrix} x + \begin{bmatrix} -2 \\ 4 \end{bmatrix} y + \begin{bmatrix} 7 \\ -14 \end{bmatrix} z = \begin{bmatrix} -1 \\ -2 \end{bmatrix}
+\text{\huge $\sim$}
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 7 & -1 \\
+-2 & 4 & -14 & -2
+\end{array}
+\right].
+\semejante{ 
+F_2\leftarrow F_2 + 2 \cdot F_1  
+}
+\left[
+\begin{array}{ccc|c}
+1 & -2 & 7 & -1 \\
+0 & 0 & 0 & -4
+\end{array}
+\right].
+\indicador{a1}{(-1.1,-.5)}{a2}{(-1.9,-1)} 
+$
+
+
+
+
+\begin{tikzpicture}[overlay,remember picture] 
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm] at (a2) [
+text width=89mm, 
+below, xshift=-15mm]{\scriptsize En este caso: $Rg(A) =1, \quad  Rg(A') = 2$ y \ (3 es el número de incógnita).
+
+
+{\normalsize
+Como $Rg(A) \neq Rg(A')$ el sistema es Incompatible.}
+ };
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a1) |- (a2);
+\end{tikzpicture}
+
+\vspace{18mm}
+
+\medskip
+
+El sistema no tiene solución.\hfill \hfill $\boxed{\rule{0mm}{5mm} {\bf Rta:}\quad Sol = \emptyset }$
+
+
+
+
+
+
+
+
+\bigskip  
+
+ \item Para resolver el sistema de ecuaciones utilizaremos el método de Gauss.
+
+\medskip
+
+El sistema de ecuaciones es:$\left\{ \begin{array}{rl}   x + y - z &= 0 \\
+    4y + 2x - z &= 0 \\
+    2z - x + y &= 0
+    \end{array} \right. $. \\[3mm] Si lo ordenamos, nos queda: $\left\{ \begin{array}{rl}   x \ + \ y \ -\ z &= 0 \\
+     2x + 2y - z &= 0 \\
+     - x + y +2z &= 0
+    \end{array} \right. $, y si lo escribimos de forma matricial nos queda: 
+    $\begin{bmatrix} 1 & 1 & -1 \\ 2 & 4 & -1 \\ -1 & 1 & 2 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} $.
+
+    Este ejercicio es igual que el ejercicio {\scriptsize $II)$} con lo cual el conjunto solución es el mismo. \textcolor{red}{Recordar siempre reordenar las ecuaciones lineales antes de aplicar el método de Gauss.}
+
+
+
+    
+    \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad Sol =\left\{ \rule{0mm}{4mm}\left( -3y, y , -2y \right), \ y\in \R\right\} }$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip   
+
+
+
+\item Para resolver el sistema de ecuaciones utilizaremos el método de Gauss-Jordan.
+
+\medskip
+
+$\begin{bmatrix} 1 \\ 3 \end{bmatrix} x + \begin{bmatrix} 2 \\ -1 \end{bmatrix} y + \begin{bmatrix} 3 \\ -5 \end{bmatrix} z  + \begin{bmatrix} -4 \\ -5 \end{bmatrix} w= \begin{bmatrix} 5 \\ 1  \end{bmatrix}
+\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{cccc|c}
+1 & 2 & 3 & -4 & 5 \\
+3 & -1 & -5 & -5 & 1
+\end{array}
+\right]$
+
+\bigskip
+
+$
+\semejante{F_2\leftarrow F_2 - 3 \cdot F_1  } 
+\qquad 
+\left[
+\begin{array}{cccc|c}
+1 & 2 & 3 & -4 & 5 \\
+0 & -7 & -14 & 7 & -14
+\end{array}
+\right]
+\qquad 
+\semejante{F_2\leftarrow  \frac{1}{-7} \cdot F_2  }
+\qquad 
+\left[
+\begin{array}{cccc|c}
+1 & 2 & 3 & -4 & 5 \\
+0 & 1 & 2 & -1 & 2
+\end{array}
+\right].
+$
+
+\bigskip
+
+$
+\semejante{F_1\leftarrow F_1 - 2 \cdot F_2  }
+\qquad 
+\left[
+\begin{array}{cccc|c}
+1 & 0 & -1 & -2 & 1 \\
+0 & 1 & 2 & -1 & 2
+\end{array}
+\right]
+\indicador{a1}{(.1,-.19)}{a2}{(.5,-.19)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[overlay,remember picture] 
+\node[fill=blue!25!white!25!, rectangle,rounded corners=1mm,xshift=1mm,yshift=1mm] at (a2) [
+text width=48mm, 
+right]{\scriptsize  $Rg(A) = Rg(A') = 2 < 4$ (hay 4 incógnita).
+
+{\normalsize
+$\therefore$ el sistema es   C.I.}};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a1) -- (a2);
+\end{tikzpicture}  
+
+\bigskip
+
+De esa última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+
+$
+\left\{
+\begin{array}{rl}
+x - z - 2w &= 1, \indicador{x}{(.1,.15)}{y}{(1.1,.15)}\\[3mm]
+y + 2z - w &= 2. \indicador{a}{(.1,.15)}{b}{(1.1,.15)}
+\end{array}
+\right.
+$
+
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$\marka{x1}{(-.1,-.2)}
+x
+=  %%%%%
+1+z +2w \marka{x2}{(.1,.45)}
+$ \indicador{x}{(.1,.15)}{y}{(1.1,.45)}\marka{z}{(2.3,.45)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{
+$\marka{a1}{(-.1,-.2)}y
+=  %%%%%
+2 -2z+w  \marka{a2}{(.1,.45)}
+$ \indicador{x}{(.1,.15)}{y}{(1.1,.45)}\marka{z}{(2.3,.45)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    
+    \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad Sol =\left\{ \big( 1+z + 2w, 2 -2z + w , z, w \big) \ \big/ \ \, z, w \in \mathbb{R} \right\} }$
+
+\bigskip 
+
+{\bf Soluciones particulares:}
+
+\medskip 
+
+\begin{itemize}
+\begin{minipage}{.43\textwidth}
+    \item Para \(z = 0\) y \(w = 0\):
+
+    Sustituyendo:
+    \quad
+    $x = 1, \quad y = 2, \quad z = 0,$ \\ $ w = 0.$
+    
+
+    Una solución particular es:\quad  
+    $(1, 2, 0, 0).$
+
+
+\end{minipage}
+\qquad
+\begin{minipage}{.43\textwidth}%%%%%%%%%%%%%%%%%%%%%%%%%% % % %%%%% %%% %% %  % % %% % %% %% % %% % %% % %% % %% % %% %% %% % % % %% % %% % %% % %% %% %% %% %% %% %%% %% %% %%% %%% %%%% %%% %% %% %% % % %%%%% %%5
+    \item Para \(z = 1\) y \(w = -1\):
+
+    Sustituyendo:
+    $
+    x = 1 + 2\cdot (-1) + 1 = 0, \quad y = -2\cdot 1 + (-1) + 2 = -1, \quad z = 1, \quad w = -1.
+    $
+
+\medskip 
+
+    Otra solución particular es:
+    \  $(0, -1, 1, -1).$
+    
+\end{minipage}
+\end{itemize}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\item Resolver los siguientes sistemas, si es posible, aplicando la inversibilidad de matrices. En caso de no ser posible, resolverlos de otra manera.
+\begin{enumerate}[i) ]
+\begin{multicols}{2}
+    \item $\begin{bmatrix} 1 \\ 7 \end{bmatrix} x + \begin{bmatrix} -1 \\ 5 \end{bmatrix} y + \begin{bmatrix} 5 \\ -13 \end{bmatrix} z = \begin{bmatrix} -2 \\ 10 \end{bmatrix}
+    $
+
+
+\medskip
+    
+    \item  $ \left\{\begin{array}{rl} 
+    3x + y - 2z &= 10 \\
+    x + z + 2y &= 5 \\
+    2z - x &= -3
+    \end{array}\right. $
+
+
+  \columnbreak % Forzar cambio de columna si es necesario
+
+    \item $\begin{bmatrix}\tfrac{1}{5} & -1 & 1 & -2\\
+0 & 1 & -1 & 2\\
+-1 & 5 & -5 & 10\\
+-1 & 7 & -7 & 14\end{bmatrix} \cdot 
+\begin{bmatrix} x\\y\\z\\w \end{bmatrix}
+= 
+\begin{bmatrix}
+    4 \\-1 \\ -20 \\-22
+\end{bmatrix}
+$ 
+\, \\    
+\end{multicols}
+    
+\end{enumerate}
+
+
+
+
+
+{\bf Solución:}
+
+
+\begin{enumerate}[i) ] 
+    \item $\begin{bmatrix} 1 \\ 7 \end{bmatrix} x + \begin{bmatrix} -1 \\ 5 \end{bmatrix} y + \begin{bmatrix} 5 \\ -13 \end{bmatrix} z = \begin{bmatrix} -2 \\ 10 \end{bmatrix}
+    $. La forma matricial estándar es:\quad $
+\begin{bmatrix}
+1 & -1 & 5 \\
+7 & 5 & -13
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2 \\ 10
+\end{bmatrix}.
+$    
+
+Como la matriz de coeficiente no es cuadrada no lo podemos resolver por inversibilidad de matrices. 
+
+
+\bigskip
+
+En este caso lo resolveremos por Gauss-Jordan: 
+
+
+$
+\begin{bmatrix}
+1 & -1 & 5 \\
+7 & 5 & -13
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2 \\ 10
+\end{bmatrix}.
+\text{\huge $\sim$}
+\left[
+\begin{array}{ccc|c}
+1 & -1 & 5 & -2 \\
+7 & 5 & -13 & 10
+\end{array}
+\right]
+\semejante{F_2 \ \leftarrow\  F_2 - 7F_1 }
+\left[
+\begin{array}{ccc|c}
+1 & -1 & 5 & -2 \\
+0 & 12 & -48 & 24
+\end{array}
+\right] 
+\semejante{F_2 \ \leftarrow \ \tfrac{1}{12} F_2} $
+
+\medskip
+
+$
+\left[
+\begin{array}{ccc|c}
+1 & -1 & 5 & -2 \\
+0 & 1 & -4 & 2
+\end{array}
+\right].
+\semejante{F_1 \ \leftarrow \ F_1 + F_2  }
+\left[
+\begin{array}{ccc|c}
+1 & 0 & 1 & 0 \\
+0 & 1 & -4 & 2
+\end{array}
+\right].
+$
+\bigskip 
+
+De esa última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\medskip 
+
+$\qquad
+\left\{
+\begin{array}{rl}
+x + z &= 0 \indicador{a}{(.1,.15)}{x}{(.9,.15 )} 
+\\[3mm]
+y - 4z &= 2 \indicador{b}{(.1,.15)}{y}{(.9,.15 )}
+\end{array}
+\right.
+$
+\tikz[overlay,remember picture] { 
+\draw [overlay,->,very thick,red,opacity=.5](a)--(x);
+\node    at (x) [text width=35mm,   right   ]{
+$\marka{x1}{(-.1,-.2)}
+x = -z     
+\marka{x2}{(.1,.45)}
+$
+};
+%%%%%%-------------------------------%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](b)--(y);
+\node    at (y) [text width=35mm,   right   ]{
+$\marka{y1}{(-.1,-.2)}
+y =2 +4z \marka{aa}{(.1,.15)} 
+\marka{y2}{(.1,.45)}
+$
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (y1) rectangle (y2);
+}
+\hfill$Sol= \left\{ \rule{0mm}{4mm} \left(-z,\, 2+ 4z ,\, z\right)\, /\, z \in \mathbb{R} \right\}$
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip 
+
+
+
+    
+    \item  Resolver el sistema:
+$
+\left\{
+\begin{array}{rl} 
+3x + y - 2z &= 10\\
+x + z + 2y &= 5 \\
+2z - x &= -3
+\end{array}
+\right.
+$, donde primero lo ordenamos $\left\{
+\begin{array}{rl} 
+3x + y - 2z &= 10 \\
+x+ 2y  + z &= 5 \\
+- x + 2z  &= -3
+\end{array}
+\right.$.
+
+Escribimos en forma matricial:
+$
+\begin{bmatrix}
+3 & 1 & -2 \\
+1 & 2 & 1 \\
+-1 & 0 & 2
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 \\ 5 \\ -3
+\end{bmatrix}.
+$
+ 
+\medskip
+\begin{multicols}{3}
+La matriz de coeficientes es cuadrada, por lo que, antes de aplicar el método de la matriz inversa, vamos a verificar si su determinante es distinto de cero. Procedemos a calcular el determinante de la matriz, usaremos la regla de Sarrus tenemos:
+
+
+\medskip
+
+
+
+
+
+\begin{center}
+    
+\tikzset{node style ge/.style={rectangle}}
+\begin{tikzpicture}[baseline=(A.center)]
+  \tikzset{BarreStyle/.style =   {opacity=.2,line width=3 mm,line cap=round,color=#1}}
+    \tikzset{SignePlus/.style =   {  right,opacity=1}}
+    \tikzset{SigneMoins/.style =   { left,opacity=1}}
+% les matrices
+\matrix (A) [matrix of math nodes, nodes = {node style ge},row sep=1mm,column sep=0 mm] 
+{  3 & 1 & -2 \\
+    1 & 2 & 1 \\
+    -1 & 0 & 2\\
+   3 & 1 & -2 \\
+    1 & 2 & 1 \\
+};
+
+ \draw [BarreStyle=blue] (A-3-3.south east) node[SignePlus=blue] {\, $12$} to (A-1-1.north west) ;
+ \draw [BarreStyle=blue] (A-4-3.south east) node[SignePlus=blue] {\, $0$} to (A-2-1.north west) ;
+ \draw [BarreStyle=blue] (A-5-3.south east) node[SignePlus=blue] {\, $-1$} to (A-3-1.north west) ;
+\node[draw] at  (A-5-3.south east) [shift= (-45:1),color=blue] {\, $11$\ };
+ \draw [BarreStyle=red]  (A-3-1.south west) node[SigneMoins=red] {$4$} to (A-1-3.north east);
+ \draw [BarreStyle=red]  (A-4-1.south west) node[SigneMoins=red] {$0$} to (A-2-3.north east);
+ \draw [BarreStyle=red]  (A-5-1.south west) node[SigneMoins=red] {$2$} to (A-3-3.north east);
+\node[draw] at (A-5-1.south west) [shift= (45:-1),color=red] {\ $6$\ \, };
+\end{tikzpicture}
+
+\end{center}
+
+
+\noindent\marka{c}{(-.5,.15)}Por lo tanto $\begin{vmatrix}
+       3 & 1 & -2 \\
+       1 & 2 & 1 \\
+       -1 & 0 & 2
+      \end{vmatrix}
+      =
+      \linebreak 
+      ={\color{blue} 11} - {\color{red} 6} = 5
+      $
+
+
+\end{multicols}
+
+
+
+
+ Como su determinante es distinto de cero, por propiedad sabemos que la matriz es inversible. Por lo tanto, procedemos a calcular su inversa.
+
+
+ \textbf{ Inversa por operaciones elementales:}
+
+     
+
+{\small
+
+\[ \left[\begin{array}{rrr|rrr}3 & 1 & -2 & 1 & 0 & 0\\
+1 & 2 & 1 & 0 & 1 & 0\\
+-1 & 0 & 2 & 0 & 0 & 1\end{array}\right]
+\semejante{ F_1 \ \leftrightarrow \   F_1 }
+ \left[\begin{array}{rrr|rrr}1 & 2 & 1 & 0 & 1 & 0\\
+3 & 1 & -2 & 1 & 0 & 0\\
+-1 & 0 & 2 & 0 & 0 & 1\end{array}\right]
+\semejante{\substack{ F_2 \leftarrow \  -3 F_1 +F_2 \\ F_3 \leftarrow \   F_1 +F_3} }
+ \left[\begin{array}{rrr|rrr}1 & 2 & 1 & 0 & 1 & 0\\
+0 & -5 & -5 & 1 & -3 & 0\\
+0 & 2 & 3 & 0 & 1 & 1 \end{array}\right]
+\]  
+
+
+
+\[ 
+\semejante{  F_2 \leftarrow\  \tfrac{1}{5} F_2}
+\qquad
+ \left[\begin{array}{rrr|rrr}1 & 2 & 1 & 0 & 1 & 0\\[2mm]
+0 & 1 & 1 & -\frac{1}{5} & \frac{3}{5} & 0\\[2mm]
+0 & 2 & 3 & 0 & 1 & 1\end{array}\right]
+\qquad
+\semejante{ F_3 \leftarrow \  -2F_2 +F_3 } 
+\qquad
+ \left[\begin{array}{rrr|rrr}1 & 2 & 1 & 0 & 1 & 0\\[2mm]
+0 & 1 & 1 & -\frac{1}{5} & \frac{3}{5} & 0\\[2mm]
+0 & 0 & 1 & \frac{2}{5} & -\frac{1}{5} & 1\end{array}\right]
+\]
+
+
+\[ 
+\semejante{ \substack{F_1 \leftarrow\  -  F_3 +F_1 
+\\
+F_2\leftarrow\  - F_3+F_2 }}
+\qquad
+ \left[\begin{array}{rrr|rrr}1 & 2 & 0 & -\frac{2}{5} & \frac{6}{5} & -1\\[2mm]
+0 & 1 & 0 & -\frac{3}{5} & \frac{4}{5} & -1\\[2mm]
+0 & 0 & 1 & \frac{2}{5} & -\frac{1}{5} & 1\end{array}\right]
+\qquad
+\semejante{ F_1 \leftarrow \ -2 F_2 + F_1 } 
+\qquad
+ \left[\begin{array}{rrr|rrr}1 & 0 & 0 & \frac{4}{5} & -\frac{2}{5} & 1\\[2mm]
+0 & 1 & 0 & -\frac{3}{5} & \frac{4}{5} & -1\\[2mm]
+0 & 0 & 1 & \frac{2}{5} & -\frac{1}{5} & 1\end{array}\right]
+\]
+
+\[
+%%%%%%%%
+ \qquad  
+\therefore\ \ 
+A^{-1}
+=  
+\begin{bmatrix} \frac{4}{5} & -\frac{2}{5} & 1\\[2mm]
+-\frac{3}{5} & \frac{4}{5} & -1\\[2mm]
+\frac{2}{5} & -\frac{1}{5} & 1\end{bmatrix}
+\]
+}
+
+
+Resolvamos la ecuación matricial:
+
+\[
+A X = B 
+\qquad \Longleftrightarrow \qquad 
+{\color{red}A^{-1}} A  X = {\color{red}A^{-1}} B
+\qquad \Longleftrightarrow \qquad 
+   X = A^{-1} B
+\]
+
+ En este caso el sistema es compatible determinado y al remplazar las matrices que tenemos en la igualdad $X= A^{-1} B$ obtenemos la solución:
+
+ \begin{align*}
+     X = A^{-1} B
+     &= 
+     \begin{bmatrix} \frac{4}{5} & -\frac{2}{5} & 1\\[2mm]
+-\frac{3}{5} & \frac{4}{5} & -1\\[2mm]
+\frac{2}{5} & -\frac{1}{5} & 1\end{bmatrix} \cdot 
+\begin{bmatrix}
+10 \\ 5 \\ -3
+\end{bmatrix}
+= 
+\begin{bmatrix} \ 3 \ \\
+\ 1 \ \\
+\ 0 \ \end{bmatrix}
+\hspace{.15\textwidth} \therefore \ 
+\begin{bmatrix} \ x\ \\
+\ y\ \\
+\ z \ \end{bmatrix} 
+=
+\begin{bmatrix} \ 3 \ \\
+\ 1 \ \\
+\ 0 \ \end{bmatrix}
+\end{align*}
+
+
+ \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad  x=3,\ y= 1, \ z=0 \  }$
+
+
+
+
+
+
+
+\bigskip 
+\bigskip 
+\bigskip 
+
+
+    \item Resolver el sistema:
+\[
+\begin{bmatrix}
+\tfrac{1}{5} & -1 & 1 & -2 \\
+0 & 1 & -1 & 2 \\
+-1 & 5 & -5 & 10 \\
+-1 & 7 & -7 & 14
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z \\ w
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\ -1 \\ -20 \\ -22
+\end{bmatrix}.
+\]
+
+
+
+La matriz de coeficientes es cuadrada, por lo que, antes de aplicar el método de la matriz inversa, vamos a verificar si su determinante es distinto de cero. Procedemos a calcular el determinante de la matriz.
+
+\medskip 
+
+\begin{comment}
+Podemos calcular el determinante de dos formas distintas, una por eliminación de Gauss y la otra forma por propiedades: 
+
+\begin{itemize}
+    \item Primero aplicaremos el método de reducción de Gauss, que consiste en escalonar la matriz y aplicar las propiedades que tiene el determinante con las operaciones elementales. Veamos la resolución:
+  \[
+|A|=\begin{vmatrix}
+        \tfrac{1}{5} & -1 & 1 & -2 \\
+        0 & 1 & -1 & 2 \\
+        -1 & 5 & -5 & 10 \\
+        -1 & 7 & -7 & 14
+      \end{vmatrix} 
+      %
+      \OptipoUno{ F_3 \leftarrow  F_3 + 5 F_1   }
+      \indicador{a}{(-.8,-.4)}{b}{(-.39,-1.4)}
+     %
+      \begin{vmatrix}
+      \frac{1}{5} & -1 & 1 & -2\\
+      0 & 1 & -1 & 2\\
+      0 & 0 & 0 & 0\\
+      -1 & 7 & -7 & 14
+      \end{vmatrix}
+      = \indicador{x}{(-.2,-.15)}{y}{(-.39,-1.4)} 
+      0
+\]
+
+
+           
+
+\begin{tikzpicture}[overlay,remember picture,every node/.style={draw=blue!30}]
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm,xshift=-15mm,yshift=0mm] at (b) [
+text width=56mm, 
+below , xshift= -10mm
+]{\scriptsize 
+Como  aplicamos una operación elemental de tipo uno, el  determinante no varia.
+};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(a) |-(b); 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (y) [
+text width=34mm, 
+below 
+]{\scriptsize 
+Como tenemos una fila de cero, el determinante es cero
+};
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(x) |-(y); 
+\end{tikzpicture}
+
+
+\, \\
+\, \\ 
+
+  
+
+\item Otra forma de calcular el determinante es por uso de propiedades, en este caso al observar que la fila tres es cinco veces la fila uno, el determinante de la matriz es cero. En este caso usamos la propiedad de que si una fila es multiplo de otra, resulta que el determinante es cero. 
+
+
+\end{itemize}
+
+
+
+
+Bueno el determinante de la matriz es cero. 
+\end{comment}
+
+\begin{itemize}
+    \item En este caso al observar que la fila tres es cinco veces la fila uno, el determinante de la matriz es cero. En este caso usamos la propiedad de que si una fila es múltiplo de otra, resulta que el determinante es cero.
+\end{itemize}
+
+
+\medskip 
+
+No podemos aplicar el método de la inversa, en este caso lo resolveremos por Gauss-Jordan: 
+
+\bigskip 
+
+$
+\begin{bmatrix}
+\tfrac{1}{5} & -1 & 1 & -2 \\
+0 & 1 & -1 & 2 \\
+-1 & 5 & -5 & 10 \\
+-1 & 7 & -7 & 14
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z \\ w
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\ -1 \\ -20 \\ -22
+\end{bmatrix}
+\quad 
+\text{\huge $\sim$}
+\quad 
+\left[
+\begin{array}{rrrr|r}
+\tfrac{1}{5} & -1 & 1 & -2 & 4 \\
+0 & 1 & -1 & 2 & -1 \\
+-1 & 5 & -5 & 10 & 20 \\
+-1 & 7 & -7 & 14 & -22
+\end{array} \right]
+\quad
+\semejante{F_1 \leftarrow 5F_1}
+$
+
+\bigskip 
+
+$
+\left[
+\begin{array}{rrrr|r}
+1 & -5 & 5 & -10 & 20\\
+0 & 1 & -1 & 2 & -1\\
+-1 & 5 & -5 & 10 & -20\\
+-1 & 7 & -7 & 14 & -22
+\end{array} \right]
+\quad
+\semejante{ \substack{
+F_3\leftarrow F_3 + F_1  
+\\[2mm]
+F_4\leftarrow F_4 +   F_1  
+}}
+\quad
+\left[
+\begin{array}{rrrr|r}
+1 & -5 & 5 & -10 & 20\\
+0 & 1 & -1 & 2 & -1\\
+0 & 0 & 0 & 0 & 0\\
+0 & 2 & -2 & 4 & -2
+\end{array} \right]
+\quad
+\semejante{F_4 \leftarrow F_4 - 2\cdot F_2}
+$
+
+\bigskip
+
+$
+\left[
+\begin{array}{rrrr|r}
+1 & -5 & 5 & -10 & 20\\
+0 & 1 & -1 & 2 & -1\\
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0
+\end{array} \right]
+\quad
+\semejante{  
+F_1\leftarrow F_1 + 5 \cdot F_2   }
+\quad
+\left[
+\begin{array}{rrrr|r}
+1 & 0 & 0 & 0 & 15\\
+0 & 1 & -1 & 2 & -1\\
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0
+\end{array} \right] 
+$
+
+\bigskip 
+
+De esa última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip 
+
+$\qquad
+\left\{
+\begin{array}{rl}
+\marka{x1}{(-.1,-.2)}
+x &=  15
+\marka{x2}{(.1,.45)}
+\\[3mm]
+y - z + 2w  &= -1 \indicador{b}{(.1,.15)}{y}{(.9,.15 )}
+\end{array}
+\right.
+$
+\tikz[overlay,remember picture] { 
+%%%%%%-------------------------------%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](b)--(y);
+\node    at (y) [text width=35mm,   right   ]{
+$\marka{y1}{(-.1,-.2)}
+ y = -1 +z -2w \marka{aa}{(.1,.15)} 
+\marka{y2}{(.1,.45)}
+$
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (y1) rectangle (y2);
+}
+\hfill$Sol= \left\{ \rule{0mm}{4mm} \big(15,\, -1+z-2w ,\, z,\, w\big)\, /\, z,\, w  \in \mathbb{R} \right\}$
+
+
+
+
+
+    
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+\item  Dado el sistema $\left\{ \begin{matrix}
+x - y + 3z &= 2 \\
+x - 3y + 3z &= 6 \\
+-x + 5y - 3z &= -10
+\end{matrix} \right.$, determinar si los siguientes conjuntos son o no soluciones correspondientes al sistema dado.
+
+\begin{enumerate}
+\begin{multicols}{2}
+    \item $S = \left\{ \left(-3z, -2, z\right) \, ,\, z \in \mathbb{R}\right\}$
+    \item $S = \left\{\left(-3z, -2, -\tfrac{1}{3}x  \rule{0mm}{4mm}\right) \, ,\, x, z \in \mathbb{R}\right\}$
+    \item $S = \left\{\left( x, -2, -\tfrac{1}{3}x \rule{0mm}{4mm}\right) \, ,\, x \in \mathbb{R}\right\}$
+    \item[d)] $S = \left\{(-3z, y, z),\, y, z \in \mathbb{R}\right\}$
+\end{multicols}
+\end{enumerate}
+ 
+ 
+ { \bf Solución: }
+
+Para verificar si un conjunto es solución del sistema, sustituimos las coordenadas \((x, y, z)\) en las ecuaciones del sistema y comprobamos si todas se cumplen.
+
+\begin{enumerate}
+\item  $S = \left\{ \left(-3z, -2, z\right) \, ,\, z \in \mathbb{R}\right\}$
+
+\medskip
+
+
+Sustituimos \(x = -3z\), \(y = -2\), \(z = z\) en el sistema:
+
+
+\medskip
+
+\[
+\begin{array}{rl rl rl }
+\bullet & (-3z) - (-2) + 3z = 2 
+&
+\bullet &  (-3z) - 3(-2) + 3z = 6 
+&
+\bullet &   -(-3z) + 5(-2) - 3z = -10 
+\\[3mm]
+   &  -3z + 2 + 3z = 2 \  \text{(Verdadero)} 
+   &
+   &   -3z + 6 + 3z = 6 \  \text{(Verdadero)} 
+   &
+   &   3z - 10 - 3z = -10 \  \text{(Verdadero)}
+\end{array}
+\]
+
+Por lo tanto, el conjunto \(S = \left\{ \left(-3z, -2, z\right) \, ,\, z \in \mathbb{R}\right\}\) \textbf{es solución del sistema}.
+
+
+\bigskip 
+\bigskip
+\bigskip 
+
+
+
+\item  $S = \left\{\left(-3z, -2, -\tfrac{1}{3}x \rule{0mm}{4mm}\right) \, ,\, x, z \in \mathbb{R}\right\}$ 
+
+\bigskip
+
+
+Sustituimos \(x = -3z\), \(y = -2\), \(z = -\frac{1}{3}x = -\frac{1}{3}(-3z) = z\). Observamos que el conjunto es equivalente al caso anterior, pero se superponen las definición de la incognitas $x$ e $y$. Por lo tanto, \(S\) \textbf{ no es solución del sistema,  su notación no es apropiada}.
+
+
+
+\bigskip 
+
+\item  $S = \left\{\left( x, -2, -\tfrac{1}{3}x \rule{0mm}{4mm}\right) \, ,\, x \in \mathbb{R}\right\}$
+
+\medskip
+
+
+Sustituimos \(x = x\), \(y = -2\), \(z = -\frac{1}{3}x\) en el sistema:
+
+\medskip
+
+
+\[
+\begin{array}{rl rl rl }
+\bullet &   x - (-2) + 3\left(-\frac{1}{3}x\right) = 2 
+&
+\bullet &   x - 3(-2) + 3\left(-\frac{1}{3}x\right) = 6 
+& \bullet &   -x + 5(-2) - 3\left(-\frac{1}{3}x\right) = -10 
+\\[3mm]
+   &  x + 2 - x = 2 \  \text{(Verdadero)} 
+   &
+   &  x + 6 - x = 6 \  \text{(Verdadero)} 
+   &
+   & -x - 10 + x = -10 \  \text{(Verdadero)}
+\end{array}
+\]
+
+Por lo tanto, el conjunto \(S = \left\{\left( x, -2, -\tfrac{1}{3}x \rule{0mm}{4mm}\right) \, ,\, x \in \mathbb{R}\right\}\) \textbf{es solución del sistema}.
+
+
+
+
+
+\bigskip
+\bigskip
+\bigskip 
+
+
+
+
+
+\item  $S = \left\{(-3z, y, z) \,|\, y, z \in \mathbb{R}\right\}$
+
+\medskip
+
+Sustituimos \(x = -3z\), \(y = y\), \(z = z\) en el sistema:
+
+\medskip
+
+\[
+\begin{aligned}
+\bullet & \  (-3z) - y + 3z = 2 
+&
+\qquad \bullet & \  (-3z) - 3y + 3z = 6 
+&
+\qquad \bullet & \  -(-3z) + 5y - 3z = -10 
+\\[3mm]
+   & \qquad -y = 2   \
+   &
+   & \qquad -3y = 6   
+   &
+   & \qquad 3z + 5y - 3z = -10 
+\\[3mm]
+   &  \,\qquad\, \,  y= 2 \
+   &
+   &  
+   &
+   & \qquad  \quad  5y  = -10 
+\end{aligned}
+\]
+
+La condición \(y = -2\) restringe el conjunto propuesto, es decir $y$ no es variable libre. Por lo tanto, \(S = \left\{(-3z, y, z) \,|\, y, z \in \mathbb{R}\right\}\) \textbf{no es solución del sistema}.
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+\bigskip 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item En los siguientes incisos se da la forma escalonada reducida de un sistema de ecuaciones lineales. Determinar la compatibilidad del sistema y, en caso de ser compatible, dar el conjunto solución poniéndole por nombre a las variables \(x_1, x_2, \ldots, x_n\) según corresponda.
+
+\begin{enumerate}[a) ]
+\begin{multicols}{3}
+    \item  $\left[
+\begin{array}{ccc|c}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1
+    \end{array}\right] $
+
+\bigskip
+    
+    \item  $\left[
+\begin{array}{ccc|c}
+    1 & 0 & -2 & 5 \\
+    0 & 1 & 3 & -1 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+    \end{array}\right] $
+
+\columnbreak %Cambio de columna 
+
+    
+    \item $\left[
+\begin{array}{ccc|c}
+    1 & 0 & 0 & -8 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 7
+    \end{array}\right]$
+
+    
+    \item  $\left[
+\begin{array}{cccc|c}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 2 & 2 \\
+    0 & 0 & 1 & 0 & 0
+    \end{array}\right]$ 
+    
+
+\columnbreak %Cambio de columna 
+
+   
+    \item  $\left[
+\begin{array}{cccc|c}
+    1 & 1 & 1 & 0 & 1 \\
+    0 & 0 & 0 & 1 & -1 \\
+    0 & 0 & 0 & 0 & 0
+    \end{array}\right]$
+    
+    \item $\left[
+\begin{array}{ccc|c}
+    1 & 0 & 0 & 4 \\
+    0 & 1 & 0 & -3 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0
+    \end{array}\right]$
+\end{multicols}
+\end{enumerate}
+
+
+
+    \textbf{Solución:}
+
+En cada inciso determinamos la compatibilidad del sistema y, si es compatible, encontramos el conjunto solución.
+
+\begin{enumerate}[a)]
+    \item $\left[
+    \begin{array}{ccc|c}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1
+    \end{array}\right]$
+
+\medskip
+
+    En este caso tenemos: $Rg(A) = 2 \neq Rg(A') = 3$  (hay 3 incógnita)\hfill $\therefore$ el sistema es incompatible.
+    
+
+
+ \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad  Sol= \emptyset \  }$
+
+
+\bigskip 
+
+
+    \item $\left[
+    \begin{array}{ccc|c}
+    1 & 0 & -2 & 5 \\
+    0 & 1 & 3 & -1 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+    \end{array}\right]$
+    \qquad \begin{minipage}{.3\textwidth}
+
+    En este caso tenemos: $Rg(A) =  Rg(A') = 2$  (hay 3 incógnita)
+    \end{minipage}\qquad\begin{minipage}{.3\textwidth}
+ 
+    \hfill $\therefore$ el sistema es Compatible indeterminado.
+    \end{minipage}
+    
+
+\bigskip
+
+De esa matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+$
+\left\{
+\begin{array}{rl}
+x_1 - 2x_3 &= 5, \indicador{x}{(.1,.15)}{y}{(1.1,.15)}\\[3mm]
+x_2+ 3x_3 &= -1 . \indicador{a}{(.1,.15)}{b}{(1.1,.15)}
+\end{array}
+\right.
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$\marka{x1}{(-.1,-.2)}
+x_1
+=  %%%%%
+5 + 2x_3 \marka{x2}{(.1,.45)}
+$ 
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{
+$\marka{a1}{(-.1,-.2)}
+x_2
+=  %%%%%
+-1-3x_3 \marka{a2}{(.1,.45)}
+$  
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad  Sol= \left\{(5 + 2x_3, -1 - 3x_3, x_3)\, \big/\  x_3 \in \mathbb{R} \right\} \  }$
+
+
+
+
+
+\bigskip  
+
+
+
+
+    \item $\left[
+    \begin{array}{ccc|c}
+    1 & 0 & 0 & -8 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 7
+    \end{array}\right]$
+    
+  En este caso tenemos: $Rg(A) =  Rg(A') = 3$  (hay 3 incógnita)
+  \medskip
+  \hfill El sistema es compatible determinado.
+  
+  \medskip
+  
+  La solución es: \hspace{.2\textwidth}$
+    x_1 = -8, \quad x_2 = 0, \quad x_3 = 7.$ \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad  Sol= \{(-8, 0, 7)\} \  }$
+
+
+\bigskip
+
+
+
+
+    \item $\left[
+    \begin{array}{cccc|c}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 2 & 2 \\
+    0 & 0 & 1 & 0 & 0
+    \end{array}\right]$
+    \medskip
+
+    En este caso tenemos: $Rg(A) =  Rg(A') = 3 < 4$  (hay 4 incógnita) 
+    
+ \medskip 
+ 
+    \hfill $\therefore$ el sistema es Compatible indeterminado.
+    
+
+\bigskip
+
+De esa matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+$
+\left\{
+\begin{array}{rl}
+\marka{x1}{(-.1,-.2)}
+x_1  &= 0 \marka{x2}{(.1,.45)}  
+\\[3mm]    
+x_2+ 2x_4 &=  2  \indicador{a}{(.1,.15)}{b}{(1.1,.15)}
+\\[3mm]   
+\marka{a1}{(-.1,-.2)}
+x_3  &= 0 \marka{a2}{(.1,.45)} 
+\end{array}
+\right.
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] { 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{
+$\marka{a1}{(-.1,-.2)}
+x_2
+=  %%%%%
+2-2 x_4 \marka{a2}{(.1,.45)}
+$  
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \hfill $\boxed{\rule{0mm}{6mm}{\bf Rta:}\quad  Sol= \left\{  (0, 2 - 2x_4, 0, x_4) \, \big/ \  x_4 \in \mathbb{R} \right\} \  }$
+
+
+
+
+
+\bigskip  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    \item $\left[
+    \begin{array}{cccc|c}
+    1 & 1 & 1 & 0 & 1 \\
+    0 & 0 & 0 & 1 & -1 \\
+    0 & 0 & 0 & 0 & 0
+    \end{array}\right]$
+    
+
+   En este caso tenemos: $Rg(A) =  Rg(A') = 2 < 4$  (hay 4 incógnita) 
+    
+ \medskip 
+ 
+    \hfill $\therefore$ el sistema es Compatible indeterminado.
+    
+
+\bigskip
+
+De esa matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+$
+\left\{
+\begin{array}{rl}
+x_1 +x_2+ x_3 &=  1  \indicador{a}{(.1,.15)}{b}{(1.1,.15)} 
+\\[3mm]    
+\marka{x1}{(-.1,-.2)}
+x_4  &= -1 \marka{x2}{(.1,.45)}  
+\end{array}
+\right.
+$
+
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2); 
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{
+$\marka{a1}{(-.1,-.2)}
+x_2
+=  %%%%%
+1 - x_2 - x_3 \marka{a2}{(.1,.45)}
+$  
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+
+
+
+ \hfill $\boxed{\rule{0mm}{6mm}{\bf Rta:}\quad  Sol= \left\{  (1 - x_2 - x_3, \, x_2,\, x_3,\, -1) \,\big/ \  x_2,\ x_3 \in \mathbb{R} \right\} \  }$
+
+
+
+
+
+\bigskip  
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    \item $\left[
+    \begin{array}{ccc|c}
+    1 & 0 & 0 & 4 \\
+    0 & 1 & 0 & -3 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0
+    \end{array}\right] \qquad \text{\Large$\sim$} \qquad
+    \left\{
+    \begin{array}{rl}
+    x_1 &= 4 \\[2mm]
+    x_2 &= -3 \\[2mm]
+    x_3&= 0 
+    \end{array}\right.$
+    
+      En este caso tenemos: $Rg(A) =  Rg(A') = 3$  (hay 3 incógnita)
+  \medskip
+  \hfill El sistema es compatible determinado.
+  
+  \medskip    
+    La solución es: \hspace{.15\textwidth}$ x_1 = 4, \quad x_2 = -3, \quad x_3 = 0.$     
+     \hfill $\boxed{\rule{0mm}{5mm}{\bf Rta:}\quad  Sol= \{(4,-3,0)\} \  }$
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+
+
+
+
+
+\item Determinar para qué valores de \(k \in \mathbb{R}\) cada uno de los siguientes sistemas es: %discutir los sistemas de ecuaciones.
+\begin{itemize}
+\begin{minipage}{.36\textwidth}
+       \item Compatible determinado (CD),
+\end{minipage}
+\begin{minipage}{.36\textwidth}
+    \item Compatible indeterminado (CI),
+
+\end{minipage}\begin{minipage}{.17\textwidth}
+    \item Incompatible (I).
+\end{minipage}
+\end{itemize}
+
+
+\begin{enumerate}[a) ]
+\begin{multicols}{2}
+    \item  $\left\{
+    \begin{array}{rl}
+    5x + 3y + 4z &= 3 \\
+    5y + 2z &= 4 \\
+    (k^2 - 9)z &= k + 3
+    \end{array}\right.$ 
+    
+    
+    \medskip
+    
+    \item  $
+    \left[\begin{smallmatrix}
+    1 \\[1mm] 2 \\[1mm]  1
+    \end{smallmatrix}\right] x +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  k
+    \end{smallmatrix}\right] y +
+    \left[\begin{smallmatrix}
+    -1 \\[1mm]  2 \\[1mm]  3
+    \end{smallmatrix}\right] z =
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  2
+    \end{smallmatrix}\right]$
+
+\medskip
+
+    \item $
+    \begin{bmatrix}
+    1 & 2 & -3 \\
+    3 & -1 & 5 \\
+    4 & 1 & -(k^2 - 6)
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x \\ y \\ z
+    \end{bmatrix} =
+    \begin{bmatrix}
+    4 \\ 2 \\ k + 4
+    \end{bmatrix}$
+
+ \medskip
+ 
+    \item  $\left\{ 
+    \begin{array}{rl}
+    x \quad + \qquad 2y \quad + \qquad 3z \quad \, &= 1 \\
+    2x + (k + 4)y + (k^2 + k + 6)z &= k + 3
+    \end{array}\right.$ 
+
+\columnbreak 
+    
+    \item $
+    \left[\begin{smallmatrix}
+    k \\[1mm]  1 \\[1mm]  1
+    \end{smallmatrix}\right] x +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  k \\[1mm]  1
+    \end{smallmatrix}\right] y +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  1 \\[1mm]  1
+    \end{smallmatrix}\right] z =
+    \left[\begin{smallmatrix}
+    0 \\[1mm]  0 \\[1mm]  0
+    \end{smallmatrix}\right]$  
+
+
+\bigskip 
+
+
+     \item  $\left\{
+    \begin{array}{rl}
+    x + y + z + (k - 1)w &= 0\\
+    -x \quad - \quad ky \quad -\quad z &= -2k \\
+    kx + 2y + 2z + k^2 w &= 2
+    \end{array}\right.$ 
+
+\bigskip
+
+
+    \item $
+    \begin{bmatrix}
+    1 & 3 & -2 \\
+    0 & k & 0 \\
+    0 & k &  k^2 - 25 \\
+    2 & 6+k & k^2-29 
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x \\ y \\ z
+    \end{bmatrix} =
+    \begin{bmatrix}
+    5 \\ 0 \\ k + 5 \\ k+15
+    \end{bmatrix}$
+\end{multicols}
+\end{enumerate}
+
+
+
+ 
+
+\textbf{Ejercicio:} Determinar para qué valores de $k \in \mathbb{R}$ cada uno de los siguientes sistemas es:
+\begin{itemize}
+    \begin{minipage}{.36\textwidth}
+        \item Compatible determinado (CD),
+    \end{minipage}
+    \begin{minipage}{.36\textwidth}
+        \item Compatible indeterminado (CI),
+    \end{minipage}
+    \begin{minipage}{.17\textwidth}
+        \item Incompatible (I).
+    \end{minipage}
+\end{itemize}
+
+\begin{enumerate}[a)]
+
+\item $\left\{
+    \begin{array}{rl}
+    5x + 3y + 4z &= 3 \\
+    5y + 2z &= 4 \\
+    (k^2 - 9)z &= k + 3
+    \end{array}\right.\quad
+    \text{\huge $\sim$}
+   \left[ \begin{array}{ccc | c }
+   5 & 3 & 4 & 3\\
+   0 & 5 & 2 & 4\\
+   0 & 0 & k^2 - 9 & k+3
+   \end{array}\right]
+   \semejante{ \substack{
+F_1\leftarrow \tfrac{1}{5} F_1  
+\\[2mm]
+F_2\leftarrow \tfrac{1}{5} F_2  
+}} 
+   \left[ \begin{array}{ccc | c }
+   1 & \tfrac{3}{5} & \tfrac{4}{5} & \tfrac{3}{5}\\[2mm]
+   0 & 1 & \tfrac{2}{5} & \tfrac{4}{5}\\[2mm]
+   0 & 0 & k^2 - 9 & k+3
+   \end{array}\right] \marka{A}{(.1,.15)}
+   $
+
+
+   
+   \marka{BB}{(.09\textwidth,-.15)}\marka{AA}{(.85\textwidth,.1
+   5)}
+   \marka{B}{(.5,-4.6)}
+
+ 
+
+
+\hspace{.2\textwidth}\begin{minipage}{.8\textwidth}
+
+   \vspace{18mm}
+    
+    \marka{C}{(.1,-.9)} 
+
+    \vspace{-18mm}
+
+\hspace{.25\textwidth}\begin{minipage}{.75\textwidth}
+    \marka{D}{(.1,.15)} $\left[ \begin{array}{ccc | c }
+   1 & \tfrac{3}{5} & \tfrac{4}{5} & \tfrac{3}{5}\\[2mm]
+   0 & 1 & \tfrac{2}{5} & \tfrac{4}{5}\\[2mm]
+   0 & 0 & 0 & 0
+   \end{array}\right]$\ \ \begin{minipage}{30mm}  \vspace{18mm}  
+   $\left. \begin{array}{rl}
+        Rg(A) &= 2  \\
+        Rg(A_a)&= 2  \\
+        \hspace{-15mm}n^\circ \text{ incógnita} &= 3
+   \end{array}\right\}$
+    \end{minipage}\qquad \begin{minipage}{30mm}
+    \vspace{9mm} 
+    $\therefore \ $ por teorema de  Rouché-Frobenius el sistema de ecuaciones es C.I.\end{minipage}
+    
+    
+
+\bigskip
+
+   \marka{E}{(.1,.15)} $\left[ \begin{array}{ccc | c }
+   1 & \tfrac{3}{5} & \tfrac{4}{5} & \tfrac{3}{5}\\[2mm]
+   0 & 1 & \tfrac{2}{5} & \tfrac{4}{5}\\[2mm]
+   0 & 0 & 0 & 6
+   \end{array}\right]$\ \ \begin{minipage}{30mm}  \vspace{18mm}  
+   $\left. \begin{array}{rl}
+        Rg(A) &= 2  \\
+        Rg(A_a)&= 3  \\
+        \hspace{-15mm}n^\circ \text{ incógnita} &= 3
+   \end{array}\right\}$
+    \end{minipage}\qquad \begin{minipage}{30mm}
+    \vspace{9mm} $\therefore \ $ por teorema de  Rouché-Frobenius el sistema de ecuaciones es Incompatible.\end{minipage}
+\end{minipage}
+
+
+\bigskip
+
+
+
+\marka{F}{(.1,.15)}$\semejante{  
+F_3\leftarrow \tfrac{1}{k^2-9} F_3  
+} 
+   \left[ \begin{array}{ccc | c }
+   1 & \tfrac{3}{5} & \tfrac{4}{5} & \tfrac{3}{5}\\[2mm]
+   0 & 1 & \tfrac{2}{5} & \tfrac{4}{5}\\[2mm]
+   0 & 0 & 1&  \frac{1}{k-3}
+   \end{array}\right]  
+   $\qquad\ \ \begin{minipage}{30mm}  \vspace{18mm}  
+   $\left. \begin{array}{rl}
+        Rg(A) &= 3  \\
+        Rg(A_a)&= 3  \\
+        \hspace{-15mm}n^\circ \text{ incógnita} &= 3
+   \end{array}\right\}$
+    \end{minipage}\qquad \begin{minipage}{30mm}
+    \vspace{9mm} $\therefore \ $ por teorema de  Rouché-Frobenius el sistema de ecuaciones es CD.\end{minipage}
+\end{minipage}
+   \tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,blue,opacity=.5]
+(A) to[out=-30, in=0](AA)--(BB)to[out=180, in=160]node[pos=.2,below left,text width=32mm]{\footnotesize \begin{align*}
+    k^2 -9 &=0 \\
+    k^2 \ &= 9 \\
+     \sqrt{k^2} \ &= \sqrt{9} \\
+      |k| \ &= 3 \\
+      k= -3 & \text{ o } \  k=3
+\end{align*}} (B)--node[pos=.65, above ,text width=15mm]{\footnotesize  $ k= -3$\\ o \\ $k=3$} (C)--node[pos=.15,above right,rotate=21]{\footnotesize reemplazar: $ k= -3$ } (D);
+\draw [overlay,->,very thick,blue,opacity=.5]
+ (C)--node[pos=.15,below right,rotate=-35]{\footnotesize reemplazar: $ k= 3$ } (E);
+ \draw [overlay,->,very thick,blue,opacity=.5]
+ (B)to[out=-50,in=160]node[pos=.4,above right,rotate=-20,text width=32mm]{\footnotesize  $ k^2 -9 \neq  0$ con lo cual existe $\frac{1}{k^2-9}$ } (F);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+}
+ 
+\noindent \textbf{Resumen con las Conclusión}
+\begin{itemize}
+    \item Para $k = -3$, el sistema es \textbf{compatible indeterminado (CI)}.
+    \item Para $k = 3$, el sistema es \textbf{incompatible (I)}.
+    \item Para $k \in \R -\{3,\, -3\}$, el sistema es \textbf{compatible determinado (CD)}.
+\end{itemize}
+
+
+
+
+
+\bigskip 
+
+
+A continuación, {\bf se resolverá nuevamente el ejercicio} utilizando la {\bf matriz casi escalonada}. Los recuadros en azul se muestran de forma explícita, pero en una resolución propia no es necesario escribirlos.
+
+\medskip 
+
+$\left\{
+    \begin{array}{rl}
+    5x + 3y + 4z &= 3 \\
+    5y + 2z &= 4 \\
+    (k^2 - 9)z &= k + 3
+    \end{array}\right.\quad
+    \text{\huge $\sim$}
+   \left[ \begin{array}{ccc | c }
+   5 & 3 & 4 & 3\\
+   0 & 5 & 2 & 4\\
+   0 & 0 & k^2 - 9 & k+3
+   \end{array}\right] 
+   $
+
+
+\begin{itemize}
+\begin{minipage}{.43\textwidth}
+
+
+
+    \item  Para que el sistema sea Compatible \linebreak Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3
+\]
+
+
+\noindent Y esta condición se verificará si $k^2 - 9 \neq 0$. \indicador{A}{(-.1,.15)}{B}{(1,.9)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=89mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$k^2 - 9 $ debe ser distinto de cero, y esto se debe a lo siguiente: 
+
+\medskip
+\begin{minipage}{.4\textwidth}
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+5 & 3 & 4 & 3\\
+   0 & 5 & 2 & 4\\
+   0 & 0 & \color{red}{ k^2 - 9 }\indicador{AA}{(-.3,-.1)}{BB}{(.5,-.35)}
+   & k+3
+\end{array}\right] 
+$ 
+\end{minipage}\ \  \begin{minipage}{.57\textwidth}
+\textcolor{green!50!black}{ La fila 1 y 2 no influye porque su primer elemento no nulo son ``5'', pero realizando una operación elemental más se logra un ``1''.}
+\end{minipage}
+
+
+\,  \\ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)|-(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=61mm, 
+below, xshift=26mm
+]{\scriptsize 
+\textcolor{green!50!black}{Si $k^2 -9 \neq 0$, nos aseguramos la condición \linebreak $\text{Rg}(A) = \text{Rg}(A') = 3$% \\ (Y en una operación elemental más logramos un ``1'')
+}.
+};
+}
+%
+%
+%
+%
+%
+$$
+\color{red}{k^2 - 9 \neq 0}
+$$
+
+
+\noindent
+Se resuelve por complemento:
+\end{minipage}
+
+\[
+k^2 - 9 = 0 
+\quad \Leftrightarrow \quad
+k^2 = 9 
+\quad \Leftrightarrow \quad 
+|k| = 3 
+\quad \Leftrightarrow \quad 
+k = 3 \quad \text{o} \quad k = -3 .
+\]
+
+\noindent
+$\therefore$ 
+El sistema es Compatible Determinado $\forall k \in \mathbb{R} - \{-3, 3\}\,  $
+
+
+
+
+
+\begin{minipage}{.43\textwidth}
+
+    \item   Para que el sistema sea Compatible \linebreak Indeterminado (CI) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') < 3
+\]
+Y esta condición se verificará si:
+
+$$
+k^2 - 9 = 0 \quad \text{y} \quad k + 3 = 0
+\indicador{A}{(.1,.15)}{B}{(1,.9)}
+$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=45mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$k^2 - 9 $ y $k+3$ deben ser ceros, ,y esto e debe a lo siguiente: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc| c }
+5 & 3 & 4 & 3\\
+   0 & 5 & 2 & 4\\
+   0 & 0 & \color{red}{ k^2 - 9 }
+   & \color{red}{k+3} \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=56mm, 
+below right, yshift=9mm
+]{\scriptsize 
+\textcolor{green!50!black}{ las filas 1 y 2 no la podemos anular. \\
+En la fila 3, debemos asegurarnos una fila nula, de esta forma se tendrá la condición  $ Rg(A)=  Rg(A')= 2 < 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+k^2-9 &=& 0  & \mbox{ y }   &  k+3= 0 
+\\[3mm]%%%%%%    
+k^2&=& 9 & \mbox{ y }   &   k= -3
+\\[3mm]%%%%%%  
+\sqrt{k^2} &=& \sqrt{9} & 
+\\[3mm]%%%%%%  
+|k|  &=&  3
+\\[6mm]%%%%%%  
+ k= -3 & \text{ o } & \  k=3 \marka{H2}{(1.5, .35)}
+\end{array}
+\]\tikz[overlay,remember picture] {
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=69mm,  
+right
+]{\scriptsize 
+el único valor que cumple las dos condiciones simultáneamente es el $-3$
+}; 
+}
+
+Por lo tanto: el sistema es Compatible Indeterminado para $k=-3$. 
+
+
+\bigskip
+
+
+\begin{minipage}{.43\textwidth}
+ 
+
+
+    \item   Para que el sistema sea Incompatible \linebreak  (Inc) necesitamos que:
+\[
+\text{Rg}(A) \neq \text{Rg}(A') 
+\]
+Y esta condición se verificará si:
+
+\medskip
+
+\quad$
+k^2 - 9 = 0 \quad \text{y} \quad k + 3 \neq 0
+\indicador{A}{(.1,.15)}{B}{(1,.6)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=43mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$k^2 - 9 $  deben ser ceros y $k+3$ distinto de cero , esto e debe al siguiente análisis: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+5 & 3 & 4 & 3\\
+   0 & 5 & 2 & 4\\
+   0 & 0 & \color{red}{ k^2 - 9 }
+   & \color{blue}{k+3} \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=66mm, 
+below right, yshift=18mm
+]{\scriptsize 
+\textcolor{green!50!black}{ 
+Las filas 1 y 2 no la podemos anular, entonces la única opción es que $Rg(A)= 2$ y $Rg(A')=3$ \\
+En la fila 3, debemos asegurarnos que ${\color{red} k^2 - 9  = 0}$ y ${\color{blue} k+3 \neq 0 }$, de esta forma se tendrá la condición  $ Rg(A)=   2$ y $Rg(A')= 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+\bigskip 
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+k^2-9 &=& 0  & \mbox{ y }   &  k+3 \neq  0 
+\\[3mm]%%%%%%    
+k^2&=& 9 & \mbox{ y }   &   k \neq -3
+\\[3mm]%%%%%%  
+\sqrt{k^2} &=& \sqrt{9} & 
+\\[3mm]%%%%%%  
+|k|  &=&  3
+\\[6mm]%%%%%%  
+ k= -3 & \text{ o }& \  k=3 \marka{H2}{(1.5, .35)}
+\end{array}
+\]
+\tikz[overlay,remember picture] { 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=69mm,  
+right
+]{\scriptsize 
+el único valor que cumple las dos condiciones simultáneamente es el $3$
+}; 
+}
+
+Por lo tanto: el sistema es incompatible para $k=3$. 
+
+
+
+\end{itemize}
+
+
+
+
+
+\textbf{Resumen con las Conclusión}
+\begin{itemize}
+    \item Para $k \in \R -\{3,\, -3\}$, el sistema es \textbf{compatible determinado (CD)}.
+    \item Para $k = -3$, el sistema es \textbf{compatible indeterminado (CI)}.
+    \item Para $k = 3$, el sistema es \textbf{incompatible (I)}.
+\end{itemize}
+
+
+
+%\newpage
+
+
+\item \textbf{Primero  escalonamos :}
+
+
+$\left[\begin{smallmatrix}
+    1 \\[1mm] 2 \\[1mm]  1
+    \end{smallmatrix}\right] x +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  k
+    \end{smallmatrix}\right] y +
+    \left[\begin{smallmatrix}
+    -1 \\[1mm]  2 \\[1mm]  3
+    \end{smallmatrix}\right] z =
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  2
+    \end{smallmatrix}\right]
+\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrr|r}
+1 & 1 & -1 & 1\\
+2 & 3 & 2 & 3\\
+1 & k & 3 & 2
+\end{array}
+\right]
+\quad
+\semejante{\substack{F_2\leftarrow F_2 - 2 \cdot F_1 \\ F_3\leftarrow F_3 - F_1 } } 
+\qquad 
+\left[
+\begin{array}{rcr|r}
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+0 & k-1 & 4 & 1
+\end{array}
+\right]$
+
+\medskip
+
+$
+%\qquad 
+\semejante{F_3 \leftarrow F_3 +(-k+1) \cdot F_2  }
+\qquad 
+\left[
+\begin{array}{rrc|c}
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+0 & 0 & 8-4 k & 2-k
+\end{array}
+\right].   \marka{A}{(.1,.15)}
+$
+
+\medskip 
+
+
+
+
+
+
+ \marka{BB}{(.09\textwidth,-.15)}\marka{AA}{(.43\textwidth,.1
+   5)}
+   \marka{B}{(.5,-2.6)}
+
+%\vspace{8mm}
+
+
+\vspace{-6mm}\, 
+
+\hspace{.25\textwidth}\begin{minipage}{.75\textwidth}
+    
+    \marka{C}{(.1,.15)}   $\left[\begin{array}{rrc|c}
+1 & 1 & \ \  -1 \ \ \ & 1\\
+0 & 1 & 4 & 1\\
+0 & 0 & 0  & \ 0 \ 
+\end{array}
+\right].$\ \ \begin{minipage}{30mm}  \vspace{18mm}  
+   $\left. \begin{array}{rl}
+        Rg(A) &= 2  \\
+        Rg(A_a)&=2  \\
+        \hspace{-15mm}n^\circ \text{ incógnita} &= 3
+   \end{array}\right\}$
+    \end{minipage}\qquad \begin{minipage}{30mm}
+    \vspace{18mm} 
+    $\therefore \ $ por teorema de  Rouché-Frobenius el sistema de ecuaciones es CI.\end{minipage}
+
+ 
+
+
+
+
+
+\marka{D}{(.1,.15)}$\semejante{  
+F_3\leftarrow \tfrac{1}{8-4k} F_3  
+} 
+\left[ \begin{array}{ccc | c }
+   1 & 1 & \ \  -1 \ \ \ & 1\\
+0 & 1 & 4 & 1\\
+0 & 0 & 1  &   \frac{2-k}{8-4k}
+   \end{array}\right]  
+   $\ \ \begin{minipage}{30mm}  \vspace{18mm}  
+   $\left. \begin{array}{rl}
+        Rg(A) &= 3  \\
+        Rg(A_a)&=3  \\
+        \hspace{-15mm}n^\circ \text{ incógnita} &= 3
+   \end{array}\right\}$
+    \end{minipage}\qquad \begin{minipage}{30mm}
+    \vspace{18mm} 
+    $\therefore \ $ el sistema de ecuaciones es CD.\end{minipage}
+
+    
+\end{minipage}
+   \tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,blue,opacity=.5]
+(A) to[out=-30, in=0](AA)--(BB)to[out=180, in=160]node[pos=.2,below left,text width=27mm]{\footnotesize 
+condición: 
+\begin{align*}
+    8-4k &=0 \\
+    8 \ &= 4k \\
+     8: 4 \ &= k \\
+      2 \ &= k  
+\end{align*}} (B)--node[pos=.25,below right,rotate=13]{\footnotesize reemplazar: $ k= 2$ } (C); 
+ \draw [overlay,->,very thick,blue,opacity=.5]
+ (B)--node[pos=.88,below left,rotate=-20,text width=39mm]{\footnotesize  $ k  \neq  2$, es decir $8-4k \neq 0$ con lo cual existe $\frac{1}{8-4k}$} (D);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+}
+
+
+\textbf{Conclusión}
+\begin{itemize}
+    \item Para \(k = 2\), el sistema puede ser \textbf{Compatible Indeterminado (CI)},
+    \item para \(k \neq 2\), el sistema es \textbf{Compatible Determinado (CD)} y 
+    \item nunca es  \textbf{Incompatible (Inc)}.
+\end{itemize}
+
+
+
+
+
+
+
+\bigskip
+
+
+
+
+
+
+
+A continuación, {\bf se resolverá nuevamente el ejercicio} utilizando la {\bf matriz casi escalonada}. Los recuadros en azul se muestran de forma explícita, pero en una resolución propia no es necesario escribirlos. 
+
+$\left[\begin{smallmatrix}
+    1 \\[1mm] 2 \\[1mm]  1
+    \end{smallmatrix}\right] x +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  k
+    \end{smallmatrix}\right] y +
+    \left[\begin{smallmatrix}
+    -1 \\[1mm]  2 \\[1mm]  3
+    \end{smallmatrix}\right] z =
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  3 \\[1mm]  2
+    \end{smallmatrix}\right]
+\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrr|r}
+1 & 1 & -1 & 1\\
+2 & 3 & 2 & 3\\
+1 & k & 3 & 2
+\end{array}
+\right]
+\quad
+\semejante{\substack{F_2\leftarrow F_2 - 2 \cdot F_1 \\ F_3\leftarrow F_3 - F_1 } } 
+\qquad 
+\left[
+\begin{array}{rcr|r}
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+0 & k-1 & 4 & 1
+\end{array}
+\right]$
+
+\medskip
+
+$
+%\qquad 
+\semejante{F_3 \leftarrow F_3 +(-k+1) \cdot F_2  }
+\qquad 
+\left[
+\begin{array}{rrc|c}
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+0 & 0 & 8-4 k & 2-k
+\end{array}
+\right].
+$
+
+
+
+
+\bigskip
+
+
+\begin{itemize}
+\begin{minipage}{.43\textwidth}
+
+    \item  Para que el sistema sea Compatible \linebreak Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3
+\]
+
+
+\noindent Y esta condición se verificará si ${ \color{red}8-4k }\neq 0$. \indicador{A}{(-.1,.15)}{B}{(1,.9)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=89mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$8-k$ debe ser distinto de cero, y esto se debe a lo siguiente: 
+
+\medskip
+\begin{minipage}{.4\textwidth}
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+   0 & 0 & \color{red}{ 8-4k}\indicador{AA}{(-.3,-.1)}{BB}{(.5,-.35)}
+   & 2-k
+\end{array}\right] 
+$ 
+\end{minipage}\ \  \begin{minipage}{.57\textwidth}
+\textcolor{green!50!black}{ La fila 1 y 2 no influye porque su primer elemento no nulo ya son un  ``uno''.}
+\end{minipage}
+
+
+\,  \\ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)|-(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=61mm, 
+below, xshift=26mm
+]{\scriptsize 
+\textcolor{green!50!black}{Si $8-4k \neq 0$, nos aseguramos la condición \linebreak $\text{Rg}(A) = \text{Rg}(A') = 3$  }.
+};
+}
+
+
+
+
+
+
+ 
+
+\noindent
+Resolviendo:
+\end{minipage}
+
+\[
+8-4k \neq 0
+\quad \Leftrightarrow \quad
+8 \neq 4k 
+\quad \Leftrightarrow \quad 
+8 :4 \neq  k 
+\quad \Leftrightarrow \quad 
+2 \neq  k .
+\]
+
+\noindent
+$\therefore$ 
+El sistema es Compatible Determinado $\forall \  k \in \mathbb{R} - \{2\}\,  $
+
+\bigskip
+
+
+\begin{minipage}{.43\textwidth}
+
+    \item   Para que el sistema sea Compatible \linebreak Indeterminado (CI) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') < 3
+\]
+Y esta condición se verificará si:
+
+$$
+8-4k = 0 \quad \text{y} \quad 2-k = 0
+\indicador{A}{(.1,.15)}{B}{(1,.9)}
+$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=45mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$8-4k$ y $2-k$ deben ser ceros, ,y esto e debe a lo siguiente: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc| c }
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+   0 & 0 & \color{red}{ 8-4k}
+   & \color{red}{2-k} \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=56mm, 
+below right, yshift=9mm
+]{\scriptsize 
+\textcolor{green!50!black}{ las filas 1 y 2 no la podemos anular. \\
+En la fila 3, debemos asegurarnos una fila nula, de esta forma se tendrá la condición  $ Rg(A)=  Rg(A')= 2 < 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+8-4k&=& 0  & \mbox{ y }   &  2-k= 0 
+\\[2mm]%%%%%%    
+8\quad &=& 4k & \mbox{ y }   &   2= k
+\\[2mm]%%%%%%  
+8:4 &=&  k &  
+\\[2mm]%%%%%%  
+2 &=&  k &  
+\end{array}
+\]
+
+Por lo tanto: el sistema es incompatible para $k=2$. 
+
+
+
+
+
+\begin{minipage}{.43\textwidth}
+
+
+\bigskip 
+
+
+    \item   Para que el sistema sea Incompatible \linebreak  (Inc) necesitamos que:
+\[
+\text{Rg}(A) \neq \text{Rg}(A') 
+\]
+Y esta condición se verificará si:
+
+\medskip
+
+\quad$
+8-4k = 0 \quad \text{y} \quad 2-k \neq  0
+\indicador{A}{(.1,.15)}{B}{(1,.9)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=43mm, 
+above right, yshift=-6mm
+]{\scriptsize 
+$k^2 - 9 $  deben ser ceros y $k+3$ distinto de cero , esto e debe al siguiente análisis: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 1 & -1 & 1\\
+0 & 1 & 4 & 1\\
+   0 & 0 & \color{red}{ 8-4k}
+   & \color{blue}{2-k} \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=64mm, 
+below right, yshift=24mm
+]{\scriptsize 
+\textcolor{green!50!black}{ 
+Las filas 1 y 2 no la podemos anular, entonces la única opción es que $Rg(A)= 2$ y $Rg(A')=3$ \\
+En la fila 3, debemos asegurarnos que ${\color{red}8-4k  = 0}$ y ${\color{blue} 2-k \neq 0 }$, de esta forma se tendrá la condición  $ Rg(A)=   2$ y $Rg(A')= 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+\end{minipage}
+\medskip
+
+\noindent
+Se resuelve: \[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+8-4k&=& 0  & \mbox{ y }   &  2-k \neq  0 
+\\[2mm]%%%%%%    
+8\quad &=& -4k & \mbox{ y }   &   2 \neq  k
+\\[2mm]%%%%%%  
+8:4 &=&  k &  
+\\[2mm]%%%%%%  
+2 &=&  k &  \marka{H2}{(1.5, .35)}
+\end{array}
+\]\tikz[overlay,remember picture] {
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [text width=49mm,  
+right
+]{\scriptsize 
+no hay valores que cumple las dos condiciones simultáneamente.
+}; 
+}
+
+
+Por lo tanto: el sistema nunca es incompatible. 
+
+
+
+\end{itemize}
+
+
+\textbf{Conclusión}
+\begin{itemize}
+    \item Para \(k \neq 2\), el sistema es \textbf{Compatible Determinado (CD)}.
+    \item Para \(k = 2\), el sistema puede ser \textbf{Compatible Indeterminado (CI)} y
+    \item Nunca es  \textbf{Incompatible (Inc)}.
+\end{itemize}
+
+
+
+
+
+
+\item \textbf{Primero  busquemos la  matriz casi escalonada:}
+
+$
+    \begin{bmatrix}
+    1 & 2 & -3 \\
+    3 & -1 & 5 \\
+    4 & 1 & -(k^2 - 6)
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x \\ y \\ z
+    \end{bmatrix} =
+    \begin{bmatrix}
+    4 \\ 2 \\ k + 4
+    \end{bmatrix}
+\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrc|r}
+1 & 2 & -3 & 4\\
+3 & -1 & 5 & 2\\
+4 & 1 & -(k^2-6) & k+4
+\end{array}
+\right]
+\quad
+\semejante{\substack{F_2\leftarrow F_2 - 3 \cdot F_1 \\ F_3\leftarrow F_3 -4 F_1 } } 
+$
+
+\medskip
+
+$
+%\qquad 
+\left[
+\begin{array}{rrc|r}
+1 & 2 & -3 & 4\\
+0 & -7 & 14 & -10\\
+0 & -7 & 18-{{k}^{2}} & k-12
+\end{array}
+\right]
+\qquad 
+\semejante{F_3 \leftarrow F_3 -  F_2  }
+\qquad 
+\left[
+\begin{array}{rrc|c}
+1 & 2 & -3 & 4\\
+0 & -7 & 14 & -10\\
+0 & 0 & 4-{{k}^{2}} & k-2 
+\end{array}
+\right].
+$
+
+
+
+\bigskip
+
+
+\begin{itemize}
+\begin{minipage}{.43\textwidth}
+
+    \item  Para que el sistema sea Compatible \linebreak Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3
+\]
+
+
+\noindent Y esta condición se verificará si $4-k^2 \neq 0$. \indicador{A}{(-.1,.15)}{B}{(1,.9)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=89mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$4-k^2 $ debe ser distinto de cero, y esto se debe a lo siguiente: 
+
+\medskip
+\begin{minipage}{.4\textwidth}
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 2 & -3 & 4\\
+0 & -7 & 14 & -10\\
+0 & 0 &  \color{red}{4-{{k}^{2}}} \indicador{AA}{(-.3,-.1)}{BB}{(.5,-.35)}
+& k-2 
+\end{array}\right] 
+$ 
+\end{minipage}\ \  \begin{minipage}{.57\textwidth}
+\textcolor{green!50!black}{ La fila 1 y 2 no influye porque su primer elemento no nulo son ``5'', pero realizando una operación elemental más se logra un ``1''.}
+\end{minipage}
+
+
+\,  \\ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)|-(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=61mm, 
+below, xshift=26mm
+]{\scriptsize 
+\textcolor{green!50!black}{Si $4-k^2 \neq 0$, nos aseguramos la condición \linebreak $\text{Rg}(A) = \text{Rg}(A') = 3$% \\ (Y en una operación elemental más logramos un ``1'')
+}.
+};
+}
+
+
+\noindent
+Se resuelve por complemento:
+\end{minipage}
+
+\[
+4-k^2  = 0 
+\quad \Leftrightarrow \quad
+4 = k^2
+\quad \Leftrightarrow \quad 
+2 = |k| 
+\quad \Leftrightarrow \quad 
+k = 2 \quad \text{o} \quad k = -2.
+\]
+
+\noindent
+$\therefore$ 
+El sistema es Compatible Determinado $\forall\ k \in \mathbb{R} - \{-2, 2\}\,  $
+
+
+\bigskip 
+
+
+\begin{minipage}{.43\textwidth}
+
+    \item   Para que el sistema sea Compatible \linebreak Indeterminado (CI) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') < 3
+\]
+Y esta condición se verificará si:
+
+$$
+4-k^2  = 0 \quad \text{y} \quad k -2= 0
+\indicador{A}{(.1,.15)}{B}{(1,.9)}
+$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=45mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$4-k^2  $ y $k-2$ deben ser ceros, ,y esto e debe a lo siguiente: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc| c }
+1 & 2 & -3 & 4\\
+0 & -7 & 14 & -10\\
+0 & 0 &  \color{red}{4-{{k}^{2}}} 
+& \color{red}{ k-2 } \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=56mm, 
+below right, yshift=9mm
+]{\scriptsize 
+\textcolor{green!50!black}{ las filas 1 y 2 no la podemos anular. \\
+En la fila 3, debemos asegurarnos una fila nula, de esta forma se tendrá la condición  $ Rg(A)=  Rg(A')= 2 < 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+4-k^2 &=& 0  & \mbox{ y }   &  k-2= 0 
+\\[3mm]%%%%%%    
+4&=&k^2& \mbox{ y }   &   k= 2
+\\[3mm]%%%%%%  
+\sqrt{4} &=& \sqrt{k^2} & 
+\\[3mm]%%%%%%  
+2  &=&  |k|
+\\[6mm]%%%%%%  
+ k= -2 & \text{ o } &\  k=2\marka{H2}{(1.5, .35)}
+\end{array}
+\]\tikz[overlay,remember picture] {  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=69mm,  
+right
+]{\scriptsize 
+el único valor que cumple las dos condiciones simultáneamente es el $2$
+}; 
+}
+
+Por lo tanto: el sistema es Compatible Indeterminado para $k=2$. 
+
+
+
+
+
+\begin{minipage}{.43\textwidth}
+
+
+\bigskip 
+
+
+    \item   Para que el sistema sea Incompatible \linebreak  (Inc) necesitamos que:
+\[
+\text{Rg}(A) \neq \text{Rg}(A') 
+\]
+Y esta condición se verificará si:
+
+\medskip
+
+\quad$
+4-k^2  = 0 \quad \text{y} \quad k - 2\neq 0
+\indicador{A}{(.1,.15)}{B}{(1,.6)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=43mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$4-k^2   $  deben ser ceros y $k-2$ distinto de cero , esto e debe al siguiente análisis: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 2 & -3 & 4\\
+0 & -7 & 14 & -10\\
+0 & 0 &  \color{red}{4-{{k}^{2}}} 
+& \color{blue}{ k-2 }  \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=66mm, 
+below right, yshift=18mm
+]{\scriptsize 
+\textcolor{green!50!black}{ 
+Las filas 1 y 2 no la podemos anular, entonces la única opción es que $Rg(A)= 2$ y $Rg(A')=3$ \\
+En la fila 3, debemos asegurarnos que ${\color{red}4-k^2   = 0}$ y ${\color{blue} k-2 \neq 0 }$, de esta forma se tendrá la condición  $ Rg(A)=   2$ y $Rg(A')= 3$ y ésta es la
+única opción posible.}.
+};
+}
+
+\bigskip 
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rcl@{\qquad}c@{\qquad}c}
+4-k^2 &=& 0  & \mbox{ y }   &  k-2 \neq 0 
+\\[3mm]%%%%%%    
+4&=&k^2& \mbox{ y }   &   k \neq 2
+\\[3mm]%%%%%%  
+\sqrt{4} &=& \sqrt{k^2} & 
+\\[3mm]%%%%%%  
+2  &=&  |k|
+\\[6mm]%%%%%%  
+ k= -2 & \text{ o }& \  k = 2 \marka{H2}{(1.5, .35)}
+\end{array}
+\]\tikz[overlay,remember picture] { 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=69mm,  
+right
+]{\scriptsize 
+el único valor que cumple las dos condiciones simultáneamente es el $-2$
+}; 
+}
+
+Por lo tanto: el sistema es incompatible para $k=-2$. 
+
+
+
+\end{itemize}
+
+\bigskip
+
+ 
+    \item {\bf Primero  busquemos la  matriz casi escalonada:}
+    
+    
+    
+    $\left\{ 
+    \begin{array}{rl}
+    x \quad + \qquad 2y \quad + \qquad 3z \quad \, &= 1 \\
+    2x + (k + 4)y + (k^2 + k + 6)z &= k + 3
+    \end{array}\right.\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrc|r}
+1 & 2 & 3 & 1\\
+2 & k+4 & {{k}^{2}}+k+6 & k+30
+\end{array}
+\right]
+$
+
+\medskip
+
+$
+%\qquad 
+\semejante{F_3 \leftarrow F_3 -  F_2  }
+\qquad 
+\left[
+\begin{array}{rrc|c}
+1 & 2 & 3 & 1\\
+0 & k & {{k}^{2}}+k & k+28  
+\end{array}
+\right].
+$
+
+
+\medskip
+
+
+
+
+\begin{itemize}
+\item Para que el sistema sea Compatible Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3 \text{ numero de incógnitas.}
+\]
+
+como la matriz tiene dos filas (el sistema dos ecuaciones) esto no se puede dar.
+
+
+
+\bigskip 
+
+
+\begin{minipage}{.45\textwidth}
+
+    \item   Para que el sistema sea Incompatible \linebreak  (Inc) necesitamos que:
+\[
+\text{Rg}(A) \neq \text{Rg}(A') 
+\]
+Y esta condición se verificará si:
+
+\medskip
+
+\quad$
+k  = 0  \  \text{, } \  k^2 + k = 0 \  \text{ y } \  k - 2\neq 0
+\indicador{A}{(.1,.15)}{B}{(1,1.)} 
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=43mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$k  = 0  \  \text{ y } \  k^2 + k = 0$  deben ser ceros y $k-2$ distinto de cero , esto e debe al siguiente análisis: 
+
+\medskip 
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 2 & 3 & 1\\
+0 & \color{red}{k} & \color{red}{{{k}^{2}}+k} & \color{blue}{ k+28 } \indicador{AA}{(.3,.1)}{BB}{(1.1,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=52mm, 
+below right, yshift=21mm
+]{\scriptsize 
+\textcolor{green!50!black}{ 
+Las filas 1  no la podemos anular, entonces la única opción es que $Rg(A)=1$ y $Rg(A')=2$ \\
+En la fila 2, debemos asegurarnos que ${\color{red} k  = 0}$, ${\color{red} k^2+k  = 0}$  y ${\color{blue} k+3 \neq 0 }$, de esta forma se tendrá la condición  $ Rg(A)=   1$ y $Rg(A')= 2$ y ésta es la
+única opción posible.}.
+};
+}
+
+\bigskip 
+
+
+\noindent
+Se resuelve:
+\end{minipage}
+
+\[
+\begin{array}{rclrcl@{\qquad}c@{\qquad}c}
+k &=& 0 \quad \mbox{ y }\quad & k^2+ k &=& 0  & \mbox{ y }   &  k + 28 \neq 0 
+\\[3mm]%%%%%%    
+ & &  &k(k+1)&=&0& \mbox{ y }   &   k \neq - 28 
+\\[6mm]%%%%%%  
+ & &  & k= -3 &  \text{ o }& \  k=3 \marka{H2}{(1.5, .35)}
+\end{array}
+\]\tikz[overlay,remember picture] { 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=61mm,  
+right
+]{\scriptsize 
+el único valor que cumple las tres condiciones simultáneamente es el $0$
+}; 
+}
+
+Por lo tanto: el sistema es incompatible para $k=0$. 
+
+
+\bigskip 
+
+\bigskip
+
+\item Para que el sistema sea incompatible, solo nos queda el caso $k\neq 0$. Por lo tanto: el sistema es Compatible Indeterminado para $k \in \R -\{0\}$. 
+
+
+
+
+
+
+
+\bigskip 
+
+
+
+\end{itemize}
+
+
+
+
+
+\bigskip 
+
+\item \textbf{Primero  busquemos la  matriz casi escalonada:}
+    
+    
+    
+    $
+    \left[\begin{smallmatrix}
+    k \\[1mm]  1 \\[1mm]  1
+    \end{smallmatrix}\right] x +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  k \\[1mm]  1
+    \end{smallmatrix}\right] y +
+    \left[\begin{smallmatrix}
+    1 \\[1mm]  1 \\[1mm]  1
+    \end{smallmatrix}\right] z =
+    \left[\begin{smallmatrix}
+    0 \\[1mm]  0 \\[1mm]  0
+    \end{smallmatrix}\right]
+    \qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrr|r}
+k & 1 & 1 & 0\\
+1 & k & 1 & 0\\
+1 & 1 & 1 & 0
+\end{array}
+\right]
+\qquad 
+\semejante{F_1 \leftrightarrow  F_3  }
+\qquad
+\left[
+\begin{array}{rrc|c}
+1 & 1 & 1 & 0\\
+1 & k & 1 & 0\\
+k & 1 & 1 & 0 
+\end{array}
+\right].
+$
+
+\medskip
+
+$
+%\qquad 
+\semejante{\substack{F_2 \leftarrow F_2 -  F_1 
+\\
+F_3 \leftarrow F_3 - k \cdot  F_2} }
+\qquad 
+\left[
+\begin{array}{rcc|r}
+1 & 1 & 1 & 0\\
+0 & k-1 & 0 & 0\\
+0 & 1-k & 1-k & 0
+\end{array}
+\right] 
+\qquad
+\semejante{F_3 \leftarrow F_3 +  F_2  }
+\qquad 
+\left[
+\begin{array}{rcc|c}
+1 & 1 & 1 & 0\\
+0 & k-1 & 0 & 0\\
+0 & 0 & 1-k & 0
+\end{array}
+\right].
+$
+ 
+
+\medskip
+
+
+\begin{itemize}
+\item Debido a que el sistema es homogéneo, siempre será compatible, lo que implica que no puede ser incompatible. Por lo tanto, las únicas posibilidades son que sea compatible determinado o compatible indeterminado.
+
+
+
+\bigskip 
+
+
+
+\begin{minipage}{.43\textwidth}
+
+
+    \item  Para que el sistema sea Compatible \linebreak Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3
+\]
+
+
+\noindent Y esta condición se verificará si $k-1 \neq 0$. \indicador{A}{(-.1,.15)}{B}{(1,.9)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=89mm, 
+above right, yshift=-4mm
+]{\scriptsize 
+$4-k^2 $ debe ser distinto de cero, y esto se debe a lo siguiente: 
+
+\medskip
+\begin{minipage}{.42\textwidth}
+   \quad
+$
+\left[ \begin{array}{ccc | c }
+1 & 1 & 1 & 0\\
+0 & \color{red}{k-1} \marka{aa}{(-.3,-.1)}& 0 & 0\\
+0 & 0 & \color{red}{1-k} \indicador{AA}{(-.3,-.1)}{BB}{(.5,-.35)}
+&0
+\end{array}\right] 
+$ 
+\end{minipage}\ \  \begin{minipage}{.55\textwidth}
+\textcolor{green!50!black}{ La fila 1 y 2 no influye porque su primer elemento no nulo son ``5'', pero realizando una operación elemental más se logra un ``1''.}
+\end{minipage}
+
+
+\,  \\ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.3]
+(AA)|-(BB);
+\draw [overlay,->,very thick,blue,opacity=.3]
+(BB)++(0,-.2)-|(aa);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=65mm, 
+below, xshift=26mm
+]{\scriptsize 
+\textcolor{green!50!black}{Si $k-1 \neq 0$ y $1-k \neq 0$,   nos  aseguramos la condición  $\text{Rg}(A) = \text{Rg}(A') = 3$% \\ (Y en una operación elemental más logramos un ``1'')
+}.
+};
+}
+
+\bigskip
+
+
+\noindent
+Se resuelve por complemento:
+\end{minipage}
+
+\[
+k-1 = 0 
+\quad \Leftrightarrow \quad
+k = 1
+\]
+
+\noindent
+$\therefore$ 
+El sistema es Compatible Determinado $\forall\ k \in \mathbb{R} - \{ 1\}\,  $
+
+
+\bigskip 
+
+
+\item Para que el sistema sea Compatible
+Indeterminado (CI) solo nos queda el caso en que $k=1$.
+
+
+
+Por lo tanto: el sistema es Compatible Indeterminado para $k=1$. 
+
+
+
+
+
+
+\end{itemize}
+\bigskip 
+
+
+     \item \textbf{Primero  busquemos la  matriz casi escalonada:}
+     
+     $\left\{
+    \begin{array}{rl}
+    x + y + z + (k - 1)w &= 0\\
+    -x \quad - \quad ky \quad -\quad z &= -2k \\
+    kx + 2y + 2z + k^2 w &= 2
+    \end{array}\right.
+    \qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrrr|r}
+1 & 1 & 1 & k-1 & 0\\
+-1 & -k & -1 & 0 & -2 k\\
+k & 2 & 2 & {{k}^{2}} & 2
+\end{array}
+\right]
+\quad 
+\semejante{\substack{F_2 \leftarrow F_2 +  F_1 
+\\
+F_3 \leftarrow F_3 - k \cdot  F_2} }
+$
+ 
+\medskip
+
+$
+%\quad 
+\left[
+\begin{array}{rccc|c}
+1 & 1 & 1 & k-1 & 0\\
+0 & 1-k & 0 & k-1 & -2 k\\
+0 & 2-k & 2-k & k & 2
+\end{array}
+\right]
+\quad 
+\semejante{F_3 \leftarrow F_3 -  F_2  }
+\quad 
+\left[
+\begin{array}{rccc|c}
+1 & 1 & 1 & k-1 & 0\\
+0 & 1-k & 0 & k-1 & -2 k\\
+0 & 1 & 2-k & 1 & 2 k+2
+\end{array}
+\right]\qquad 
+\semejante{F_2 \leftrightarrow  F_3  }$
+ 
+\medskip
+
+$
+%\quad 
+\left[
+\begin{array}{rccc|c}
+1 & 1 & 1 & k-1 & 0\\
+0 & 1 & 2-k & 1 & 2 k+2\\
+0 & 1-k & 0 & k-1 & -2 k
+\end{array}
+\right]
+\quad 
+\semejante{ F_3 \leftarrow F_3 - (1-k)  F_2  }
+\quad 
+\left[
+\begin{array}{rccc|c}
+1 & 1 & 1 & k-1 & 0\\
+0 & 1 & 2-k & 1 & 2 k+2\\
+0 & 0 & -{{k}^{2}}+3 k-2 & 2 k-2 & 2 {{k}^{2}}-2 k-2
+\end{array}
+\right]$
+ 
+\medskip
+
+
+factorizamos los polinomios que aparecen en la matriz
+
+\hfill$\left[
+\begin{array}{rc@{\qquad}c@{\qquad}c|c}
+1 & 1 & 1 & k-1 & 0\\
+0 & 1 & -\left( k-2\right)  & 1 & 2 \left( k+1\right) \\
+0 & 0 & -\left( k-2\right) \, \left( k-1\right)  & 2 \left( k-1\right)  & 2 \cdot\left( x-\frac{1-\sqrt{5}}{2}\right) \, \left( x-\frac{\sqrt{5}+1}{2}\right) 
+\end{array}
+\right]$
+
+
+
+
+
+\begin{itemize}
+\item Para que el sistema sea Compatible Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 4 \text{ numero de incógnitas.}
+\]
+
+como la matriz tiene tres filas (el sistema tres ecuaciones) esto no se puede dar.
+
+
+
+\bigskip 
+
+ 
+
+    \item   Para que el sistema sea Incompatible   (Inc) necesitamos que:
+\[
+\text{Rg}(A) \neq \text{Rg}(A') 
+\]
+Y esta condición se verificará si:
+
+\medskip
+
+\quad$\indicador{A}{(-.1,.15)}{C}{(-.8,-.45)} \marka{B}{(-.4,-.9)}
+-\left( k-2\right) \, \left( k-1\right)  = 0  \  \text{, } \  2(k-1) = 0 \  \text{ y } \  2 \cdot\left( x-\frac{1-\sqrt{5}}{2}\right) \, \left( x-\frac{\sqrt{5}+1}{2}\right) 
+ \neq 0
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=180, in=90] (C) to[out=-90, in=180] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=99mm, 
+below right,yshift=5mm
+]{\scriptsize 
+$-\left( k-2\right) \, \left( k-1\right)   \  \text{ y } \  2(k-1)$  deben ser ceros y $k-2$ distinto de cero , esto e debe al siguiente análisis: 
+
+   
+$
+\left[ \begin{array}{cccc | c }
+1 & 1 & 1 & k-1 & 0\\[2mm]
+0 & 1 & -\left( k-2\right)  & 1 & 2 \left( k+1\right) \\[2mm]
+0 & 0 & \color{red}{ -\left( k-2\right) \, \left( k-1\right)}  &  \color{red}{2 \left( k-1\right) } & \color{blue}{2  \left( x-\frac{1-\sqrt{5}}{2}\right) \, \left( x-\frac{\sqrt{5}+1}{2}\right) }  \indicador{AA}{(.3,.1)}{BB}{(.9,.1)}
+\end{array}\right] 
+$ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(AA)--(BB);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=67mm, 
+below right, yshift=14mm
+]{\scriptsize 
+\textcolor{green!50!black}{ 
+Las filas 1 y 2 no las podemos anular, entonces la única opción es que $Rg(A)=2$ y $Rg(A')=2$ \\
+En la fila 3, debemos asegurarnos que $\color{red}{ -\left( k-2\right) \, \left( k-1\right) =0}$, ${\color{red} 2(k-1) = 0}$  y $\color{blue}{2  \left( x-\frac{1-\sqrt{5}}{2}\right) \, \left( x-\frac{\sqrt{5}+1}{2}\right) \neq 0 }$, de esta forma se tendrá la condición  $ Rg(A)=   1$ y $Rg(A')= 2$ y ésta es la
+única opción posible.}.
+};
+}
+
+\vspace{36mm} 
+
+
+\noindent
+Se resuelve:
+
+\[
+\begin{array}{rclrcl@{\qquad}c@{\qquad}c}
+-\left( k-2\right) \, \left( k-1\right)  &=& 0 \qquad\qquad \mbox{ y }\qquad & 2(k-1) &=& 0  & \mbox{ y } \qquad  &   2 \cdot\left( x-\frac{1-\sqrt{5}}{2}\right) \, \left( x-\frac{\sqrt{5}+1}{2}\right) \neq 0 
+\\[3mm]%%%%%%    
+     k= -2 & \text{ o }& \  k = 2  \marka{H2}{(1.5,- .35)}& k  &=&1 &     &   k \neq \frac{1-\sqrt{5}}{2} \ \mbox{ y }  \  k \neq \frac{1+\sqrt{5}}{2}
+\end{array}
+\]\tikz[overlay,remember picture] { 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[fill=blue!30!white!30!,
+rectangle,rounded corners=1mm,
+%xshift=-7mm,yshift=0mm
+] at (H2) [
+text width=61mm,  
+below right
+]{\scriptsize 
+el único valor que cumple las todas condiciones simultáneamente es el $1$
+}; 
+}
+
+\bigskip 
+
+\bigskip
+
+Por lo tanto: el sistema es incompatible para $k=1$. 
+
+
+\bigskip 
+
+\bigskip
+
+\item Para que el sistema sea incompatible, solo nos queda el caso $k\neq 1$. Por lo tanto: el sistema es Compatible Indeterminado para $k \in \R -\{1\}$. 
+
+
+
+
+
+
+
+\bigskip 
+
+
+
+\end{itemize}
+
+
+
+
+\item \textbf{Primero  busquemos la  matriz casi escalonada:}
+
+
+$
+    \begin{bmatrix}
+    1 & 3 & -2 \\
+    0 & k & 0 \\
+    0 & k &  k^2 - 25 \\
+    2 & 6+k & k^2-29 
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x \\ y \\ z
+    \end{bmatrix} =
+    \begin{bmatrix}
+    5 \\ 0 \\ k + 5 \\ k+15
+    \end{bmatrix}
+    \ 
+\text{\huge$\sim$}
+\ %%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrr|r}
+1 & 3 & -2 & 5\\
+0 & k & 0 & 0\\
+0 & k & {{k}^{2}}-25 & k+5\\
+2 & k+6 & {{k}^{2}}-29 & k+15
+\end{array}
+\right]
+\  
+\semejante{F_4 \leftrightarrow  F_4 - 2 F_1  }
+$
+
+\medskip
+
+$
+%\quad 
+\left[
+\begin{array}{rcc|c}
+1 & 3 & -2 & 5\\
+0 & k & 0 & 0\\
+0 & k & {{k}^{2}}-25 & k+5\\
+0 & k & {{k}^{2}}-25 & k+5
+\end{array}
+\right]
+\  
+\semejante{\substack{F_3 \leftarrow F_3 -  F_2
+\\
+F_4 \leftarrow F_4 -   F_2} }
+\ 
+\left[
+\begin{array}{ccc|r}
+1 & 3 & -2 & 5\\
+0 & k & 0 & 0\\
+0 & 0 & {{k}^{2}}-25 & k+5\\
+0 & 0 & {{k}^{2}}-25 & k+5
+\end{array}
+\right]\quad 
+\semejante{F_3 \leftarrow F_3 +  F_2  }
+\quad 
+\left[
+\begin{array}{rrc|c}
+1 & 3 & -2 & 5\\
+0 & k & 0 & 0\\
+0 & 0 & {{k}^{2}}-25 & k+5\\
+0 & 0 & 0 & 0
+\end{array}
+\right]$
+
+\bigskip 
+
+\begin{itemize} 
+\begin{minipage}{.515\textwidth}
+
+
+    \item  Para que el sistema sea Compatible \linebreak Determinado (CD) necesitamos que:
+\[
+\text{Rg}(A) = \text{Rg}(A') = 3
+\]
+
+
+\noindent Y esta condición se verificará si $k \neq 0$ \ y \ $k^2 -25\neq 0$\indicador{A}{(-.1,.15)}{B}{(.6,.9)}.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {
+\draw [overlay,<-,very thick,blue,opacity=.5]
+(A) to[out=0, in=220] (B);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (B) [
+text width=75mm, 
+above right, yshift=-14mm
+]{\scriptsize 
+$k$ y $k^2-25$ deben ser distintos de cero, y esto se debe al siguiente análisis: 
+
+\medskip
+\begin{minipage}{.51\textwidth}
+$
+\left[ \begin{array}{ccc | c }
+1 & 3 & -2 & 5\\
+0 &  \color{red}{k } \marka{aa}{(-.1,-.1)}& 0 & 0\\
+0 & 0 & \color{red}{ {{k}^{2}}-25 } \indicador{AA}{(-.3,-.1)}{BB}{(.5,-.75)}
+& k+5\\
+0 & 0 & 0 & 0
+\end{array}\right] 
+$ 
+\end{minipage}\ \  \begin{minipage}{.45\textwidth}
+\textcolor{green!50!black}{ La fila 1 y 2 no influye porque su primer elemento no nulo son ``5'', pero realizando una operación elemental más se logra un ``1''.}
+\end{minipage}
+
+
+\,  \\ 
+};
+%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----%%%%%%%%%%%%%%%%%%%-----
+\draw [overlay,<-,very thick,blue,opacity=.3]
+(AA)|-(BB);
+\draw [overlay,->,very thick,blue,opacity=.3]
+(BB)++(0,-.2)-|(aa);
+%---------------------------------------%---------------------------------------%---------------------------------------%---------------------------------------
+\node[fill=blue!20!white!30!,
+rectangle,rounded corners=1mm] at (BB) [
+text width=48mm, 
+below, xshift=26mm
+]{\scriptsize 
+\textcolor{green!50!black}{Si $k \neq 0$ y $k^2 -25 \neq 0$,   nos  aseguramos la condición  \linebreak
+\quad$\text{Rg}(A) = \text{Rg}(A') = 3$% \\ (Y en una operación elemental más logramos un ``1'')
+}.
+};
+}
+
+\bigskip
+
+
+\noindent
+Se resuelve por complemento:
+
+
+\[
+k^2-25 = 0 
+\quad \Leftrightarrow \quad
+k^5 = 25
+\quad \Leftrightarrow \quad
+|k| =5
+\]
+
+\hfill$ k= 5 \text{ o } k=-5$ 
+\end{minipage}
+
+
+
+\bigskip
+
+
+
+\noindent
+$\therefore$ 
+El sistema es Compatible Determinado $\forall\ k \in \mathbb{R} - \{-5,0,5\}\,  $
+
+
+\bigskip 
+
+
+\item Ahora falta determinar que sucede con el sistema para los valores de $k=0 ,\ k= -5$ y $k= 5$
+
+
+
+
+
+\begin{itemize}
+    \item si $k=0 $ al remplazar en la  matriz  $
+    \left[\begin{smallmatrix}
+\  1 \   &\  3\  & -2 & 5\\[1mm]
+0 & k & 0 & 0\\[1mm]
+0 & 0 & \ \ k^2-25 & \ \ k+5\\[1mm]
+0 & 0 & 0 & 0\\
+\end{smallmatrix}
+\right]  
+$, que habíamos obtenido, tenemos: 
+
+
+    $$
+    \left[\begin{array}{rrc|c}
+1 & 3 & -2 & 5\\
+0 & 0 & 0 & 0\\
+0 & 0 &  -25 & 5\\
+0 & 0 & 0 & 0
+\end{array}
+\right]  
+\quad
+\semejante{ F_2 \leftrightarrow F_3}
+\quad
+\left[\begin{array}{rrc|c}
+1 & 3 & -2 & 5\\
+0 & 0 &  -25 & 5\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{array}
+\right]  
+$$
+
+Donde $ \text{Rg}(A) = \text{Rg}(A')= 2$ y el sistema resulta  Compatible indeterminado. 
+\bigskip 
+
+
+ 
+
+
+
+\item si $k=-5$ al remplazar en la  matriz  $
+    \left[\begin{smallmatrix}
+\  1 \   &\  3\  & -2 & 5\\[1mm]
+0 & k & 0 & 0\\[1mm]
+0 & 0 & \ \ k^2-25 & \ \ k+5\\[1mm]
+0 & 0 & 0 & 0\\
+\end{smallmatrix}
+\right] 
+$, que habíamos obtenido, tenemos: 
+
+$$
+    \left[\begin{array}{rrc|c}
+1 & 3 & -2 & 5\\
+0 & -5 & 0 & 0\\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right]   
+$$
+
+ 
+Donde $ \text{Rg}(A) = \text{Rg}(A')= 2$ y el sistema resulta  Compatible indeterminado. 
+
+\item si $k=5$ al remplazar en la  matriz  $
+    \left[\begin{smallmatrix}
+\  1 \   &\  3\  & -2 & 5\\[1mm]
+0 & k & 0 & 0\\[1mm]
+0 & 0 & \ \ k^2-25 & \ \ k+5\\[1mm]
+0 & 0 & 0 & 0\\
+\end{smallmatrix}
+\right]  
+$, que habíamos obtenido, tenemos: 
+
+$$
+    \left[\begin{array}{rrc|c}
+1 & 3 & -2 & 5\\
+0 & 5 & 0 & 0\\
+0 & 0 & 0 & 10 \\
+0 & 0 & 0 & 0
+\end{array}
+\right]   
+$$
+
+ 
+Donde $ \text{Rg}(A) =2 $ \ y \ $ \text{Rg}(A')= 3$, entonces  el sistema resulta  incompatible. 
+
+
+\end{itemize}
+\textbf{Resumen con las Conclusión}
+\begin{itemize}
+    \item Para $k \in \R -\{-5, \ 0, \, 5\}$, el sistema es \textbf{compatible determinado (CD)}.
+    \item Para $k = 0$ y $k=-5$, el sistema es \textbf{compatible indeterminado (CI)}.
+    \item Para $k = 5$, el sistema es \textbf{incompatible (I)}.
+\end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+\bigskip 
+
+
+
+
+
+
+
+
+
+
+
+    \item La siguiente matriz es la matriz de coeficientes asociada a un sistema de ecuaciones lineales homogéneo:
+\[
+A =
+\begin{bmatrix}
+2 & 2 & 1 & 0 \\
+0 & 3 & 0 & 3k \\
+0 & 0 & 1 & -k \\
+0 & 0 & 0 & k^2 - 25
+\end{bmatrix}
+\]
+
+\begin{enumerate}
+    \item[a)] Determinar para qué valores de $k$ el sistema es compatible determinado, compatible indeterminado o incompatible.
+    \item[b)] Considerando $k = 5$, escribir la solución del sistema de ecuaciones. En caso de ser compatible indeterminado, escribir dos soluciones particulares.
+\end{enumerate}
+
+
+
+
+
+
+\textbf{Solución:}
+
+\begin{enumerate}
+    \item[a)] Determinar para qué valores de $k$ el sistema es compatible determinado, compatible indeterminado o incompatible.
+
+Como la matriz es cuadrada resolveremos por medio del calculo de determinante de la matriz de coeficiente. 
+
+\begin{itemize}
+    \item Primero calculamos el determinante de  la matriz de coeficiente, que como es una matriz triangular es el producto de la diagonal principal. 
+
+    \[
+    |A| = 2\cdot 3 \cdot 1 \cdot (k^2 -25) =6 \cdot (k^2 -25)
+    \]
+Analizamos el caso $|A| \neq 0$ tenemos: \quad$6 \cdot (k^2 -25) \neq 0 \quad \Longleftrightarrow \quad k^2 - 25 \neq 0 $.
+
+
+
+
+\textbf{Conclusión preliminar:}
+
+
+\begin{itemize}
+    \item Si $k^2 - 25 \neq 0$ (es decir, $k \neq \pm 5$), entonces $\det(A) \neq 0$. En este caso, el sistema es compatible determinado, ya que puede resolverse utilizando la matriz inversa.
+    \item Si $k = \pm 5$, entonces $\det(A) = 0$. Esto implica que el sistema puede ser compatible indeterminado o incompatible. Sin embargo, dado que el sistema es homogéneo, la única posibilidad es que sea compatible indeterminado.
+\end{itemize}
+    
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    \item[b)] Considerando $k = 5$, escribir la solución del sistema de ecuaciones. En caso de ser compatible indeterminado, escribir dos soluciones particulares.
+
+
+
+
+    
+
+\begin{itemize}
+    \item si $k=5 $ al remplazar en la  matriz  $
+    \left[\begin{smallmatrix}
+\ 2 \ & \ 2\  & 1 & 0 \\[1mm]
+0 & 3 & 0 & \  3k \  \\[1mm]
+0 & 0 & 1 & -k \\[1mm]
+0 & 0 & 0 &\  k^2 - 25\ \\
+\end{smallmatrix}
+\right]  
+$, que habíamos obtenido, tenemos: 
+
+
+    $$
+    \left[\begin{array}{rrcc}
+2 & 2 & 1 & 0 \\
+0 & 3 & 0 & 15 \\
+0 & 0 & 1 & -5\\
+0 & 0 & 0 & 0
+\end{array}
+\right]  
+$$
+
+Apliquemos Gauss al sistema de ecuación: 
+
+$
+    \begin{bmatrix}
+    2 & 2 & 1 & 0 \\
+0 & 3 & 0 &  15\\
+0 & 0 & 1 & -5 \\
+0 & 0 & 0 & 0
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x \\ y \\ z \\ w 
+    \end{bmatrix} =
+    \begin{bmatrix}
+    0\\ 0 \\ 0 \\ 0
+    \end{bmatrix}
+\qquad
+\text{\huge$\sim$}
+\qquad%%%%%%%%%%%%%%%%%%%%%%%%%%-----%
+\left[
+\begin{array}{rrrc|c}
+2 & 2 & 1 & 0 & 0\\
+0 & 3 & 0 & 15& 0\\
+0 & 0 & 1 & -5 & 0\\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right] 
+$
+
+En este caso tenemos: $Rg(A) =  Rg(A') = 3 < 4$  (hay 4 incógnita) 
+    
+ \medskip 
+ 
+    \hfill $\therefore$ el sistema es Compatible indeterminado.
+    
+
+
+De esa matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+\bigskip
+$
+\left\{
+\begin{array}{rl}
+2 x +2 y + z  &= 0, \marka{xx}{(.1,.15)}\\[3mm]
+3y +15 w &= 0 . \indicador{a}{(.1,.15)}{b}{(.9,.15)}\\[3mm]
+z -5 w  &=0 . \indicador{A}{(.1,.15)}{B}{(.9,.15)}
+\end{array}
+\right.
+$
+
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikz[overlay,remember picture] {  
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{ 
+$
+3y
+=  %%%%%
+-15 w 
+$ \indicador{a}{(.1,.15)}{b}{(1.1,.15)}
+};
+\draw [overlay,->,very thick,red,opacity=.5](a)--(b);
+\node  at (b) [ right ]{
+$\marka{a1}{(-.1,-.2)}
+y
+=  %%%%%
+-5 w \marka{a2}{(.1,.45)}
+$ \indicador{x}{(.1,.15)}{y}{(.6,.45)}\marka{z}{(1.3,.45)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%---------------------------------------------------------------------------------------------%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](A)--(B);
+\node  at (B) [ right ]{
+$\marka{a1}{(-.1,-.2)}
+z
+=  %%%%%
+5 w \marka{a2}{(.1,.45)}
+$\marka{AAA}{(.1,.15)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%-------------------------------------%%%%%%%% % %%%%% %%%%% %%% %%-------------------------------------%%% %%% %%%% %%% %%%% %%%% %%%-------------------------------------%%%% %%%% %%%%% %%%% %%%% %%%-------------------------------------%%%%%-----------------%%%% %% %% %%% %% %% %% %% %% %% %-- -----------------------------------
+\draw [overlay,->,very thick,teal,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,teal,opacity=.5](xx)-|(y);
+\draw [overlay,very thick,teal,opacity=.5](AAA)-|(y);
+\node  at (z) [text width=50mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+2x +2 (-5w)+ (5w)
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  0
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2x -5w
+  &=%%%%%%%%%%%%%%%%%%%%%%
+0
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+2x  
+  &=  %%%%%%%%%%%%%%%%%%%%%%
+5w  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\marka{a1}{(-.1,-.25)}
+x  
+  &=  %%%%%%%%%%%%%%%%%%%%%%
+\tfrac{5}{2}w \marka{a2}{(.1,.5)}
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+\ \\[3mm]
+
+
+ \hfill $\boxed{\rule{0mm}{6mm}{\bf Rta:}\quad  Sol= \left\{\rule{0mm}{4.5mm} \left(\tfrac{5}{2}w ,\, -5w,\,5 w ,\, w\right)\, \big/\   w \in \mathbb{R} \right\} \  }$
+
+
+
+\medskip
+
+{\bf Soluciones particulares:}
+
+\medskip 
+
+\begin{itemize}
+\begin{minipage}{.43\textwidth}
+    \item Para \(w = 0\):
+
+    Sustituyendo:
+    \quad
+    $x = 0, \  y = 0, \  z = 0, \  w = 0.$
+    
+
+    Una solución particular es:\quad  
+    $(0, 0, 0, 0).$
+
+
+\end{minipage}
+\qquad
+\begin{minipage}{.43\textwidth}%%%%%%%%%%%%%%%%%%%%%%%%%% % % %%%%% %%% %% %  % % %% % %% %% % %% % %% % %% % %% % %% %% %% % % % %% % %% % %% % %% %% %% %% %% %% %%% %% %% %%% %%% %%%% %%% %% %% %% % % %%%%% %%5
+    \item Para \(w = 1\):
+
+    Sustituyendo:
+    $
+    x = \frac{5}{2}, \  y = -5, \  z = 5, \   w = 1.
+    $
+
+\medskip 
+
+    Otra solución particular es:
+    \  $\big(\tfrac{5}{2}, -5,51, 1\big).$
+    
+\end{minipage}
+\end{itemize}
+
+
+
+\bigskip     
+
+\end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
+\newpage
+\section*{Ejercicios para Examen Final}
+
+\end{enumerate}
+
+
+\begin{enumerate}[\hspace{-7mm} 1) ]
+\item \begin{enumerate}
+		\item \begin{enumerate}
+			\item[i)] Resolver el sistema \(
+			\left \{
+			\begin{array}{l}
+				x+y-\tfrac{1}{2}z=5 \\
+				x-3y-z=6
+			\end{array}
+			\right .
+			\) 
+			\item[ii)] Añadir una tercer ecuación para que el sistema resulte:\ ii)1) C.D.\   ii)2) C.I.\  ii)3) Inc.
+		\end{enumerate} 
+	
+	\item Dado un sistema de dos ecuaciones lineales con tres incógnitas, analizar si siempre es posible agregar una ecuación para que resulte C.D. Justificar
+\end{enumerate}
+
+
+\item Determinar qué valores deben tomar $a$ y $b$ para que:
+
+\begin{enumerate}
+	\item El sistema \(\left[\begin{matrix}
+		1 & b\\ 
+		b&a^2
+	\end{matrix}\right]
+	\cdot
+	\left[\begin{matrix}
+		x\\
+		y
+	\end{matrix}\right]
+	=
+	\left[\begin{matrix}
+		0\\0
+			\end{matrix}
+	\right]\) tenga infinitas soluciones. Dar dos ejemplos de valores posibles para $a$ y $b$.
+	
+	\item \((-1;2;1)\) sea solución del sistema \(\left[\begin{matrix}
+		-1\\1\\2b
+	\end{matrix}\right]
+	x + 
+	\left[\begin{matrix}
+		a\\-1\\0
+	\end{matrix}\right]
+	y + 
+	\left[\begin{matrix}
+		1\\2\\a-b
+	\end{matrix}\right]
+	z =
+	\left[\begin{matrix}
+		-1\\-1\\2
+	\end{matrix}
+	\right]\)
+	
+	\item El conjunto \(A=\left\{(x;y;z)=\left(k;\tfrac{11}{4}-\tfrac{5}{4}k;\tfrac{9}{4}+\tfrac{1}{4}k\right),k,\in\mathbb{R}\right\}\) sea solución del sistema \(
+	\left \{
+	\begin{array}{l}
+		5x+4y=a \\
+		x+y+z=b
+	\end{array}
+	\right .
+	\) 
+	
+\end{enumerate}
+\item Dar, para cada uno de los siguientes incisos y en caso de ser posible, un sistema de ecuaciones lineales que cumpla con las condiciones pedidas. Justificar.
+\begin{enumerate}
+	\item  Un sistema homogéneo de dos ecuaciones con dos incógnitas que sea compatible  indeterminado.
+	\item Un sistema homogéneo de tres ecuaciones con tres incógnitas que sea compatible indeterminado.
+	\item Un sistema de dos ecuaciones con dos incógnitas que sea incompatible.
+	\item Un sistema de dos ecuaciones con tres incógnitas que sea incompatible.
+	\item Un sistema de dos ecuaciones con tres incógnitas que sea compatible determinado.
+\end{enumerate}
+
+\item Justificar que el sistema $\left\{
+    \begin{array}{rl}
+    5a x +y + az  &= 3 \\
+    x +ay +z &= 4 \\
+    bx + bz &= 0 
+    \end{array}\right.$ es compatible indeterminado para cualquier $a,\, b \in \R$ y hallar una solución general para los $a\neq 0$ y $b\neq 0$
+
+
+\item Dado el sistema de ecuaciones $\left\{
+    \begin{array}{rl}
+    x + \beta y + \alpha z &= 1 \\
+    x + \alpha \beta y + z &= \beta\\
+    \alpha x + \beta y + z  &= \alpha 
+    \end{array}\right.$, analizar la compatibilidad del sistema si $\beta=0$.
+\end{enumerate}
+
+
+\newpage
+\textbf{ANEXO - Problemas De Aplicación.}
+\begin{enumerate}[\hspace{-7mm} 1) ]
+\item Una compañía petrolera está evaluando la perforación de un pozo. Los ingresos por la venta de petróleo se estiman en \( U\$D \,50 \) por barril, menos \( U\$D \,10,000 \) fijos. Además, los costos operativos se estiman en \( U\$D \,20 \) por barril, más \( U\$D \,5,000 \) en costos fijos. ¿Cuál debe ser la cantidad de petróleo producido para que los ingresos sean iguales a los costos? ¿De cuánto es el ingreso y el costo?
+
+
+\medskip
+
+
+\textbf{Solución:} 
+
+\medskip 
+
+
+
+\begin{itemize} 
+\begin{multicols}{2}
+    \item El ingreso total es: $I(x) = 50x - 10,000$
+    
+
+        \columnbreak % Forzar cambio de columna si es necesario
+
+
+    \item El costo total es: $C(x) = 20x + 5,000$
+         
+\end{multicols}
+    donde $ x $ es la cantidad de barriles de petróleo producidos.
+
+\bigskip
+
+    \item Para que los ingresos sean iguales a los costos, debemos resolver la ecuación:   $$I(x) = C(x),$$ Resolución de la ecuación: \vspace{-6mm}
+    \begin{align*}
+        50x - 10,000 &= 20x + 5,000
+        \\
+        50x - 20x &= 10,000 + 5,000
+        \\
+        30x &= 15,000
+        \\
+        x &=  15,000: 30 
+        \\
+        x &= 500
+    \end{align*}
+
+    
+    
+
+    Por lo tanto, la cantidad de petróleo que debe producirse para que los ingresos sean iguales a los costos es $ x = 500 $ barriles.
+
+
+\bigskip
+
+
+    \item \textbf{Cálculo del ingreso y el costo:}  
+    Sustituimos $ x = 500 $ en las fórmulas de ingreso y costo:
+    \[
+    I(500) = 50\cdot 500 - 10,000 = 25,000 - 10,000 = 15,000
+    \]
+    \[
+    C(500) = 20\cdot 500  + 5,000 = 10,000 + 5,000 = 15,000
+    \]
+
+    Por lo tanto, cuando $ x = 500 $barriles:\quad   $I = C = 15,000$
+\end{itemize}
+
+
+%\bigskip
+
+
+\textbf{Respuesta:}  
+La cantidad de petróleo que debe producirse para que los ingresos sean iguales a los costos es de $ 500 $ barriles. El ingreso y el costo en ese caso son ambos iguales a $ U\$D \,15,000 $.
+
+
+
+\medskip
+
+
+
+
+\item  En cada uno de los siguientes problemas, plantear el sistema de ecuaciones lineales, resolverlo
+y responder.
+\begin{enumerate}[a) ]
+    \item Una refinería desea producir 1000 barriles de gasolina de alta calidad y 800 barriles de diésel de calidad premium. Cuenta con dos tipos de petróleo crudo: A (alta calidad) y B (baja calidad). Se sabe que para producir los barriles de gasolina deseados, durante
+el proceso de refinación se utiliza el $70 \%$ de barriles del petróleo A y el$ 50 \%$  de barriles del petróleo B. Además, para producir los barriles de diesel, se utiliza el $30 \%$ de barriles del petróleo A y el $50 \%$ de barriles del petróleo B. ¿Cuántos barriles de cada tipo de petróleo crudo se necesitan para lograr la producción deseada? 
+
+
+
+    \item En una red de tuberías de una instalación petrolera, el flujo de un tipo de fluido a través de una tubería es de 2 barriles por minuto más la mitad del flujo del otro tipo de fluido. El flujo del segundo tipo de fluido es de 200 barriles por minuto menos la mitad del flujo del primer tipo. ¿Cuáles son los flujos (en barriles por minuto) de cada tipo de fluido?
+
+    
+    \item Una compañía minera extrae mineral de dos minas. El extraído de la mina 1 contiene un 1\% de níquel y un 2\% de cobre, mientras que el de la mina 2 contiene un 1\% de níquel y un 5\% de cobre. Si la empresa busca obtener 4 toneladas de níquel y 9 de cobre, ¿qué cantidad de mineral deberá extraer de cada mina?
+\end{enumerate}
+
+
+
+
+
+
+\textbf{Solución:}
+
+
+\begin{enumerate}[a) ]
+    \item %Una refinería desea producir 1000 barriles de gasolina de alta calidad y 800 barriles de diésel de calidad premium. Cuenta con dos tipos de petróleo crudo: A (alta calidad) y B (baja calidad). Se sabe que para producir los barriles de gasolina deseados, durante el proceso de refinación se utiliza el $70 \%$ de barriles del petróleo A y el $0 \%$  de barriles del petróleo B. Además, para producir los barriles de diésel, se utiliza el $30 \%$ de barriles del petróleo A y el $50 \%$ de barriles del petróleo B. ¿Cuántos barriles de cada tipo de petróleo crudo se necesitan para lograr la producción deseada? 
+
+\textbf{Planteamiento del sistema de ecuaciones:}
+\setlength{\columnsep}{9mm}
+\begin{multicols}{2}
+Las variables son:
+\begin{itemize}
+    \item  $x$ el número de barriles de petróleo crudo A,
+    
+    \item $y$ el número de barriles de petróleo crudo B. Según el enunciado:
+\end{itemize} 
+
+\columnbreak % Forzar cambio de columna si es necesario
+
+Las ecuaciones son: %explicar como convertir un porcentaje en su equivalente decimal.
+
+\begin{itemize}
+    \item Para producir los 1000 barriles de gasolina: \quad $ 0.7x + 0.5y = 1000$
+    
+    \item Para producir los 800 barriles de diésel: \quad $ 0.3x + 0.5y = 800$
+\end{itemize}
+
+\end{multicols}
+
+\bigskip
+
+El sistema de ecuaciones lineales queda:  
+
+
+$\left\{
+\begin{array}{rl}
+    0.7x + 0.5y &= 1000 \indicador{x}{(.1,.15)}{y}{(.5,-.25)}\marka{z}{(4.3,.15)}
+    \\[2mm]
+    0.3x + 0.5y &=  800 \marka{a}{(.1,.15)}
+\end{array}
+\right.$ 
+
+
+\tikz[overlay,remember picture] { 
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--node[below,text width=36mm]{\footnotesize Restamos las ecuaciones para eliminar $y$:}(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm]{ 
+\[
+\begin{array}{rl}
+(0.7x + 0.5y) - (0.3x + 0.5y) &= 1000 - 800 
+\\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    0.7x - 0.3x &= 200 
+    \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    0.4x &= 200 
+    \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \marka{x1}{(-.1,-.2)}x 
+    &= \indicador{YY}{(-.25,-.2)}{ZZ}{(-6,-.4)}\marka{TT}{(-4.5,-1.3)}
+    \tfrac{200}{0.4} = 500\marka{x2}{(.1,.5)}  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);
+\draw [overlay,very thick,blue,opacity=.5](x)++(0,-.1)to[out=-60,in=180]node[pos=.7, below left,text width=37mm]{\footnotesize Sustituimos $x = 500$ en la primera ecuación:}(ZZ);
+\node  at (TT) [text width=33mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+ 0.7(500) + 0.5y &= 1000 \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    350 + 0.5y &= 1000 \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    0.5y &= 1000 - 350 \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \marka{a1}{(-.1,-.2)} y &= \tfrac{650}{0.5} = 1300 \marka{a2}{(.1,.5)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+
+
+\vspace{40mm}
+
+
+
+
+
+\textbf{Respuesta:}
+
+Se necesitan $\mathbf{500}$ barriles de petróleo crudo A y $\mathbf{1300}$ barriles de petróleo crudo B para lograr la producción deseada.
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+
+
+
+\item En una red de tuberías de una instalación petrolera, el flujo de un tipo de fluido a través de una tubería es de 2 barriles por minuto más la mitad del flujo del otro tipo de fluido. El flujo del segundo tipo de fluido es de 200 barriles por minuto menos la mitad del flujo del primer tipo. ¿Cuáles son los flujos (en barriles por minuto) de cada tipo de fluido?
+
+
+
+\textbf{Planteamiento del sistema de ecuaciones:}
+
+\setlength{\columnsep}{9mm}
+\begin{multicols}{2}
+Las variable son:
+
+\begin{itemize}
+    \item $x$ es el flujo del primer tipo de fluido (en barriles por minuto),
+
+    \item  $y$ es el flujo del segundo tipo de fluido (en barriles por minuto).
+\end{itemize}
+\, \\ 
+
+\columnbreak % Forzar cambio de columna si es necesario
+\, \vspace{-13mm}
+
+Según el enunciado las ecuaciones son:
+
+\begin{itemize}
+    \item El flujo del primer tipo de fluido es igual a 2 barriles por minuto más la mitad del flujo del segundo tipo de fluido:
+   $ x = 2 + \tfrac{1}{2}y$.
+    
+    \item El flujo del segundo tipo de fluido es igual a 200 barriles por minuto menos la mitad del flujo del primer tipo de fluido:
+    $y = 200 - \tfrac{1}{2}x$.
+    
+\end{itemize}
+\end{multicols}
+
+
+
+
+
+
+
+
+Reescribimos las ecuaciones para formar un sistema lineal:
+
+\medskip 
+
+$\left\{ \begin{array}{rl}
+    x - \tfrac{1}{2}y &= 2  \indicador{x}{(.1,.15)}{y}{(1.3,.15)}
+    \\[4mm]
+    \tfrac{1}{2}x + y &= 200 \marka{a}{(.1,.15)}
+\end{array}\right.$
+
+
+
+
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$x
+= \marka{XX}{(-.25,-.15)}%%%%%
+2 + \tfrac{1}{2} y
+$ \indicador{x}{(.1,.15)}{y}{(1.5,-.25)}\marka{z}{(2.3,-.25)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm]{ 
+\[
+\begin{array}{rl}
+\tfrac{1}{2} ( 2 + \tfrac{1}{2} y ) + y 
+&=%%%%%%%%%%%%%%%%%%%%%%
+200
+ \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+1 +\tfrac{1}{4} y + y 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+ 200
+  \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tfrac{5}{4} y
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  199
+  \\[2mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ y
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  199: \tfrac{5}{4} 
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  y
+  &= \indicador{YY}{(-.25,-.2)}{ZZ}{(-5,-.4)}\marka{TT}{(-3.5,-1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  \tfrac{796}{5} = 159,2 \marka{x2}{(.1,.5)}  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);
+\draw [overlay,very thick,blue,opacity=.5](XX)|-(ZZ);
+\node  at (TT) [text width=33mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+ x  
+ &=%%%%%%%%%%%%%%%%%%%%%%
+  2 + \frac{1}{2}  \cdot \tfrac{796}{5}
+ \\[4mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.1,-.2)} 
+   y
+  &=\indicador{YY}{(-.15,-.15)}{ZZ}{(-3,-.4)}\marka{TT}{(-2.5,-.9)}%%%%%%%%%%%%%%%%%%%%%%
+  -\tfrac{408}{5}= 81,6 \marka{a2}{(.1,.5)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+ \vspace{45mm}
+
+
+
+
+
+\textbf{Respuesta:}
+
+Los flujos son $\mathbf{81.6}$ barriles por minuto para el primer tipo de fluido y $\mathbf{159.2}$ barriles por minuto para el segundo tipo de fluido.
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+
+
+ \item Una compañía minera extrae mineral de dos minas. El extraído de la mina 1 contiene un 1\% de níquel y un 2\% de cobre, mientras que el de la mina 2 contiene un 1\% de níquel y un 5\% de cobre. Si la empresa busca obtener 4 toneladas de níquel y 9 de cobre, ¿qué cantidad de mineral deberá extraer de cada mina?  
+  
+
+\textbf{Planteamiento del sistema de ecuaciones:}
+\setlength{\columnsep}{9mm}
+\begin{multicols}{2}
+Las variables son:
+
+\begin{itemize}
+    \item  $x$ la cantidad de mineral extraído de la mina 1 (en toneladas),
+    
+    \item $y$ la cantidad de mineral extraído de la mina 2 (en toneladas).     
+ \end{itemize}   
+    
+
+\, \\ 
+
+\columnbreak % Forzar cambio de columna si es necesario
+Según el enunciado las ecuaciones son:
+
+\begin{itemize}
+    \item La cantidad de níquel total debe ser de 4 toneladas. Sabemos que la mina 1 aporta un $1\%$ de níquel y la mina 2 también un $1\%$ de níquel:
+    $0.01x + 0.01y = 4$
+    
+    \item La cantidad de cobre total debe ser de 9 toneladas. Sabemos que la mina 1 aporta un $1\%$ de cobre y la mina 2 un $5\%$ de cobre
+    $0.02x + 0.05y = 9$
+\end{itemize}
+
+\end{multicols}
+
+
+\medskip
+
+
+Reescribimos el sistema de ecuaciones: \quad $\left\{\begin{array}{rl}
+    0.01x + 0.01y &= 4 \\[4mm]
+    0.02x + 0.05y &= 9
+\end{array}\right.$
+
+Multiplicamos las ecuaciones por 100 para eliminar los decimales y resolvemos: 
+
+\medskip 
+
+$\left\{\begin{array}{rl}
+    x + y &= 400 \indicador{x}{(.1,.15)}{y}{(1.3,.15)}
+    \\[4mm]
+    2x + 5y &= 900 \marka{a}{(.1,.15)}
+\end{array}\right.$
+
+
+
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$y
+= \marka{XX}{(-.25,-.15)}%%%%%
+400 - x 
+$ \indicador{x}{(.1,.15)}{y}{(1.5,-.25)}\marka{z}{(2.3,-.25)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](x)-|(y)--(z);
+\draw [overlay,very thick,red,opacity=.5](a)-|(y);
+\node  at (z) [text width=40mm, below right , yshift= 8mm ]{ 
+\[
+\begin{array}{rl}
+2 x + 5 ( 400-x)
+&=%%%%%%%%%%%%%%%%%%%%%%
+900
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2x + 2000 -5 x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+ 900
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-3x
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  -1100
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ x 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  -1100: (-3)
+  \\[4mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  \marka{x1}{(-.1,-.2)}
+  x
+  &= \indicador{YY}{(-.25,-.2)}{ZZ}{(-5,-.4)}\marka{TT}{(-3.5,-1.3)}%%%%%%%%%%%%%%%%%%%%%%
+  \tfrac{1100}{3} = 366,\Hat{6} \marka{x2}{(.1,.5)}  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [overlay,->,very thick,blue,opacity=.5](YY)|-(ZZ)|-(TT);
+\draw [overlay,very thick,blue,opacity=.5](XX)|-(ZZ);
+\node  at (TT) [text width=33mm, below right , yshift= 9mm ]{
+\[
+\begin{array}{rl}
+ y  
+ &=%%%%%%%%%%%%%%%%%%%%%%
+  400 - \frac{1100}{3}   
+ \\[4mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{a1}{(-.1,-.2)} 
+   y
+  &=\indicador{YY}{(-.15,-.15)}{ZZ}{(-3,-.4)}\marka{TT}{(-2.5,-.9)}%%%%%%%%%%%%%%%%%%%%%%
+  -\tfrac{100}{3}= 33,\hat{3} \marka{a2}{(.1,.5)}
+\end{array}
+\]
+};
+\draw[color=black!50!,rounded corners=1mm] (a1) rectangle (a2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+ \vspace{45mm}
+
+
+
+
+
+
+
+
+
+\textbf{Respuesta:}
+
+Se deben extraer $\mathbf{366,\hat{6}}$ toneladas de mineral de la mina 1 y $\mathbf{33,\hat{3}}$ toneladas de mineral de la mina 2 para obtener las cantidades deseadas de níquel y cobre.
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\item 
+Supongamos que se está estudiando el flujo de petróleo en un sistema de tres tuberías interconectadas y se sabe que la presión de cada tubería está relacionada con el flujo de petróleo a través de la misma:
+\begin{itemize}
+    \item Para el primer tramo, el doble de la presión de la tubería 1 debe ser igual a \( 100 \, \text{psi} \) más la presión de la tubería 2.
+    \item En el segundo tramo, el triple de la presión de la tubería 2 debe ser igual a \( 50 \, \text{psi} \) más la presión de la tubería 1 y la tubería 3.
+    \item Por último, para el tercer tramo, el doble de la presión de la tubería 3 debe ser \( 80 \, \text{psi} \) más la presión de la tubería 2.
+\end{itemize}
+Determinar la presión que debe tener cada una de las tres tuberías.
+
+
+
+\textbf{Solución: }
+
+Para resolver el problema, denominemos \( P_1 \), \( P_2 \) y \( P_3 \) las presiones de las tres tuberías, respectivamente. Según los datos del problema, podemos plantear las siguientes ecuaciones:
+
+\[
+    2P_1 = 100 + P_2,  \quad\
+    3P_2 = 50 + P_1 + P_3, \quad\
+    2P_3 = 80 + P_2. \]
+
+Nuestro objetivo es resolver este sistema de ecuaciones lineales para determinar \( P_1 \), \( P_2 \) y \( P_3 \).
+
+\bigskip 
+
+$
+\left\{
+\begin{array}{rl}
+    2P_1 &= 100 + P_2  \indicador{x}{(.1,.15)}{y}{(1.3,.15)}
+ \\[5mm]
+    3P_2 &= 50 + P_1 + P_3  \marka{z}{(.1,.15)}
+\\[5mm]
+    2P_3 &= 80 + P_2   \marka{w}{(.1,.15)}
+\end{array}
+\right.$
+
+\tikz[overlay,remember picture] {
+\draw [overlay,->,very thick,red,opacity=.5](x)--(y);
+\node  at (y) [ right ]{
+$\marka{a1}{(-.1,-.2)} 
+2\,P_1 -100 
+= \marka{aa}{(-.2,-.15)} \indicador{bb}{(-1,-1.85)}{cc}{(.3,-2.55)}%%%%%
+P_2$ \indicador{a}{(.1,.15)}{b}{(1.9,-.25)}\marka{c}{(3.5,-.25)}
+};
+%%%%%%%%%%%%%%%%%%%%%%%%-------------------------------------%%%%%%%% % %%%%% %%%%% %%% %%-------------------------------------%%% %%% %%%% %%% %%%% %%%% %%%-------------------------------------%%%% %%%% %%%%% %%%% %%%% %%%-------------------------------------%%%%%-----------------%%%% %% %% %%% %% %% %% %% %% %% %-- -----------------------------------
+\draw [overlay,->,very thick,red,opacity=.5](a)-|(b)--(c);
+\draw [overlay,very thick,red,opacity=.5](z)-|(b);
+\node  at (c) [text width=50mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+3(2P_1 - 100) 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+  50 + P_1 + P_3,
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+6P_1 - 300 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+50 + P_1 + P_3,
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+5P_1 - P_3  
+  &= \marka{xxx}{(-.2,-.2)}%%%%%%%%%%%%%%%%%%%%%%
+ 350. 
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%-------------------------------------%%%%%%%% % %%%%% %%%%% %%% %%-------------------------------------%%% %%% %%%% %%% %%%% %%%% %%%-------------------------------------%%%% %%%% %%%%% %%%% %%%% %%%-------------------------------------%%%%%-----------------%%%% %% %% %%% %% %% %% %% %% %% %-- -----------------------------------
+\draw [overlay,->,very thick,blue,opacity=.5](aa)|-(bb)|-(cc);
+\draw [overlay,very thick,blue,opacity=.5](w)--(bb);
+\node  at (cc) [text width=50mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+2P_3 
+&=%%%%%%%%%%%%%%%%%%%%%%
+\ 80 + (2P_1 - 100)
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2P_3 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+\ 2P_1 - 20 
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+P_3 
+  &= \marka{aaa}{(-.1,-.15)} \indicador{bb}{(1.1,-.4)}{cc}{(2.9,-1.25)}% % % % % % % %%% %% %%% %%% %% %%
+\ P_1 - 10  
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%-------------------------------------%%%%%%%% % %%%%% %%%%% %%% %%-------------------------------------%%% %%% %%%% %%% %%%% %%%% %%%-------------------------------------%%%% %%%% %%%%% %%%% %%%% %%%-------------------------------------%%%%%-----------------%%%% %% %% %%% %% %% %% %% %% %% %-- -----------------------------------
+\draw [overlay,->,very thick,green,opacity=.5](aaa)|-(bb)|-(cc);
+\draw [overlay,very thick,green,opacity=.5](xxx)|-(bb);
+\node  at (cc) [text width=50mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+5P_1 - (P_1 - 10) 
+&=%%%%%%%%%%%%%%%%%%%%%%
+\ 350
+ \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+5P_1 - P_1 + 10  
+  &=%%%%%%%%%%%%%%%%%%%%%%
+\ 350
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+4P_1 
+  &=%%%%%%%%%%%%%%%%%%%%%%
+\ 340
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{x1}{(-.1,-.2)}\indicador{A}{(-.1,.25)}{B}{(-7.5,.25)}\marka{C} {(-6.5,-.45)} \indicador{AA}{(-.1,.05)}{BB}{(-1.5,.05)}\marka{CC} {(-.5,-.95)}
+P_1   
+  &=  % % % %%% %% %%% %%% %% %%
+\ 85 \marka{x2}{(.1,.5)} 
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%-------------------------------------%%%%%%%% % %%%%% %%%%% %%% %%-------------------------------------%%% %%% %%%% %%% %%%% %%%% %%%-------------------------------------%%%% %%%% %%%%% %%%% %%%% %%%-------------------------------------%%%%%-----------------%%%% %% %% %%% %% %% %% %% %% %% %-- -----------------------------------
+\draw [overlay,->,very thick,teal,opacity=.5, rounded corners=5mm] (B)|-(C);
+\draw [overlay,very thick,teal,opacity=.5, rounded corners=5mm](aa)++(-.1,0)|-(A);
+\draw [overlay,->,very thick,purple,opacity=.5, rounded corners=5mm](BB)|-(CC);
+\draw [overlay,very thick,purple,opacity=.5, rounded corners=30mm](aaa)++(-.1,0)|-(AA);
+%%%%------------------------------%%%%%%-----------------%%%%
+\node  at (C) [text width=35mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+P_2  
+  &=%%%%%%%%%%%%%%%%%%%%%%
+\  2(85) - 100 
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{x1}{(-.1,-.2)}
+P_2 
+  &=  % % % %%% %% %%% %%% %% %%
+\ 70 \marka{x2}{(.1,.5)} 
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node  at (CC) [text width=28mm, below right , yshift= 8mm ]{
+\[\begin{array}{rl}
+P_3  
+  &=%%%%%%%%%%%%%%%%%%%%%%
+\  85 - 10
+  \\[3mm]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \marka{x1}{(-.1,-.2)}
+P_2 
+  &=  % % % %%% %% %%% %%% %% %%
+\ 75 \marka{x2}{(.1,.5)} 
+\end{array}
+\]
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+}
+
+
+
+
+
+
+\vspace{81mm}
+
+
+
+
+
+
+\textbf{Conclusión} Las presiones de las tuberías son:\quad $P_1 = 85 \, \text{psi}, \quad P_2 = 70 \, \text{psi}, \quad P_3 = 75 \, \text{psi}.
+$
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item En una refinería de petróleo, se desean mezclar tres tipos de combustibles: $A,\, B$ y $C$, para obtener una mezcla con un octanaje deseado. Se sabe que el combustible A tiene un octanaje de $85$, el combustible $B$ tiene un octanaje de $90$ y el combustible $C$ tiene un octanaje de $95$. Si se desea preparar una mezcla de $1000$lt, ¿cuáles son las cantidades de cada tipo de combustible que deben mezclarse para obtener la mezcla con un octanaje de $92$?.
+
+{\bf Observación:} El octanaje indica la calidad y estabilidad del combustible. Es un indice de pureza (es el porcentaje multiplicado 100).
+
+
+
+
+
+
+
+
+\textbf{Solución:} 
+
+\textbf{Planteamiento del problema}
+
+Sea $x$, $y$, $z$ las cantidades (en litros) de los combustibles $A$, $B$ y $C$ respectivamente. Entonces, se tiene el siguiente sistema de ecuaciones:
+
+
+$$
+\left\{
+\begin{array}{rl@{\qquad\qquad} r}
+    x  + y + z &= 1000 & (1)
+    \\[3mm]
+    85x + 90y + 95z &= 92 \cdot 1000 & (2) 
+\end{array} 
+\right.$$
+
+donde la ecuación (1) representa la cantidad total de la mezcla, y la ecuación (2) asegura que el octanaje final sea el deseado.
+
+
+\begin{comment}
+     La ecuación \((\ref{eq2})\) proviene de la condición de que el octanaje final de la mezcla debe ser de \(92\). Esta idea se basa en el {\bf promedio ponderado} del octanaje, teniendo en cuenta las cantidades de cada combustible en la mezcla.
+
+Aquí está el razonamiento:
+
+1. Cada combustible tiene un **octanaje específico**:
+   - El combustible \(A\) tiene un octanaje de \(85\).
+   - El combustible \(B\) tiene un octanaje de \(90\).
+   - El combustible \(C\) tiene un octanaje de \(95\).
+
+2. Si mezclamos \(x\) litros de \(A\), \(y\) litros de \(B\), y \(z\) litros de \(C\), el octanaje total de la mezcla es:
+
+   \[
+   \text{octanaje total} = 85x + 90y + 95z.
+   \]
+
+   Aquí, cada término representa el "aporte" de cada combustible al octanaje total, multiplicando el octanaje por la cantidad de litros correspondiente.
+
+3. La mezcla total es de \(1000\) litros, y se nos pide que el octanaje final sea \(92\). Esto significa que el octanaje total se distribuye uniformemente entre los \(1000\) litros, dando como resultado un promedio de \(92\).
+
+   El octanaje promedio se calcula como:
+
+   \[
+   \text{octanaje promedio} = \frac{\text{octanaje total}}{\text{cantidad total de litros}}.
+   \]
+
+   Sustituyendo:
+
+   \[
+   92 = \frac{85x + 90y + 95z}{1000}.
+   \]
+
+4. Para eliminar el denominador, multiplicamos toda la ecuación por \(1000\):
+
+   \[
+   85x + 90y + 95z = 92 \cdot 1000.
+   \]
+
+   \[
+   85x + 90y + 95z = 92000.
+   \]
+
+   Esta es la ecuación \((2)\), que asegura que el octanaje final de la mezcla sea \(92\).
+\end{comment}
+
+
+
+
+
+\textbf{Resolución del sistema de ecuaciones}
+
+
+\medskip
+
+$
+\left\{
+\begin{array}{rl }
+    x  + y + z &= 1000 
+    \\[3mm]
+    85x + 90y + 95z &= 92000 
+\end{array}
+\right. 
+\text{\huge $\sim$}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1000\\
+85 & 90 & 95 & 92000
+\end{array}
+\right]
+\semejante{ F_2\ \leftarrow\ F_2 - 85 F_1}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1000\\
+0 & 5 & 10 & 7000
+\end{array}
+\right] 
+\semejante{ F_2 \ \leftarrow\ \tfrac{1}{5} F_2 } $
+
+
+\medskip
+
+$
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1000\\
+0 & 1 & 2 & 1400
+\end{array}
+\right].
+\semejante{F_1 \ \leftarrow \ F_1 - F_2 }
+\left[
+\begin{array}{ccc|c}
+1 & 0 & -1 & -400\\
+0 & 1 & 2 & 1400
+\end{array}
+\right].
+$
+\bigskip 
+
+De esa última matriz obtenemos el siguiente sistema de ecuaciones y lo resolvemos:
+
+
+
+
+\medskip 
+
+$\qquad
+\left\{
+\begin{array}{rl}
+x - z &= -400 \indicador{a}{(.1,.15)}{x}{(.9,.15 )} 
+\\[3mm]
+y + 2z &= 1400 \indicador{b}{(.1,.15)}{y}{(.9,.15 )}
+\end{array}
+\right.
+$
+\tikz[overlay,remember picture] { 
+\draw [overlay,->,very thick,red,opacity=.5](a)--(x);
+\node    at (x) [text width=35mm,   right   ]{
+$\marka{x1}{(-.1,-.2)}
+x = -400 +z     
+\marka{x2}{(.1,.45)}
+$
+};
+%%%%%%-------------------------------%%%%%%
+\draw [overlay,->,very thick,red,opacity=.5](b)--(y);
+\node    at (y) [text width=35mm,   right   ]{
+$\marka{y1}{(-.1,-.2)}
+y = 1400 -2 z \marka{aa}{(.1,.15)} 
+\marka{y2}{(.1,.45)}
+$
+};
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (x1) rectangle (x2);
+%%%%%%%%%%%%%%%%%%%%%%%%
+\draw[color=black!50!,rounded corners=1mm] (y1) rectangle (y2);
+}
+\hfill$Sol= \left\{ \rule{0mm}{4mm} \left(-400+z,\, 1400-2z ,\, z\right)\, /\, z \in \mathbb{R} \right\}$
+
+
+
+
+\medskip
+
+
+Ahora veamos las condiciones de del problema:
+
+\[
+\begin{array}{rl @{\qquad\qquad \qquad} rl @{\qquad\qquad\qquad}  rl }
+\bullet & -400+z\geq 0 
+&
+\bullet &  1400 -2z\geq 0 
+&
+\bullet &  z\geq 0  
+\\[3mm]
+   &  z\geq 400
+   &
+   &   1400 \geq 2z
+   &
+   &  
+\\[3mm]
+   &    &
+   &   700 \geq z
+   &   &  
+\end{array}
+\]
+
+\hfill$\therefore\quad 400 \leq z \leq  700$.\ 
+
+\textbf{Conclusión}
+
+Para obtener una mezcla de $1000$ litros con un octanaje de $92$, se deben mezclar:
+\begin{itemize}
+\begin{multicols}{2}
+    \item $ -400+z$ litros del combustible $A$.
+    \item $ 1400 -2z$ litros del combustible $B$.
+    \item $z$ litros del combustible $C$.  
+    \item donde $z$ verifica: \quad $ 400 \leq z \leq 700$.
+\end{multicols}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+\end{document}

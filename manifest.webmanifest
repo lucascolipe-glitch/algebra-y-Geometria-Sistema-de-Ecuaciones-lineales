@@ -1,0 +1,11 @@
+{
+  "name": "Unidad 3 · Sistemas de Ecuaciones Lineales",
+  "short_name": "SEL · Unidad 3",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#173d7a",
+  "icons": [
+    {"src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}
