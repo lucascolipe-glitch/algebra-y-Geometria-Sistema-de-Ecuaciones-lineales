@@ -180,11 +180,13 @@
             <div class="graph-wrap"><svg id="systemGraph" viewBox="0 0 560 440" role="img" aria-label="Gráfico cartesiano de un sistema de ecuaciones"></svg></div>
             <div class="graph-panel">
               <div id="graphEquations" class="formula-panel"></div>
-              <fieldset class="choice-fieldset" id="graphChoices">
+              <fieldset class="choice-fieldset choice-fieldset--cards" id="graphChoices">
                 <legend>¿Cómo se clasifica?</legend>
-                <label><input type="radio" name="graphClass" value="CD"> Compatible determinado</label>
-                <label><input type="radio" name="graphClass" value="CI"> Compatible indeterminado</label>
-                <label><input type="radio" name="graphClass" value="I"> Incompatible</label>
+                <div class="choice-cards" role="radiogroup" aria-label="Clasificación gráfica del sistema">
+                  <label class="choice-card"><input type="radio" name="graphClass" value="CD"><span class="choice-card__content">Compatible determinado</span></label>
+                  <label class="choice-card"><input type="radio" name="graphClass" value="CI"><span class="choice-card__content">Compatible indeterminado</span></label>
+                  <label class="choice-card"><input type="radio" name="graphClass" value="I"><span class="choice-card__content">Incompatible</span></label>
+                </div>
               </fieldset>
               <div class="activity-actions"><button class="button primary" id="checkGraphClass" type="button">Comprobar</button><button class="button ghost" id="nextGraphCase" type="button">Otro caso</button></div>
               <div class="feedback" id="graphFeedback" aria-live="polite"></div>
@@ -419,11 +421,13 @@
           <div class="activity-header"><div><p class="tag">Laboratorio de parámetro</p><h3>Estudiá la última fila</h3></div><span class="status-pill">TP 3 · ejercicio 7.a</span></div>
           <label class="range-control">Valor de \(k\): <strong id="parameterValue">0</strong><input id="parameterSlider" type="range" min="-6" max="6" step="1" value="0"></label>
           <div id="parameterRow" class="formula-panel"></div>
-          <fieldset class="choice-fieldset" id="parameterChoices">
-            <legend>Clasificación para este valor</legend>
-            <label><input type="radio" name="parameterClass" value="CD"> Compatible determinado</label>
-            <label><input type="radio" name="parameterClass" value="CI"> Compatible indeterminado</label>
-            <label><input type="radio" name="parameterClass" value="I"> Incompatible</label>
+          <fieldset class="choice-fieldset choice-fieldset--cards" id="parameterChoices">
+            <legend>Clasificación para este valor de \(k\)</legend>
+            <div class="choice-cards" role="radiogroup" aria-label="Clasificación del sistema con parámetro">
+              <label class="choice-card"><input type="radio" name="parameterClass" value="CD"><span class="choice-card__content">Compatible determinado</span></label>
+              <label class="choice-card"><input type="radio" name="parameterClass" value="CI"><span class="choice-card__content">Compatible indeterminado</span></label>
+              <label class="choice-card"><input type="radio" name="parameterClass" value="I"><span class="choice-card__content">Incompatible</span></label>
+            </div>
           </fieldset>
           <div class="activity-actions"><button class="button primary" id="checkParameterClass" type="button">Comprobar</button></div>
           <div class="feedback" id="parameterFeedback" aria-live="polite"></div>

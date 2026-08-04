@@ -165,8 +165,8 @@
   let rankIndex = 0;
 
   const inverseCases = [
-    {text:String.raw`\(A\) es \(3\times3\) y \(\det(A)=5\).`, answer:0, options:['Aplicar \(X=A^{-1}B\)','Usar Gauss porque la inversa no existe','No hay información suficiente'], explanation:'A es cuadrada y su determinante no es cero.'},
-    {text:String.raw`\(A\) es \(3\times3\) y \(\det(A)=0\).`, answer:1, options:['Aplicar \(X=A^{-1}B\)','Usar Gauss para decidir C.I. o incompatibilidad','Concluir automáticamente que es incompatible'], explanation:'No existe A⁻¹; el determinante cero no distingue C.I. de incompatible en un sistema no homogéneo.'},
+    {text:String.raw`\(A\) es \(3\times3\) y \(\det(A)=5\).`, answer:0, options:[String.raw`Aplicar \(X=A^{-1}B\)`,'Usar Gauss porque la inversa no existe','No hay información suficiente'], explanation:'A es cuadrada y su determinante no es cero.'},
+    {text:String.raw`\(A\) es \(3\times3\) y \(\det(A)=0\).`, answer:1, options:[String.raw`Aplicar \(X=A^{-1}B\)`,'Usar Gauss para decidir C.I. o incompatibilidad','Concluir automáticamente que es incompatible'], explanation:'No existe A⁻¹; el determinante cero no distingue C.I. de incompatible en un sistema no homogéneo.'},
     {text:String.raw`El sistema tiene 2 ecuaciones y 3 incógnitas.`, answer:1, options:['Aplicar matriz inversa','Usar Gauss; la matriz de coeficientes no es cuadrada','Concluir que es C.D.'], explanation:'La matriz de coeficientes es 2×3 y no tiene inversa.'},
     {text:String.raw`\(AX=O\), \(A\) es cuadrada y \(\det(A)\ne0\).`, answer:0, options:['La única solución es la trivial','El sistema es incompatible','Tiene infinitas soluciones'], explanation:'Un homogéneo con A inversible es C.D. y su única solución es X=O.'}
   ];
@@ -174,11 +174,11 @@
 
   const errorCases = [
     {statement:'“Un sistema homogéneo puede ser incompatible si tiene muchas ecuaciones.”', options:['Correcto','Incorrecto: la solución trivial siempre existe','Solo es falso si A es cuadrada'], answer:1, explanation:'Todo sistema homogéneo admite al menos la solución trivial.'},
-    {statement:'“Si \(\operatorname{Rg}(A)=\operatorname{Rg}(A\')<n\), el sistema es compatible determinado.”', options:['Correcto','Debe ser compatible indeterminado','Debe ser incompatible'], answer:1, explanation:'Al ser el rango menor que n quedan variables libres.'},
+    {statement:String.raw`“Si \(\operatorname{Rg}(A)=\operatorname{Rg}(A')<n\), el sistema es compatible determinado.”`, options:['Correcto','Debe ser compatible indeterminado','Debe ser incompatible'], answer:1, explanation:'Al ser el rango menor que n quedan variables libres.'},
     {statement:'“Para resolver por Gauss conviene borrar inmediatamente las filas nulas.”', options:['Correcto','No: en la matriz ampliada se conserva el tamaño y la fila informa sobre el rango','Solo se borran si el sistema es homogéneo'], answer:1, explanation:'En el registro matricial del método se conserva la fila nula hasta el final.'},
     {statement:'“Como una matriz de coeficientes es cuadrada, siempre puede usarse el método de la inversa.”', options:['Correcto','Falta verificar que el determinante sea distinto de cero','Solo depende de B'], answer:1, explanation:'Ser cuadrada es necesario, pero también debe ser inversible.'},
-    {statement:'“La fila \([0\;0\;0\mid5]\) representa una ecuación redundante.”', options:['Correcto','Representa una contradicción \(0=5\)','Representa una variable libre'], answer:1, explanation:'Una fila así hace que el sistema sea incompatible.'},
-    {statement:'“En \(x_1+x_2+x_3=1\), si \(x_2,x_3\) son libres entonces \(x_2=1-x_2-x_3\).”', options:['Correcto','El miembro izquierdo debe ser \(x_1\)','La variable libre debe ser x₁'], answer:1, explanation:'La variable dependiente es x₁: x₁=1-x₂-x₃.'}
+    {statement:String.raw`“La fila \([0\;0\;0\mid5]\) representa una ecuación redundante.”`, options:['Correcto',String.raw`Representa una contradicción \(0=5\)`,'Representa una variable libre'], answer:1, explanation:'Una fila así hace que el sistema sea incompatible.'},
+    {statement:String.raw`“En \(x_1+x_2+x_3=1\), si \(x_2,x_3\) son libres entonces \(x_2=1-x_2-x_3\).”`, options:['Correcto',String.raw`El miembro izquierdo debe ser \(x_1\)`,'La variable libre debe ser x₁'], answer:1, explanation:'La variable dependiente es x₁: x₁=1-x₂-x₃.'}
   ];
   let errorIndex = 0;
 
@@ -216,6 +216,47 @@
     'Hallar el conjunto solución y verificar cuando sea conveniente.'
   ];
   let currentPlan = [];
+
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function renderChoiceCards(name, options, ariaLabel, extraClass = '') {
+    return `<div class="choice-cards ${extraClass}" role="radiogroup" aria-label="${escapeHtml(ariaLabel)}">
+      ${options.map((option, index) => {
+        const value = typeof option === 'object' ? option.value : index;
+        const label = typeof option === 'object' ? option.label : option;
+        return `<label class="choice-card">
+          <input type="radio" name="${escapeHtml(name)}" value="${escapeHtml(value)}">
+          <span class="choice-card__content">${label}</span>
+        </label>`;
+      }).join('')}
+    </div>`;
+  }
+
+  function selectedChoice(name, root = document) {
+    return root.querySelector(`input[type="radio"][name="${name}"]:checked`)?.value ?? '';
+  }
+
+  function clearChoiceState(root) {
+    root.querySelectorAll('.choice-card').forEach(card => card.classList.remove('correct', 'wrong'));
+  }
+
+  function markChoiceState(root, correctValue, selectedValue, revealCorrect = false) {
+    root.querySelectorAll('.choice-card').forEach(card => {
+      const input = card.querySelector('input[type="radio"]');
+      const isCorrect = input?.value === String(correctValue);
+      const isSelected = input?.value === String(selectedValue);
+      card.classList.toggle('correct', isCorrect && (isSelected || revealCorrect));
+      card.classList.toggle('wrong', isSelected && !isCorrect);
+    });
+  }
 
   document.addEventListener('DOMContentLoaded', init);
 
@@ -429,28 +470,43 @@
   }
 
   function setupGraphLab() {
-    const svg=document.getElementById('systemGraph');
-    const eq=document.getElementById('graphEquations');
-    const label=document.getElementById('graphCaseLabel');
-    const feedback=document.getElementById('graphFeedback');
+    const svg = document.getElementById('systemGraph');
+    const eq = document.getElementById('graphEquations');
+    const label = document.getElementById('graphCaseLabel');
+    const feedback = document.getElementById('graphFeedback');
+    const choices = document.getElementById('graphChoices');
+
     function render() {
-      const item=graphCases[graphIndex];
-      label.textContent=item.label;
-      eq.innerHTML=item.equations;
-      feedback.textContent=''; feedback.className='feedback';
-      document.querySelectorAll('input[name="graphClass"]').forEach(r=>r.checked=false);
-      drawGraph(svg,item);
+      const item = graphCases[graphIndex];
+      label.textContent = item.label;
+      eq.innerHTML = item.equations;
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      choices.querySelectorAll('input[name="graphClass"]').forEach(radio => { radio.checked = false; });
+      clearChoiceState(choices);
+      drawGraph(svg, item);
       typeset(eq);
     }
-    document.getElementById('checkGraphClass').addEventListener('click',()=>{
-      const selected=document.querySelector('input[name="graphClass"]:checked')?.value;
-      if(!selected){ setFeedback(feedback,'warning','Elegí una clasificación antes de comprobar.'); return; }
-      const item=graphCases[graphIndex]; const ok=selected===item.answer;
-      feedback.className=`feedback ${ok?'success':'danger'}`;
-      feedback.innerHTML=`${ok?'Correcto.':'Revisá la posición relativa.'} ${item.explanation}`;
-      if(ok) markComplete('grafica'); typeset(feedback);
+
+    document.getElementById('checkGraphClass').addEventListener('click', () => {
+      const selected = selectedChoice('graphClass', choices);
+      if (!selected) {
+        setFeedback(feedback, 'warning', 'Elegí una clasificación antes de comprobar.');
+        return;
+      }
+      const item = graphCases[graphIndex];
+      const ok = selected === item.answer;
+      markChoiceState(choices, item.answer, selected);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.innerHTML = `${ok ? 'Correcto.' : 'Revisá la posición relativa.'} ${item.explanation}`;
+      if (ok) markComplete('grafica');
+      typeset(feedback);
     });
-    document.getElementById('nextGraphCase').addEventListener('click',()=>{graphIndex=(graphIndex+1)%graphCases.length; render();});
+
+    document.getElementById('nextGraphCase').addEventListener('click', () => {
+      graphIndex = (graphIndex + 1) % graphCases.length;
+      render();
+    });
     render();
   }
 
@@ -510,47 +566,183 @@
   }
 
   function setupEchelonClassifier() {
-    const matrix=document.getElementById('echelonMatrix');
-    const choices=document.getElementById('echelonChoices');
-    const feedback=document.getElementById('echelonFeedback');
-    function render(){
-      const item=echelonCases[echelonIndex]; matrix.innerHTML=`\[${item.latex}\]`; choices.innerHTML='';
-      ['Escalonada','Reducida','Ninguna'].forEach(option=>{
-        const b=document.createElement('button'); b.type='button'; b.className='choice-button'; b.textContent=option;
-        b.addEventListener('click',()=>{
-          const ok=option===item.answer; feedback.className=`feedback ${ok?'success':'danger'}`; feedback.textContent=`${ok?'Correcto.':'No es la clasificación adecuada.'} ${item.explanation}`; if(ok)markComplete('matricial');
-        }); choices.appendChild(b);
-      }); feedback.textContent='';feedback.className='feedback';typeset(matrix);
+    const matrix = document.getElementById('echelonMatrix');
+    const choices = document.getElementById('echelonChoices');
+    const feedback = document.getElementById('echelonFeedback');
+
+    function render() {
+      const item = echelonCases[echelonIndex];
+      matrix.innerHTML = String.raw`\[${item.latex}\]`;
+      choices.innerHTML = renderChoiceCards(
+        'echelonAnswer',
+        ['Escalonada', 'Reducida', 'Ninguna'].map(option => ({ value: option, label: option })),
+        'Clasificación de la matriz'
+      );
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(matrix);
+      typeset(choices);
     }
-    document.getElementById('nextEchelon').addEventListener('click',()=>{echelonIndex=(echelonIndex+1)%echelonCases.length;render();});render();
+
+    choices.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="echelonAnswer"]');
+      if (!input) return;
+      const item = echelonCases[echelonIndex];
+      const ok = input.value === item.answer;
+      markChoiceState(choices, item.answer, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.textContent = `${ok ? 'Correcto.' : 'No es la clasificación adecuada.'} ${item.explanation}`;
+      if (ok) markComplete('matricial');
+    });
+
+    document.getElementById('nextEchelon').addEventListener('click', () => {
+      echelonIndex = (echelonIndex + 1) % echelonCases.length;
+      render();
+    });
+    render();
   }
 
   function setupRowOperationChallenge() {
-    const choices=document.getElementById('rowOperationChoices'); const feedback=document.getElementById('rowOperationFeedback');
-    const options=[String.raw`\(F_2\leftarrow F_2-2F_1\)`,String.raw`\(F_2\leftarrow F_2+2F_1\)`,String.raw`\(F_1\leftarrow F_1-2F_2\)`];
-    options.forEach((text,i)=>{
-      const b=document.createElement('button');b.type='button';b.className='choice-button';b.innerHTML=text;b.addEventListener('click',()=>{
-        const ok=i===0; feedback.className=`feedback ${ok?'success':'danger'}`; feedback.innerHTML=ok?String.raw`Correcto: \(2-2(1)=0\). La nueva segunda fila comienza con cero.`:String.raw`Probá la primera entrada: la operación elegida no transforma \(2\) en cero sin alterar el pivote de \(F_1\).`; if(ok)markComplete('gauss');typeset(feedback);
-      });choices.appendChild(b);
-    });typeset(choices);
+    const choices = document.getElementById('rowOperationChoices');
+    const feedback = document.getElementById('rowOperationFeedback');
+    const options = [
+      String.raw`\(F_2\leftarrow F_2-2F_1\)`,
+      String.raw`\(F_2\leftarrow F_2+2F_1\)`,
+      String.raw`\(F_1\leftarrow F_1-2F_2\)`
+    ];
+
+    choices.innerHTML = renderChoiceCards(
+      'rowOperationAnswer',
+      options.map((label, value) => ({ value, label })),
+      'Operación elemental adecuada',
+      'choice-cards--wide'
+    );
+    choices.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="rowOperationAnswer"]');
+      if (!input) return;
+      const ok = Number(input.value) === 0;
+      markChoiceState(choices, 0, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.innerHTML = ok
+        ? String.raw`Correcto: \(2-2(1)=0\). La nueva segunda fila comienza con cero.`
+        : String.raw`Probá la primera entrada: la operación elegida no transforma \(2\) en cero sin alterar el pivote de \(F_1\).`;
+      if (ok) markComplete('gauss');
+      typeset(feedback);
+    });
+    typeset(choices);
   }
 
   function setupReducedMatrixLab() {
-    const matrix=document.getElementById('reducedMatrixCase');const q=document.getElementById('reducedMatrixQuestion');const feedback=document.getElementById('reducedMatrixFeedback');
-    function render(){const item=reducedCases[reducedIndex];matrix.innerHTML=`\[${item.latex}\]`;q.innerHTML='<fieldset class="choice-fieldset"><legend>Clasificá el sistema</legend>'+item.options.map((o,i)=>`<label><input type="radio" name="reducedAnswer" value="${i}">${o}</label>`).join('')+'</fieldset>';feedback.textContent='';feedback.className='feedback';typeset(matrix);}
-    document.getElementById('checkReducedMatrix').addEventListener('click',()=>{const sel=document.querySelector('input[name="reducedAnswer"]:checked');if(!sel){setFeedback(feedback,'warning','Elegí una clasificación.');return;}const item=reducedCases[reducedIndex],ok=Number(sel.value)===item.answer;feedback.className=`feedback ${ok?'success':'danger'}`;feedback.innerHTML=`${ok?'Correcto.':'Revisá los pivotes y la columna ampliada.'} ${item.explanation}`;if(ok)markComplete('gauss-jordan');typeset(feedback);});
-    document.getElementById('nextReducedMatrix').addEventListener('click',()=>{reducedIndex=(reducedIndex+1)%reducedCases.length;render();});render();
+    const matrix = document.getElementById('reducedMatrixCase');
+    const question = document.getElementById('reducedMatrixQuestion');
+    const feedback = document.getElementById('reducedMatrixFeedback');
+
+    function render() {
+      const item = reducedCases[reducedIndex];
+      matrix.innerHTML = String.raw`\[${item.latex}\]`;
+      question.innerHTML = `<fieldset class="choice-fieldset choice-fieldset--cards">
+        <legend>Clasificá el sistema</legend>
+        ${renderChoiceCards(
+          'reducedAnswer',
+          item.options.map((label, value) => ({ value, label })),
+          'Clasificación del sistema'
+        )}
+      </fieldset>`;
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(matrix);
+      typeset(question);
+    }
+
+    document.getElementById('checkReducedMatrix').addEventListener('click', () => {
+      const selected = selectedChoice('reducedAnswer', question);
+      if (selected === '') {
+        setFeedback(feedback, 'warning', 'Elegí una clasificación.');
+        return;
+      }
+      const item = reducedCases[reducedIndex];
+      const ok = Number(selected) === item.answer;
+      markChoiceState(question, item.answer, selected);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.innerHTML = `${ok ? 'Correcto.' : 'Revisá los pivotes y la columna ampliada.'} ${item.explanation}`;
+      if (ok) markComplete('gauss-jordan');
+      typeset(feedback);
+    });
+
+    document.getElementById('nextReducedMatrix').addEventListener('click', () => {
+      reducedIndex = (reducedIndex + 1) % reducedCases.length;
+      render();
+    });
+    render();
   }
 
   function setupRankLab() {
-    const caseEl=document.getElementById('rankCase');const options=document.getElementById('rankOptions');const feedback=document.getElementById('rankFeedback');const counter=document.getElementById('rankCaseCounter');
-    function render(){const item=rankCases[rankIndex];counter.textContent=`Caso ${rankIndex+1}`;caseEl.innerHTML=`<p>El sistema tiene <strong>${item.n} incógnitas</strong>.</p><div class="rank-values"><span>Rg(A) = ${item.ra}</span><span>Rg(A′) = ${item.rau}</span><span>n = ${item.n}</span></div>`;options.innerHTML='';[['CD','Compatible determinado'],['CI','Compatible indeterminado'],['I','Incompatible']].forEach(([value,label])=>{const b=document.createElement('button');b.type='button';b.className='choice-button';b.textContent=label;b.addEventListener('click',()=>{const ok=value===item.answer;feedback.className=`feedback ${ok?'success':'danger'}`;feedback.textContent=`${ok?'Correcto.':'Revisá las tres consecuencias del teorema.'} ${item.explanation}`;if(ok)markComplete('compatibilidad');});options.appendChild(b);});feedback.textContent='';feedback.className='feedback';}
-    document.getElementById('nextRankCase').addEventListener('click',()=>{rankIndex=(rankIndex+1)%rankCases.length;render();});render();
+    const caseEl = document.getElementById('rankCase');
+    const options = document.getElementById('rankOptions');
+    const feedback = document.getElementById('rankFeedback');
+    const counter = document.getElementById('rankCaseCounter');
+
+    function render() {
+      const item = rankCases[rankIndex];
+      counter.textContent = `Caso ${rankIndex + 1}`;
+      caseEl.innerHTML = `<p>El sistema tiene <strong>${item.n} incógnitas</strong>.</p>
+        <div class="rank-values"><span>Rg(A) = ${item.ra}</span><span>Rg(A′) = ${item.rau}</span><span>n = ${item.n}</span></div>`;
+      options.innerHTML = renderChoiceCards('rankAnswer', [
+        { value: 'CD', label: 'Compatible determinado' },
+        { value: 'CI', label: 'Compatible indeterminado' },
+        { value: 'I', label: 'Incompatible' }
+      ], 'Clasificación mediante rangos');
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(options);
+    }
+
+    options.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="rankAnswer"]');
+      if (!input) return;
+      const item = rankCases[rankIndex];
+      const ok = input.value === item.answer;
+      markChoiceState(options, item.answer, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.textContent = `${ok ? 'Correcto.' : 'Revisá las tres consecuencias del teorema.'} ${item.explanation}`;
+      if (ok) markComplete('compatibilidad');
+    });
+
+    document.getElementById('nextRankCase').addEventListener('click', () => {
+      rankIndex = (rankIndex + 1) % rankCases.length;
+      render();
+    });
+    render();
   }
 
   function setupAbsurdRow() {
-    const options=document.getElementById('absurdRowChoices'),feedback=document.getElementById('absurdRowFeedback');
-    ['Es una fila nula y puede ignorarse','Representa la contradicción 0 = −2','Indica una variable libre'].forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.className='choice-button';b.textContent=text;b.addEventListener('click',()=>{const ok=i===1;feedback.className=`feedback ${ok?'success':'danger'}`;feedback.innerHTML=ok?String.raw`Correcto. La fila representa \(0x+0y+0z=-2\), una igualdad imposible. El sistema es incompatible.`:'Revisá el término independiente: no es cero.';if(ok)markComplete('compatibilidad');typeset(feedback);});options.appendChild(b);});
+    const options = document.getElementById('absurdRowChoices');
+    const feedback = document.getElementById('absurdRowFeedback');
+    const labels = [
+      'Es una fila nula y puede ignorarse',
+      String.raw`Representa la contradicción \(0=-2\)`,
+      'Indica una variable libre'
+    ];
+
+    options.innerHTML = renderChoiceCards(
+      'absurdRowAnswer',
+      labels.map((label, value) => ({ value, label })),
+      'Interpretación de la fila absurda',
+      'choice-cards--wide'
+    );
+    options.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="absurdRowAnswer"]');
+      if (!input) return;
+      const ok = Number(input.value) === 1;
+      markChoiceState(options, 1, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.innerHTML = ok
+        ? String.raw`Correcto. La fila representa \(0x+0y+0z=-2\), una igualdad imposible. El sistema es incompatible.`
+        : 'Revisá el término independiente: no es cero.';
+      if (ok) markComplete('compatibilidad');
+      typeset(feedback);
+    });
+    typeset(options);
   }
 
   function setupHomogeneousLab() {
@@ -561,17 +753,91 @@
   }
 
   function setupInverseDecision() {
-    const caseEl=document.getElementById('inverseDecisionCase'),options=document.getElementById('inverseDecisionOptions'),feedback=document.getElementById('inverseDecisionFeedback');
-    function render(){const item=inverseCases[inverseIndex];caseEl.innerHTML=item.text;options.innerHTML='';item.options.forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.className='choice-button';b.innerHTML=text;b.addEventListener('click',()=>{const ok=i===item.answer;feedback.className=`feedback ${ok?'success':'danger'}`;feedback.textContent=`${ok?'Correcto.':'Revisá las condiciones del método.'} ${item.explanation}`;if(ok)markComplete('homogeneos');typeset(feedback);});options.appendChild(b);});feedback.textContent='';feedback.className='feedback';typeset(caseEl);typeset(options);}
-    document.getElementById('nextInverseDecision').addEventListener('click',()=>{inverseIndex=(inverseIndex+1)%inverseCases.length;render();});render();
+    const caseEl = document.getElementById('inverseDecisionCase');
+    const options = document.getElementById('inverseDecisionOptions');
+    const feedback = document.getElementById('inverseDecisionFeedback');
+
+    function render() {
+      const item = inverseCases[inverseIndex];
+      caseEl.innerHTML = item.text;
+      options.innerHTML = renderChoiceCards(
+        'inverseDecisionAnswer',
+        item.options.map((label, value) => ({ value, label })),
+        'Decisión sobre el método de la inversa',
+        'choice-cards--wide'
+      );
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(caseEl);
+      typeset(options);
+    }
+
+    options.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="inverseDecisionAnswer"]');
+      if (!input) return;
+      const item = inverseCases[inverseIndex];
+      const ok = Number(input.value) === item.answer;
+      markChoiceState(options, item.answer, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.textContent = `${ok ? 'Correcto.' : 'Revisá las condiciones del método.'} ${item.explanation}`;
+      if (ok) markComplete('homogeneos');
+      typeset(feedback);
+    });
+
+    document.getElementById('nextInverseDecision').addEventListener('click', () => {
+      inverseIndex = (inverseIndex + 1) % inverseCases.length;
+      render();
+    });
+    render();
   }
 
   function setupParameterLab() {
-    const slider=document.getElementById('parameterSlider'),value=document.getElementById('parameterValue'),row=document.getElementById('parameterRow'),feedback=document.getElementById('parameterFeedback');
-    function classification(k){if(k===-3)return'CI';if(k===3)return'I';return'CD';}
-    function update(){const k=Number(slider.value),a=k*k-9,b=k+3;value.textContent=k;row.innerHTML=String.raw`\[\left[\begin{array}{ccc|c}0&0&${a}&${b}\end{array}\right]\]`;document.querySelectorAll('input[name="parameterClass"]').forEach(r=>r.checked=false);feedback.textContent='';feedback.className='feedback';typeset(row);}
-    slider.addEventListener('input',update);
-    document.getElementById('checkParameterClass').addEventListener('click',()=>{const selected=document.querySelector('input[name="parameterClass"]:checked')?.value;if(!selected){setFeedback(feedback,'warning','Elegí una clasificación.');return;}const k=Number(slider.value),answer=classification(k),ok=selected===answer;let explanation=k===-3?'La fila es completamente nula.':k===3?'La fila representa 0=6.':'Hay un pivote no nulo en la tercera columna.';feedback.className=`feedback ${ok?'success':'danger'}`;feedback.textContent=`${ok?'Correcto.':'Revisá los dos valores de la última fila.'} ${explanation}`;if(ok)markComplete('parametros');});update();
+    const slider = document.getElementById('parameterSlider');
+    const value = document.getElementById('parameterValue');
+    const row = document.getElementById('parameterRow');
+    const feedback = document.getElementById('parameterFeedback');
+    const choices = document.getElementById('parameterChoices');
+
+    function classification(k) {
+      if (k === -3) return 'CI';
+      if (k === 3) return 'I';
+      return 'CD';
+    }
+
+    function update() {
+      const k = Number(slider.value);
+      const a = k * k - 9;
+      const b = k + 3;
+      value.textContent = k;
+      row.innerHTML = String.raw`\[\left[\begin{array}{ccc|c}0&0&${a}&${b}\end{array}\right]\]`;
+      choices.querySelectorAll('input[name="parameterClass"]').forEach(radio => { radio.checked = false; });
+      clearChoiceState(choices);
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(row);
+    }
+
+    slider.addEventListener('input', update);
+    document.getElementById('checkParameterClass').addEventListener('click', () => {
+      const selected = selectedChoice('parameterClass', choices);
+      if (!selected) {
+        setFeedback(feedback, 'warning', 'Elegí una clasificación.');
+        return;
+      }
+      const k = Number(slider.value);
+      const answer = classification(k);
+      const ok = selected === answer;
+      const explanation = k === -3
+        ? 'La fila es completamente nula.'
+        : k === 3
+          ? 'La fila representa 0=6.'
+          : 'Hay un pivote no nulo en la tercera columna.';
+      markChoiceState(choices, answer, selected);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.textContent = `${ok ? 'Correcto.' : 'Revisá los dos valores de la última fila.'} ${explanation}`;
+      if (ok) markComplete('parametros');
+    });
+    update();
   }
 
   function setupBreakEven() {
@@ -588,9 +854,44 @@
   }
 
   function setupErrorDetective() {
-    const statement=document.getElementById('errorStatement'),options=document.getElementById('errorOptions'),feedback=document.getElementById('errorFeedback'),counter=document.getElementById('errorCaseCounter');
-    function render(){const item=errorCases[errorIndex];counter.textContent=`Caso ${errorIndex+1}`;statement.innerHTML=item.statement;options.innerHTML='';item.options.forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.className='choice-button';b.innerHTML=text;b.addEventListener('click',()=>{const ok=i===item.answer;feedback.className=`feedback ${ok?'success':'danger'}`;feedback.textContent=`${ok?'Correcto.':'Volvé a revisar la afirmación.'} ${item.explanation}`;if(ok)markComplete('practica');typeset(feedback);});options.appendChild(b);});feedback.textContent='';feedback.className='feedback';typeset(statement);typeset(options);}
-    document.getElementById('nextErrorCase').addEventListener('click',()=>{errorIndex=(errorIndex+1)%errorCases.length;render();});render();
+    const statement = document.getElementById('errorStatement');
+    const options = document.getElementById('errorOptions');
+    const feedback = document.getElementById('errorFeedback');
+    const counter = document.getElementById('errorCaseCounter');
+
+    function render() {
+      const item = errorCases[errorIndex];
+      counter.textContent = `Caso ${errorIndex + 1}`;
+      statement.innerHTML = item.statement;
+      options.innerHTML = renderChoiceCards(
+        'errorAnswer',
+        item.options.map((label, value) => ({ value, label })),
+        'Detección del error',
+        'choice-cards--wide'
+      );
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      typeset(statement);
+      typeset(options);
+    }
+
+    options.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"][name="errorAnswer"]');
+      if (!input) return;
+      const item = errorCases[errorIndex];
+      const ok = Number(input.value) === item.answer;
+      markChoiceState(options, item.answer, input.value);
+      feedback.className = `feedback ${ok ? 'success' : 'danger'}`;
+      feedback.textContent = `${ok ? 'Correcto.' : 'Volvé a revisar la afirmación.'} ${item.explanation}`;
+      if (ok) markComplete('practica');
+      typeset(feedback);
+    });
+
+    document.getElementById('nextErrorCase').addEventListener('click', () => {
+      errorIndex = (errorIndex + 1) % errorCases.length;
+      render();
+    });
+    render();
   }
 
   function setupResolutionPlan() {
@@ -615,10 +916,51 @@
   }
 
   function setupQuiz() {
-    const form=document.getElementById('quizForm'),actions=document.getElementById('quizActions'),result=document.getElementById('quizResult');
-    function generate(){currentQuiz=shuffleArray([...quizBank]).slice(0,10);form.innerHTML=currentQuiz.map((item,i)=>`<fieldset class="quiz-question"><legend><span>${i+1}</span>${item.q}</legend>${item.options.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}<div class="question-feedback" id="qf${i}"></div></fieldset>`).join('');actions.hidden=false;result.innerHTML='';typeset(form);}
-    document.getElementById('startQuiz').addEventListener('click',generate);document.getElementById('newQuiz').addEventListener('click',generate);
-    form.addEventListener('submit',e=>{e.preventDefault();let score=0;currentQuiz.forEach((item,i)=>{const selected=form.querySelector(`input[name="q${i}"]:checked`);const box=document.getElementById(`qf${i}`);const ok=selected&&Number(selected.value)===item.a;if(ok)score++;box.className=`question-feedback ${ok?'correct':'incorrect'}`;box.textContent=`${ok?'Correcto.':'Respuesta a revisar.'} ${item.e}`;});const percent=Math.round(score/currentQuiz.length*100);result.innerHTML=`<strong>${score} / ${currentQuiz.length}</strong><p>${percent>=80?'Muy buen dominio de la unidad.':percent>=60?'Buen avance; revisá las devoluciones.':'Conviene volver a los módulos señalados por las devoluciones.'}</p>`;result.className=`quiz-result ${percent>=60?'success':'warning'}`;if(percent>=70)markComplete('autoevaluacion');typeset(form);});
+    const form = document.getElementById('quizForm');
+    const actions = document.getElementById('quizActions');
+    const result = document.getElementById('quizResult');
+
+    function generate() {
+      currentQuiz = shuffleArray([...quizBank]).slice(0, 10);
+      form.innerHTML = currentQuiz.map((item, index) => `<fieldset class="quiz-question">
+        <legend><span>${index + 1}</span>${item.q}</legend>
+        ${renderChoiceCards(
+          `q${index}`,
+          item.options.map((label, value) => ({ value, label })),
+          `Opciones de la pregunta ${index + 1}`
+        )}
+        <div class="question-feedback" id="qf${index}"></div>
+      </fieldset>`).join('');
+      actions.hidden = false;
+      result.innerHTML = '';
+      result.className = 'quiz-result';
+      typeset(form);
+    }
+
+    document.getElementById('startQuiz').addEventListener('click', generate);
+    document.getElementById('newQuiz').addEventListener('click', generate);
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      let score = 0;
+      currentQuiz.forEach((item, index) => {
+        const question = form.querySelectorAll('.quiz-question')[index];
+        const selected = selectedChoice(`q${index}`, question);
+        const feedback = document.getElementById(`qf${index}`);
+        const ok = selected !== '' && Number(selected) === item.a;
+        if (ok) score++;
+        question.classList.toggle('correct', ok);
+        question.classList.toggle('incorrect', !ok);
+        markChoiceState(question, item.a, selected, true);
+        feedback.className = `question-feedback ${ok ? 'correct' : 'incorrect'}`;
+        feedback.textContent = `${ok ? 'Correcto.' : selected === '' ? 'Pregunta sin responder.' : 'Respuesta a revisar.'} ${item.e}`;
+      });
+      const percent = Math.round(score / currentQuiz.length * 100);
+      result.innerHTML = `<strong>${score} / ${currentQuiz.length}</strong><p>${percent >= 80 ? 'Muy buen dominio de la unidad.' : percent >= 60 ? 'Buen avance; revisá las devoluciones.' : 'Conviene volver a los módulos señalados por las devoluciones.'}</p>`;
+      result.className = `quiz-result ${percent >= 60 ? 'success' : 'warning'}`;
+      if (percent >= 70) markComplete('autoevaluacion');
+      typeset(form);
+    });
   }
 
   function setupGlobalActions() {
